@@ -4,6 +4,25 @@
 #include "config.h"
 #include "signals.h"
 #include "worker.h"
+
+// ============ GLOBAL VARIABLE DEFINITIONS ============
+// These are the ACTUAL definitions (allocate memory)
+ProcessStat *shared_stats = NULL;
+int shmid = -1;
+int semid = -1;
+volatile sig_atomic_t cleanup_done = 0;
+FILE *log_fp = NULL;
+
+// Runtime configuration
+int MAX_WORKERS = 3;
+int WORKER_TIMEOUT = 10;
+int REFRESH_RATE = 2;
+int LOG_LEVEL = LOG_INFO;
+
+// ============ FORWARD DECLARATIONS ============
+void check_worker_timeouts(void);
+
+// ... rest of main.c ...
 int main(void) {
     pid_t pids[MAX_WORKERS];
     time_t last_timeout_check = 0;
