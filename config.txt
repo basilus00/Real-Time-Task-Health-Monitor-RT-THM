@@ -2,7 +2,7 @@
 # Lines starting with # are comments
 
 # Number of worker processes (1-10)
-workers=4
+workers=5
 
 # Timeout threshold in seconds (worker considered slow if no update)
 timeout=10
