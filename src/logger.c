@@ -1,8 +1,6 @@
 #include "project.h"
 #include "logger.h"
 
-FILE *log_fp = NULL;
-
 int logger_init(void) {
     log_fp = fopen(LOG_FILE, "a");
     if (!log_fp) {

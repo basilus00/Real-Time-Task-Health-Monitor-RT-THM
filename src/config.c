@@ -2,6 +2,13 @@
 #include "config.h"
 #include "logger.h"
 
+// ============ GLOBAL VARIABLE DEFINITIONS (Allocate memory ONCE) ============
+ProcessStat *shared_stats = NULL;
+int shmid = -1;
+int semid = -1;
+volatile sig_atomic_t cleanup_done = 0;
+FILE *log_fp = NULL;
+
 // Runtime configuration variables
 int MAX_WORKERS = 3;
 int WORKER_TIMEOUT = 10;
