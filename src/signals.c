@@ -34,8 +34,7 @@ void cleanup(int sig) {
         for (int i = 0; i < MAX_WORKERS; i++) {
             if (shared_stats[i].pid > 0) {
                 kill(shared_stats[i].pid, SIGTERM);
-                log_event("INFO", "Sent SIGTERM to worker %d (PID: %d)", 
-                         i, shared_stats[i].pid);
+                log_event("INFO", "Sent SIGTERM to worker %d (PID: %d)", i, shared_stats[i].pid);
             }
         }
     }
