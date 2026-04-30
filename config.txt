@@ -1,0 +1,14 @@
+# RT-THM Configuration File
+# Lines starting with # are comments
+
+# Number of worker processes (1-10)
+workers=4
+
+# Timeout threshold in seconds (worker considered slow if no update)
+timeout=10
+
+# Dashboard refresh rate in seconds
+refresh_rate=2
+
+# Log level: 0=NONE, 1=INFO, 2=DEBUG
+log_level=2
