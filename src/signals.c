@@ -6,8 +6,6 @@
 #include "ipc.h"
 #include "logger.h"
 
-volatile sig_atomic_t cleanup_done = 0;
-
 void send_signal_to_worker(pid_t pid, int sig_num) {
     if (pid > 0) {
         if (kill(pid, sig_num) == -1 && errno != ESRCH) {
