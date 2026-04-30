@@ -4,7 +4,6 @@
 #include "config.h"
 #include "signals.h"
 #include "worker.h"
-
 int main(void) {
     pid_t pids[MAX_WORKERS];
     time_t last_timeout_check = 0;

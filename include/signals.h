@@ -12,5 +12,6 @@ void send_signal_to_worker(pid_t pid, int sig_num);
 
 // Register all signal handlers
 int register_signal_handlers(void);
+void check_worker_timeouts(void);
 
 #endif // SIGNALS_H
