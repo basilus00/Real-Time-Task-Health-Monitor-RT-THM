@@ -1,7 +1,7 @@
 # RT-THM Makefile
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -std=c99 -I./include
-LDFLAGS = 
+LDFLAGS = -lncurses
 
 # Directories
 SRC_DIR = src
@@ -15,7 +15,8 @@ SRCS = $(SRC_DIR)/main.c \
        $(SRC_DIR)/ipc_utils.c \
        $(SRC_DIR)/logger.c \
        $(SRC_DIR)/config.c \
-       $(SRC_DIR)/signals.c
+       $(SRC_DIR)/signals.c \
+	   $(SRC_DIR)/UI.c
 
 # Object files
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))

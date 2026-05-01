@@ -16,6 +16,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdarg.h>
+#include <ncurses.h>
 
 // ============ CONSTANTS ============
 #define SHM_SIZE 1024
