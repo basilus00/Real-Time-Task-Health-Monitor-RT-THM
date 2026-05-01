@@ -1,13 +1,6 @@
-
----
-
-## 🧪 `checker.py` — MISRA Audit Script (Bonus)
-
-```python
 #!/usr/bin/env python3
 """
 MISRA-C Basic Compliance Checker for RT-THM Project
-Scans C source files for common violations
 """
 
 import re
@@ -46,12 +39,11 @@ def check_file(filepath):
     
     for lineno, line in enumerate(lines, 1):
         # Skip comments and strings for some checks
-        code_line = re.sub(r'//.*$', '', line)  # Remove single-line comments
-        code_line = re.sub(r'/\*.*?\*/', '', code_line)  # Remove multi-line comments
+        code_line = re.sub(r'//.*$', '', line)
+        code_line = re.sub(r'/\*.*?\*/', '', code_line)
         
         for rule, checks in MISRA_CHECKS.items():
             if re.search(checks["pattern"], code_line):
-                # Check exclusion pattern
                 if "exclude" in checks and re.search(checks["exclude"], code_line):
                     continue
                 violations.append(
@@ -68,7 +60,6 @@ def main():
     
     all_violations = []
     
-    # Scan mode
     if sys.argv[1] == "--scan" and len(sys.argv) >= 3:
         scan_dir = sys.argv[2]
         for root, dirs, files in os.walk(scan_dir):
@@ -77,7 +68,6 @@ def main():
                     fpath = os.path.join(root, fname)
                     all_violations.extend(check_file(fpath))
     else:
-        # Check specified files
         for filepath in sys.argv[1:]:
             all_violations.extend(check_file(filepath))
     

@@ -1,0 +1,3 @@
+=== RT-THM MISRA-C AUDIT REPORT ===
+
+✅ No major MISRA violations detected!
