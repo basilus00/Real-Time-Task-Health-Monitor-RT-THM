@@ -1,7 +1,16 @@
-#include "project.h"
-#include "UI.h"
-#include "config.h"
+#define _POSIX_C_SOURCE 200809L
+#define _DEFAULT_SOURCE
 
+#include "project.h"
+#include "ipc.h"
+#include "config.h"
+#include "ui.h"
+
+#include <unistd.h>
+#include <stdarg.h>
+#include <ncurses.h>
+#include <time.h>
+#include <sys/time.h>
 // Global ncurses windows
 static WINDOW *main_win;
 static WINDOW *header_win;
@@ -70,18 +79,40 @@ int ui_init(void) {
 }
 
 void ui_cleanup(void) {
+    // Restore terminal to normal mode
     endwin();
-}
-
-void ui_add_log(const char *message) {
-    strncpy(log_buffer[log_index], message, 255);
-    log_buffer[log_index][255] = '\0';
-    log_index = (log_index + 1) % MAX_LOGS;
-    strncpy(latest_log, message, 255);
+    
+    // Clear all windows
+    if (main_win) delwin(main_win);
+    if (header_win) delwin(header_win);
+    if (workers_win) delwin(workers_win);
+    if (logs_win) delwin(logs_win);
+    
+    // Reset ncurses
+    curs_set(1);  // Show cursor again
+    nocbreak();
+    echo();
+    
+    // Clear screen
+    clear();
+    refresh();
 }
 
 const char* ui_get_latest_log(void) {
     return latest_log;
+}
+void ui_add_log(const char *format, ...) {
+    char buffer[256];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+    
+    // Add to circular buffer
+    strncpy(log_buffer[log_index], buffer, 255);
+    log_buffer[log_index][255] = '\0';
+    log_index = (log_index + 1) % MAX_LOGS;
+    strncpy(latest_log, buffer, 255);
 }
 
 void ui_draw_system_info(void) {

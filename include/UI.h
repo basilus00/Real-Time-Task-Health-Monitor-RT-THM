@@ -2,29 +2,21 @@
 #define UI_H
 
 #include "project.h"
+#include <ncurses.h>
+#include <stdarg.h>
 
-// Initialize ncurses
+// UI initialization
 int ui_init(void);
-
-// Cleanup ncurses
 void ui_cleanup(void);
 
-// Draw the complete dashboard
+// Dashboard drawing
 void ui_draw_dashboard(void);
-
-// Draw system info (top section)
 void ui_draw_system_info(void);
-
-// Draw workers table (middle section)
 void ui_draw_workers_table(void);
+void ui_draw_logs_console(void);
 
-// Draw logs console (bottom section)
-void ui_draw_logs_console(const char *log_message);
-
-// Refresh display
+// Variadic logging to UI console (like printf)
+void ui_add_log(const char *format, ...) __attribute__((format(printf, 1, 2)));
 void ui_refresh(void);
-
-// Get log message to display
-const char* ui_get_latest_log(void);
 
 #endif // UI_H
