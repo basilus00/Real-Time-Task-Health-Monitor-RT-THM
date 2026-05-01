@@ -127,8 +127,8 @@ int main(void) {
                 }
                 break;
             case KEY_RESIZE:
-                endwin();
-                refresh();
+                ui_handle_resize();  // Recreate windows for new size
+                clearok(stdscr, TRUE);  // Force full screen clear on next draw
                 break;
             case ERR:
                 // No input available (non-blocking), continue normally

@@ -15,8 +15,12 @@ void ui_draw_system_info(void);
 void ui_draw_workers_table(void);
 void ui_draw_logs_console(void);
 
-// Variadic logging to UI console (like printf)
+// Logging to UI console (variadic, like printf)
 void ui_add_log(const char *format, ...) __attribute__((format(printf, 1, 2)));
+const char* ui_get_latest_log(void);
+
+// Refresh and resize handling
 void ui_refresh(void);
+void ui_handle_resize(void);
 
 #endif // UI_H
