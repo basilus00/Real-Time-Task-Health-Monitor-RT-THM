@@ -1,9 +1,27 @@
+/**
+ * @file worker.c
+ * @brief Worker process implementation for RT-THM
+ * @details Each worker simulates tasks, updates shared memory stats,
+ * and responds to pause/resume commands from the supervisor.
+ */
+
 #include "project.h"
 #include "worker.h"
 #include "ipc.h"
 #include "logger.h"
 #include "signals.h"
 
+/**
+ * @brief Main entry point for worker process
+ * @param id Worker identifier (0 to MAX_WORKERS-1)
+ * @details Infinite loop that:
+ * - Checks for pause/resume commands from parent via shared memory
+ * - Simulates work with random sleep (1-3s normal, 5s paused)
+ * - Updates shared memory with health stats atomically
+ * - Simulates random crash (5% probability) for testing auto-restart
+ * @note This function never returns normally; calls exit() on crash
+ * @warning Must be called only in child process after fork()
+ */
 void worker_process(int id) {
     // Register signal handlers for this worker
     signal(SIGUSR1, worker_signal_handler);  // Pause command

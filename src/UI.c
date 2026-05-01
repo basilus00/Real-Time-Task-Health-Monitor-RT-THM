@@ -1,3 +1,10 @@
+/**
+ * @file UI.c
+ * @brief Ncurses dashboard implementation for RT-THM
+ * @details Provides real-time visual interface with system info, worker table, and live logs.
+ * Uses double-buffering and atomic snapshots for flicker-free, thread-safe rendering.
+ */
+
 #define _POSIX_C_SOURCE 200809L
 #define _DEFAULT_SOURCE
 
@@ -14,33 +21,39 @@
 #include <string.h>
 #include <pthread.h>
 
-// ============ GLOBAL NCURSES WINDOWS ============
-static WINDOW *main_win = NULL;
-static WINDOW *header_win = NULL;
-static WINDOW *workers_win = NULL;
-static WINDOW *logs_win = NULL;
+/** @name Global Ncurses Windows (static to this module) */
+/**@{*/
+static WINDOW *main_win = NULL;      ///< Main screen window
+static WINDOW *header_win = NULL;    ///< Top status bar window
+static WINDOW *workers_win = NULL;   ///< Worker table window
+static WINDOW *logs_win = NULL;      ///< Live logs console window
+/**@}*/
 
-// ============ SCREEN DIMENSIONS ============
-#define HEADER_HEIGHT 3
-#define LOGS_HEIGHT 8
-#define MIN_COLS 80
-#define MIN_LINES 24
+/** @name Screen Layout Constants */
+/**@{*/
+#define HEADER_HEIGHT 3    ///< Height of header window (lines)
+#define LOGS_HEIGHT 8      ///< Height of logs window (lines)
+#define MIN_COLS 80        ///< Minimum terminal width
+#define MIN_LINES 24       ///< Minimum terminal height
+/**@}*/
 
-// ============ LOG BUFFER ============
+/** @name Log Buffer (circular, thread-safe) */
+/**@{*/
 #define MAX_LOGS 100
-static char log_buffer[MAX_LOGS][256];
-static int log_index = 0;
-static char latest_log[256] = "[SYSTEM] Dashboard initialized";
+static char log_buffer[MAX_LOGS][256];  ///< Circular buffer for log messages
+static int log_index = 0;                ///< Current write index
+static char latest_log[256] = "[SYSTEM] Dashboard initialized";  ///< Most recent log
+static pthread_mutex_t log_mutex = PTHREAD_MUTEX_INITIALIZER;    ///< Mutex for log access
+/**@}*/
 
-// ============ MUTEX FOR LOG BUFFER ============
-static pthread_mutex_t log_mutex = PTHREAD_MUTEX_INITIALIZER;
-
-// ============ UI INITIALIZATION ============
+/**
+ * @brief Initialize ncurses and create dashboard windows
+ * @return 0 on success, -1 if terminal too small or init fails
+ * @note Sets up colors, key handling, and window layout; call once at startup
+ */
 int ui_init(void) {
-    // Initialize ncurses
     initscr();
     
-    // Check minimum terminal size
     if (COLS < MIN_COLS || LINES < MIN_LINES) {
         endwin();
         fprintf(stderr, "[UI] Terminal too small: %dx%d (min: %dx%d)\n", 
@@ -48,47 +61,37 @@ int ui_init(void) {
         return -1;
     }
     
-    cbreak();              // Disable line buffering
-    noecho();              // Don't echo keystrokes
-    curs_set(0);           // Hide cursor
-    nodelay(stdscr, TRUE); // Non-blocking input
-    keypad(stdscr, TRUE);  // Enable special keys
+    cbreak();
+    noecho();
+    curs_set(0);
+    nodelay(stdscr, TRUE);
+    keypad(stdscr, TRUE);
     
-    // Start colors
     if (has_colors()) {
         start_color();
         use_default_colors();
-        init_pair(1, COLOR_GREEN, -1);    // OK status
-        init_pair(2, COLOR_YELLOW, -1);   // Warning
-        init_pair(3, COLOR_RED, -1);      // Error/Critical
-        init_pair(4, COLOR_CYAN, -1);     // Info
-        init_pair(5, COLOR_WHITE, COLOR_BLUE); // Header
+        init_pair(1, COLOR_GREEN, -1);
+        init_pair(2, COLOR_YELLOW, -1);
+        init_pair(3, COLOR_RED, -1);
+        init_pair(4, COLOR_CYAN, -1);
+        init_pair(5, COLOR_WHITE, COLOR_BLUE);
     }
     
-    // Create main window
     main_win = newwin(LINES, COLS, 0, 0);
-    if (!main_win) {
-        endwin();
-        return -1;
-    }
+    if (!main_win) { endwin(); return -1; }
     
-    // Calculate dimensions
     int workers_height = LINES - HEADER_HEIGHT - LOGS_HEIGHT - 2;
     if (workers_height < 5) workers_height = 5;
     
-    // Create header window (top)
     header_win = newwin(HEADER_HEIGHT, COLS - 2, 1, 1);
     if (header_win) box(header_win, 0, 0);
     
-    // Create workers table window (middle)
     workers_win = newwin(workers_height, COLS - 2, HEADER_HEIGHT + 1, 1);
     if (workers_win) box(workers_win, 0, 0);
     
-    // Create logs window (bottom)
     logs_win = newwin(LOGS_HEIGHT, COLS - 2, LINES - LOGS_HEIGHT - 1, 1);
     if (logs_win) box(logs_win, 0, 0);
     
-    // Create title
     if (main_win && COLS >= 30) {
         int title_pos = (COLS - 30) / 2;
         if (title_pos < 1) title_pos = 1;
@@ -101,44 +104,50 @@ int ui_init(void) {
     return 0;
 }
 
-// ============ UI CLEANUP ============
+/**
+ * @brief Cleanup ncurses and restore terminal to normal mode
+ * @note Must be called before exit to prevent terminal corruption
+ */
 void ui_cleanup(void) {
-    // Restore terminal FIRST (critical!)
     endwin();
     
-    // Clear all windows safely
     if (main_win) { delwin(main_win); main_win = NULL; }
     if (header_win) { delwin(header_win); header_win = NULL; }
     if (workers_win) { delwin(workers_win); workers_win = NULL; }
     if (logs_win) { delwin(logs_win); logs_win = NULL; }
     
-    // Reset ncurses modes
-    curs_set(1);   // Show cursor again
-    nocbreak();    // Re-enable line buffering
-    echo();        // Re-enable echo
-    nodelay(stdscr, FALSE); // Blocking input
+    curs_set(1);
+    nocbreak();
+    echo();
+    nodelay(stdscr, FALSE);
     
-    // Clear screen
     clear();
     refresh();
 }
 
-// ============ LOG FUNCTIONS ============
+/**
+ * @brief Get most recent log message
+ * @return Pointer to latest log string (do not modify)
+ */
 const char* ui_get_latest_log(void) {
     return latest_log;
 }
 
+/**
+ * @brief Add formatted log message to UI console buffer
+ * @param format Printf-style format string
+ * @param ... Variable arguments for format string
+ * @note Thread-safe via mutex; truncates long messages to prevent wrap
+ */
 void ui_add_log(const char *format, ...) {
     char buffer[256];
     
-    // Format the message
     va_list args;
     va_start(args, format);
     vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
     buffer[sizeof(buffer) - 1] = '\0';
     
-    // Thread-safe update of log buffer
     pthread_mutex_lock(&log_mutex);
     
     strncpy(log_buffer[log_index], buffer, 255);
@@ -150,14 +159,15 @@ void ui_add_log(const char *format, ...) {
     pthread_mutex_unlock(&log_mutex);
 }
 
-// ============ SYSTEM INFO DRAWING ============
+/**
+ * @brief Draw system status header (time, workers, tasks)
+ * @note Reads shared_stats atomically via semaphore; bounds-checks all output
+ */
 void ui_draw_system_info(void) {
     if (!header_win) return;
     
-    // CLEAR window first
     werase(header_win);
     
-    // Get statistics atomically
     int total_tasks = 0, active_workers = 0, critical_workers = 0;
     if (shared_stats && semid != -1) {
         sem_wait_op(semid);
@@ -169,7 +179,6 @@ void ui_draw_system_info(void) {
         sem_signal_op(semid);
     }
     
-    // Draw with bounds checking
     box(header_win, 0, 0);
     
     int max_col = COLS - 2;
@@ -179,7 +188,6 @@ void ui_draw_system_info(void) {
     mvwprintw(header_win, 1, 2, "SYSTEM STATUS");
     wattroff(header_win, A_BOLD | COLOR_PAIR(4));
     
-    // Time
     time_t now = time(NULL);
     struct tm *tm_info = localtime(&now);
     char time_str[32];
@@ -189,7 +197,6 @@ void ui_draw_system_info(void) {
         mvwprintw(header_win, 1, max_col - 15, "%s", time_str);
     }
     
-    // Stats line
     wattron(header_win, COLOR_PAIR(1));
     mvwprintw(header_win, 2, 2, "Workers: %d/%d", active_workers, MAX_WORKERS);
     wattroff(header_win, COLOR_PAIR(1));
@@ -204,18 +211,19 @@ void ui_draw_system_info(void) {
         mvwprintw(header_win, 2, 35, "Tasks: %d", total_tasks);
     }
     
-    // Refresh this window only
     wnoutrefresh(header_win);
 }
-// ============ WORKERS TABLE DRAWING ============
+
+/**
+ * @brief Draw worker statistics table with color-coded status
+ * @note Uses atomic snapshot of shared_stats to minimize semaphore hold time
+ */
 void ui_draw_workers_table(void) {
     if (!workers_win || !shared_stats || semid == -1) return;
     
-    // CLEAR completely
     werase(workers_win);
     box(workers_win, 0, 0);
     
-    // Create atomic snapshot
     typedef struct {
         int pid;
         int health;
@@ -236,13 +244,11 @@ void ui_draw_workers_table(void) {
     }
     sem_signal_op(semid);
     
-    // Header
     wattron(workers_win, A_BOLD | COLOR_PAIR(4));
     mvwprintw(workers_win, 1, 1, "%-3s %-6s %-8s %-6s %-8s", 
               "ID", "PID", "Health", "Tasks", "Status");
     wattroff(workers_win, A_BOLD | COLOR_PAIR(4));
     
-    // Separator line
     int width = COLS - 4;
     if (width > 2 && width < 200) {
         for (int i = 1; i < width; i++) {
@@ -250,14 +256,12 @@ void ui_draw_workers_table(void) {
         }
     }
     
-    // Draw workers
     int max_rows = LINES - HEADER_HEIGHT - LOGS_HEIGHT - 6;
     if (max_rows < 1) max_rows = 1;
     
     for (int i = 0; i < MAX_WORKERS && i < max_rows; i++) {
         int row = i + 3;
         
-        // Format status
         const char *status;
         int color_pair;
         
@@ -278,7 +282,6 @@ void ui_draw_workers_table(void) {
             color_pair = 1;
         }
         
-        // Draw with color
         if (color_pair == 3) {
             wattron(workers_win, COLOR_PAIR(3) | A_BOLD);
         } else if (color_pair == 2) {
@@ -301,27 +304,26 @@ void ui_draw_workers_table(void) {
     wnoutrefresh(workers_win);
 }
 
-// ============ LOGS CONSOLE DRAWING ============
+/**
+ * @brief Draw live log console at bottom of screen
+ * @note Thread-safe read via mutex; truncates messages to prevent line wrap
+ */
 void ui_draw_logs_console(void) {
     if (!logs_win) return;
     
-    // CLEAR completely
     werase(logs_win);
     box(logs_win, 0, 0);
     
-    // Title
     wattron(logs_win, A_BOLD | COLOR_PAIR(4));
     mvwprintw(logs_win, 0, 2, " LIVE LOGS ");
     wattroff(logs_win, A_BOLD | COLOR_PAIR(4));
     
-    // Thread-safe read
     pthread_mutex_lock(&log_mutex);
     
     int visible_lines = LOGS_HEIGHT - 2;
     int start = (log_index >= visible_lines) ? (log_index - visible_lines) : 0;
     
     for (int i = start, line = 1; i < log_index && line < LOGS_HEIGHT - 1; i++, line++) {
-        // Truncate to prevent wrap
         char msg[60];
         size_t len = strlen(log_buffer[i]);
         if (len >= sizeof(msg)) {
@@ -333,7 +335,7 @@ void ui_draw_logs_console(void) {
         msg[sizeof(msg) - 1] = '\0';
         
         wattron(logs_win, COLOR_PAIR(4));
-        mvwprintw(logs_win, line, 2, "%-58s", msg);  // Fixed width
+        mvwprintw(logs_win, line, 2, "%-58s", msg);
         wattroff(logs_win, COLOR_PAIR(4));
     }
     
@@ -342,37 +344,37 @@ void ui_draw_logs_console(void) {
     wnoutrefresh(logs_win);
 }
 
-// ============ DASHBOARD DRAWING ============
+/**
+ * @brief Draw complete dashboard (header + workers + logs)
+ * @note Uses doupdate() for atomic, flicker-free screen refresh
+ */
 void ui_draw_dashboard(void) {
-    // Draw all sections
     ui_draw_system_info();
     ui_draw_workers_table();
     ui_draw_logs_console();
-    
-    // Single atomic screen update
     doupdate();
 }
 
+/**
+ * @brief Refresh entire dashboard display
+ * @note Clears stdscr first to prevent ghosting; includes small delay
+ */
 void ui_refresh(void) {
-    // Clear stdscr to prevent ghosting
     clear();
     refresh();
-    
-    // Redraw everything
     ui_draw_dashboard();
-    
-    // Small delay
     usleep(50000);
 }
 
-// ============ TERMINAL RESIZE HANDLER ============
+/**
+ * @brief Handle terminal resize event
+ * @note Recreates all windows with new dimensions; call on KEY_RESIZE
+ */
 void ui_handle_resize(void) {
-    // Delete old windows
     if (header_win) delwin(header_win);
     if (workers_win) delwin(workers_win);
     if (logs_win) delwin(logs_win);
     
-    // Recreate
     endwin();
     refresh();
     
@@ -387,7 +389,6 @@ void ui_handle_resize(void) {
     if (workers_win) box(workers_win, 0, 0);
     if (logs_win) box(logs_win, 0, 0);
     
-    // Force full redraw
     touchwin(header_win);
     touchwin(workers_win);
     touchwin(logs_win);

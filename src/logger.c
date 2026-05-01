@@ -1,6 +1,17 @@
+/**
+ * @file logger.c
+ * @brief Logging system implementation with microsecond precision
+ * @details Thread-safe file logging via append mode; supports multiple log levels.
+ */
+
 #include "project.h"
 #include "logger.h"
 
+/**
+ * @brief Initialize logging system and open log file
+ * @return 0 on success, -1 if log file cannot be opened
+ * @note Call once at program startup before any log_event() calls
+ */
 int logger_init(void) {
     log_fp = fopen(LOG_FILE, "a");
     if (!log_fp) {
@@ -10,6 +21,10 @@ int logger_init(void) {
     return 0;
 }
 
+/**
+ * @brief Close log file and cleanup resources
+ * @note Call during shutdown to ensure all logs are flushed
+ */
 void logger_close(void) {
     if (log_fp) {
         fclose(log_fp);
@@ -17,6 +32,13 @@ void logger_close(void) {
     }
 }
 
+/**
+ * @brief Write formatted log event to file with microsecond timestamp
+ * @param level Log level string ("INFO", "WARN", "ERROR", "DEBUG")
+ * @param format Printf-style format string
+ * @param ... Variable arguments for format string
+ * @note Opens file in append mode for each write (fork-safe); respects LOG_LEVEL
+ */
 void log_event(const char *level, const char *format, ...) {
     if (LOG_LEVEL == LOG_NONE) return;
     

@@ -1,20 +1,33 @@
+/**
+ * @file config.c
+ * @brief Configuration parser implementation for RT-THM
+ * @details Loads runtime parameters from config.txt; defines global config variables.
+ */
+
 #include "project.h"
 #include "config.h"
 #include "logger.h"
 
-// ============ GLOBAL VARIABLE DEFINITIONS (Allocate memory ONCE) ============
-ProcessStat *shared_stats = NULL;
-int shmid = -1;
-int semid = -1;
-volatile sig_atomic_t cleanup_done = 0;
-FILE *log_fp = NULL;
+/** @name Global Variables (Defined here, declared extern in project.h) */
+/**@{*/
+ProcessStat *shared_stats = NULL;       ///< Shared memory pointer
+int shmid = -1;                          ///< Shared memory segment ID
+int semid = -1;                          ///< Semaphore set ID
+volatile sig_atomic_t cleanup_done = 0; ///< Signal-safe shutdown flag
+FILE *log_fp = NULL;                     ///< Log file handle
 
-// Runtime configuration variables
-int MAX_WORKERS = 3;
-int WORKER_TIMEOUT = 10;
-int REFRESH_RATE = 2;
-int LOG_LEVEL = LOG_INFO;
+int MAX_WORKERS = 3;        ///< Number of worker processes (default: 3)
+int WORKER_TIMEOUT = 10;    ///< Timeout threshold in seconds (default: 10)
+int REFRESH_RATE = 2;       ///< Dashboard refresh interval in seconds (default: 2)
+int LOG_LEVEL = LOG_INFO;   ///< Logging verbosity level (default: INFO)
+/**@}*/
 
+/**
+ * @brief Load configuration parameters from external file
+ * @param filename Path to config file (e.g., "config.txt")
+ * @return 0 on success, -1 if file not found (defaults used)
+ * @note Modifies global config variables: MAX_WORKERS, WORKER_TIMEOUT, etc.
+ */
 int load_config(const char *filename) {
     FILE *fp = fopen(filename, "r");
     if (!fp) {
@@ -69,10 +82,20 @@ int load_config(const char *filename) {
     return 0;
 }
 
+/**
+ * @brief Print current configuration values to stdout
+ * @details Format: [CONFIG] workers=4, timeout=10s, refresh=2s, log_level=2
+ */
 void print_config(void) {
-    printf("[CONFIG] workers=%d, timeout=%ds, refresh=%ds, log_level=%d\n",MAX_WORKERS, WORKER_TIMEOUT, REFRESH_RATE, LOG_LEVEL);
+    printf("[CONFIG] workers=%d, timeout=%ds, refresh=%ds, log_level=%d\n",
+           MAX_WORKERS, WORKER_TIMEOUT, REFRESH_RATE, LOG_LEVEL);
 }
 
+/**
+ * @brief Validate loaded configuration values against constraints
+ * @return 0 if all values valid, -1 if any out-of-range
+ * @note Call after load_config() before starting main loop
+ */
 int validate_config(void) {
     if (MAX_WORKERS < 1 || MAX_WORKERS > 10) {
         log_event("ERROR", "Invalid workers count: %d", MAX_WORKERS);

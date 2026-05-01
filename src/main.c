@@ -1,3 +1,10 @@
+/**
+ * @file main.c
+ * @brief RT-THM supervisor process (parent) implementation
+ * @details Main entry point: initializes IPC, spawns workers, runs ncurses dashboard,
+ * and monitors worker health with auto-restart on failure.
+ */
+
 #define _POSIX_C_SOURCE 200809L
 #define _DEFAULT_SOURCE
 
@@ -7,17 +14,39 @@
 #include "config.h"
 #include "signals.h"
 #include "worker.h"
-#include "UI.h"
+#include "ui.h"
 
 #include <signal.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdarg.h>
 
-// ============ FORWARD DECLARATIONS ============
+/**
+ * @brief Check for worker timeouts and send pause/resume signals
+ * @details Monitors last_update timestamp; sends SIGUSR1 if idle > WORKER_TIMEOUT,
+ * SIGUSR2 when worker recovers. Updates shared_stats[i].is_slow and command fields.
+ * @note Must be called periodically from main supervision loop
+ * @see send_signal_to_worker()
+ */
 void check_worker_timeouts(void);
 
-// ============ MAIN FUNCTION ============
+/**
+ * @brief Main entry point for RT-THM supervisor
+ * @return EXIT_SUCCESS on normal exit, EXIT_FAILURE on initialization error
+ * @details Execution flow:
+ * 1. Initialize logger and load config.txt
+ * 2. Create shared memory and semaphore for IPC
+ * 3. Fork worker processes
+ * 4. Initialize ncurses UI dashboard
+ * 5. Enter supervision loop:
+ *    - Handle user input (q=quit, r=restart, resize)
+ *    - Draw dashboard with worker stats
+ *    - Monitor workers via waitpid() and restart on crash
+ *    - Check timeouts and send signals as needed
+ * 6. Cleanup resources on exit
+ * @note This function contains the main infinite loop; normal exit via 'q' key or SIGINT
+ * @warning Calls exit() in error paths; cleanup() handles IPC resource release
+ */
 int main(void) {
     pid_t pids[MAX_WORKERS];
     time_t last_timeout_check = 0;
@@ -112,9 +141,9 @@ int main(void) {
             case 'Q':
                 log_event("INFO", "User requested shutdown via UI");
                 ui_add_log("[USER] Shutdown requested - cleaning up...");
-                ui_refresh();           // Final UI update
-                ui_cleanup();           // ← Restore terminal FIRST (critical!)
-                cleanup(SIGTERM);       // ← Then cleanup resources (calls exit())
+                ui_refresh();
+                ui_cleanup();
+                cleanup(SIGTERM);
                 break;    
             case 'r':
             case 'R':
@@ -127,14 +156,12 @@ int main(void) {
                 }
                 break;
             case KEY_RESIZE:
-                ui_handle_resize();  // Recreate windows for new size
-                clearok(stdscr, TRUE);  // Force full screen clear on next draw
+                ui_handle_resize();
+                clearok(stdscr, TRUE);
                 break;
             case ERR:
-                // No input available (non-blocking), continue normally
                 break;
             default:
-                // Ignore other keys
                 break;
         }
         
@@ -158,7 +185,6 @@ int main(void) {
             }
             
             sem_signal_op(semid);
-            // END PROTECTED READ
             
             // Check if worker is still alive (reap zombies)
             int status;
@@ -209,14 +235,14 @@ int main(void) {
         
         // Refresh UI at configured rate
         ui_refresh();
-        (void)usleep(100000);  // 100ms sleep to reduce CPU usage
+        (void)usleep(100000);
     }
     
     // 8. Fallback cleanup (if loop exits without 'q')
     if (running == 0) {
         log_event("INFO", "=== SYSTEM SHUTDOWN ===");
-        ui_cleanup();   // Restore terminal
-        cleanup(SIGTERM);  // Cleanup resources
+        ui_cleanup();
+        cleanup(SIGTERM);
     }
     return 0;
 }
