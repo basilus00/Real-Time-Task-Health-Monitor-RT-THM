@@ -1,0 +1,19 @@
+======================================================================
+=== RT-THM MISRA-C AUDIT REPORT ===
+======================================================================
+
+PROJECT: Real-Time Task & Health Monitor (RT-THM)
+RULE 21.3: Dynamic memory allocation forbidden after initialization
+CHECKED: malloc(), calloc(), realloc(), free()
+
+----------------------------------------------------------------------
+SUMMARY:
+----------------------------------------------------------------------
+  Errors (Rule 21.3 violations):    0
+  Warnings:                         10
+  Info messages:                    0
+  Init phase violations:            0
+----------------------------------------------------------------------
+
+✅ COMPLIANT: No Rule 21.3 violations detected!
+   All dynamic memory operations are properly restricted.

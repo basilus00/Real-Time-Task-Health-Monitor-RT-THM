@@ -9,8 +9,7 @@ Signal handling implementation for RT-\/\+THM.
 {\ttfamily \#include "{}signals.\+h"{}}\newline
 {\ttfamily \#include "{}ipc.\+h"{}}\newline
 {\ttfamily \#include "{}logger.\+h"{}}\newline
-Include dependency graph for signals.\+c\+:
-\nopagebreak
+Include dependency graph for signals.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -91,16 +90,14 @@ Uses cleanup\+\_\+done flag to prevent double-\/execution
 Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{\+\_\+exit()} instead of \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{exit()} for signal-\/handler safety 
 \end{DoxyWarning}
 
-\end{DoxyEnumerate}Here is the call graph for this function\+:
-\nopagebreak
+\end{DoxyEnumerate}Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=249pt]{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -123,16 +120,14 @@ Register all signal handlers for the process.
 \begin{DoxyNote}{Note}
 Registers safe\+\_\+shutdown for SIGINT and SIGTERM 
 \end{DoxyNote}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{signals_8c_adde3bef4aac394c78441b059135e7343_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -160,16 +155,14 @@ Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{endwin()} immediate
 \begin{DoxySeeAlso}{See also}
 \doxylink{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5}{cleanup()} 
 \end{DoxySeeAlso}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{signals_8c_a2227b50e2e42d7fbcaf283ae0b04bda5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -196,16 +189,14 @@ Send signal to a specific worker process.
 \begin{DoxyNote}{Note}
 Logs warning on failure; ignores ESRCH (process already exited) 
 \end{DoxyNote}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=309pt]{signals_8c_a9b352f5e054878b135c4d45ee28f17d9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -230,8 +221,7 @@ Worker signal handler for SIGUSR1/\+SIGUSR2.
 \begin{DoxyNote}{Note}
 Async-\/signal-\/safe\+: minimal operations only; actual behavior handled in worker loop 
 \end{DoxyNote}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

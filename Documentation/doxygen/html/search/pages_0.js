@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['health_20monitor_20rt_20thm_0',['Real-Time-Task-Health-Monitor-RT-THM',['../md_README.html',1,'']]]
+  ['health_20monitor_0',['RT-THM — Real-Time Task &amp; Health Monitor',['../md_README.html',1,'']]]
 ];

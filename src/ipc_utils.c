@@ -1,7 +1,8 @@
 /**
  * @file ipc_utils.c
  * @brief IPC utilities implementation (Shared Memory & Semaphores)
- * @details Thread-safe operations for POSIX IPC with error handling and logging.
+ * @details Thread-safe operations for System V IPC with error handling and logging.
+ * @note This module uses System V shared memory (shmget/shmat) and semaphores (semget/semop).
  */
 
 #include "project.h"
@@ -11,10 +12,10 @@
 /**
  * @brief Acquire semaphore lock (P operation)
  * @param semid Semaphore identifier
- * @note Blocks until available; logs error and exits on failure
+ * @note Blocks until available; logs error and exits on failure.
  */
 void sem_wait_op(int semid) {
-    struct sembuf sb = {0, -1, 0};  // P operation
+    struct sembuf sb = {0, -1, 0};  /* P operation */
     if (semop(semid, &sb, 1) == -1) {
         log_event("ERROR", "sem_wait failed: %s", strerror(errno));
         exit(EXIT_FAILURE);
@@ -24,10 +25,10 @@ void sem_wait_op(int semid) {
 /**
  * @brief Release semaphore lock (V operation)
  * @param semid Semaphore identifier
- * @note Logs error and exits on failure
+ * @note Logs error and exits on failure.
  */
 void sem_signal_op(int semid) {
-    struct sembuf sb = {0, 1, 0};  // V operation
+    struct sembuf sb = {0, 1, 0};  /* V operation */
     if (semop(semid, &sb, 1) == -1) {
         log_event("ERROR", "sem_signal failed: %s", strerror(errno));
         exit(EXIT_FAILURE);
@@ -37,7 +38,7 @@ void sem_signal_op(int semid) {
 /**
  * @brief Create and initialize binary semaphore
  * @return Semaphore ID on success, -1 on error
- * @note Initialized to 1 (unlocked); logs creation on success
+ * @note Initialized to 1 (unlocked); logs creation on success.
  */
 int create_semaphore(void) {
     int sid = semget(IPC_PRIVATE, 1, IPC_CREAT | 0666);
@@ -45,14 +46,19 @@ int create_semaphore(void) {
         log_event("ERROR", "semget failed: %s", strerror(errno));
         return -1;
     }
-    
+
     union semun arg;
-    arg.val = 1;  // Initialize to 1 (unlocked)
+    arg.val = 1;  /* Initialize to 1 (unlocked) */
+
     if (semctl(sid, 0, SETVAL, arg) == -1) {
         log_event("ERROR", "semctl SETVAL failed: %s", strerror(errno));
+
+        /* ADDED: prevent leaking the semaphore if initialization fails */
+        (void)semctl(sid, 0, IPC_RMID);
+
         return -1;
     }
-    
+
     log_event("INFO", "Semaphore created (ID: %d)", sid);
     return sid;
 }
@@ -78,12 +84,15 @@ int create_shared_memory(size_t num_workers) {
  * @return Pointer to ProcessStat array, or NULL on error
  */
 ProcessStat* attach_shared_memory(int shmid) {
-    ProcessStat *stats = (ProcessStat *)shmat(shmid, NULL, 0);
-    if (stats == (void *)-1) {
+    /* CHANGED: avoid casting shmat directly (more MISRA-friendly) */
+    void *addr = shmat(shmid, NULL, 0);
+    if (addr == (void *)-1) {
         log_event("ERROR", "shmat failed: %s", strerror(errno));
         return NULL;
     }
-    log_event("DEBUG", "Shared memory attached at %p", (void *)stats);
+
+    ProcessStat *stats = (ProcessStat *)addr; /* single, explicit conversion */
+    log_event("DEBUG", "Shared memory attached at %p", addr);
     return stats;
 }
 
@@ -93,13 +102,13 @@ ProcessStat* attach_shared_memory(int shmid) {
  * @return 0 on success, -1 on error
  */
 int detach_shared_memory(ProcessStat *stats) {
-    if (stats && stats != (void *)-1) {
+    /* CHANGED: stats == NULL is enough if attach_shared_memory() returns NULL on failure */
+    if (stats != NULL) {
         if (shmdt(stats) == -1) {
             log_event("ERROR", "shmdt failed: %s", strerror(errno));
             return -1;
         }
         log_event("DEBUG", "Shared memory detached");
-        return 0;
     }
     return 0;
 }
@@ -108,7 +117,7 @@ int detach_shared_memory(ProcessStat *stats) {
  * @brief Mark shared memory segment for deletion
  * @param shmid Shared memory ID
  * @return 0 on success, -1 on error
- * @note Segment destroyed after all processes detach; ignores EINVAL (already removed)
+ * @note Segment is destroyed after all processes detach; ignores EINVAL (already removed).
  */
 int remove_shared_memory(int shmid) {
     if (shmid != -1) {
@@ -117,7 +126,6 @@ int remove_shared_memory(int shmid) {
             return -1;
         }
         log_event("DEBUG", "Shared memory segment removed");
-        return 0;
     }
     return 0;
 }
@@ -126,7 +134,7 @@ int remove_shared_memory(int shmid) {
  * @brief Initialize a worker's stats entry in shared memory
  * @param worker_id Worker index (0 to MAX_WORKERS-1)
  * @param pid Worker process ID
- * @note Must be called with semaphore held; sets last_update, is_slow, command
+ * @note This function acquires/releases the semaphore internally to protect shared memory.
  */
 void init_worker_stats(int worker_id, pid_t pid) {
     if (shared_stats && worker_id >= 0 && worker_id < MAX_WORKERS) {

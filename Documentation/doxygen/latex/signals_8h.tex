@@ -6,16 +6,14 @@ Signal handling for RT-\/\+THM (SIGINT, SIGUSR1, SIGUSR2)
 
 
 {\ttfamily \#include "{}project.\+h"{}}\newline
-Include dependency graph for signals.\+h\+:
-\nopagebreak
+Include dependency graph for signals.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{signals_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -62,16 +60,14 @@ Must be called periodically from main supervision loop
 \begin{DoxySeeAlso}{See also}
 \doxylink{signals_8c_a9b352f5e054878b135c4d45ee28f17d9}{send\+\_\+signal\+\_\+to\+\_\+worker()} 
 \end{DoxySeeAlso}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{signals_8h_a1594c6785b808f6766d6f6a82852bf61_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -117,16 +113,14 @@ Uses cleanup\+\_\+done flag to prevent double-\/execution
 Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{\+\_\+exit()} instead of \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{exit()} for signal-\/handler safety 
 \end{DoxyWarning}
 
-\end{DoxyEnumerate}Here is the call graph for this function\+:
-\nopagebreak
+\end{DoxyEnumerate}Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=249pt]{signals_8h_aa79b2985b495e6db8bf7675d0a32c3c5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -155,16 +149,14 @@ Call once at startup before forking workers
 \begin{DoxyNote}{Note}
 Registers safe\+\_\+shutdown for SIGINT and SIGTERM 
 \end{DoxyNote}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{signals_8h_adde3bef4aac394c78441b059135e7343_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -201,16 +193,14 @@ void (errors logged internally)
 \begin{DoxyNote}{Note}
 Logs warning on failure; ignores ESRCH (process already exited) 
 \end{DoxyNote}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=309pt]{signals_8h_a9b352f5e054878b135c4d45ee28f17d9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -243,8 +233,7 @@ Async-\/signal-\/safe\+: only sets flags, no complex operations
 \begin{DoxyNote}{Note}
 Async-\/signal-\/safe\+: minimal operations only; actual behavior handled in worker loop 
 \end{DoxyNote}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

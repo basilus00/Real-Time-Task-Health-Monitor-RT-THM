@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RT-THM (Real-Time Task &amp; Health Monitor): Real-Time-Task-Health-Monitor-RT-THM</title>
+<title>RT-THM (Real-Time Task &amp; Health Monitor): RT-THM — Real-Time Task &amp; Health Monitor</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,10 +69,201 @@ $(function() {
 
 </div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">Real-Time-Task-Health-Monitor-RT-THM</div></div>
+  <div class="headertitle"><div class="title">RT-THM — Real-Time Task &amp; Health Monitor</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a>THis is a real time supervision project based on parent and child communication as main and workers with the signal based ICP communication and monitoring functions </p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> RT-THM is a <b>real-time process supervision project</b>. A <b>Supervisor (parent)</b> process spawns and monitors multiple <b>Worker (child)</b> processes that execute simulated tasks. Workers continuously publish their status using <b>shared memory</b>, and the supervisor reacts in near real time when a worker becomes unstable, hangs, or crashes.</p>
+<p>This project also includes:</p><ul>
+<li><b>Ncurses UI dashboard</b> for live monitoring in the terminal</li>
+<li><b>Logging</b> with timestamps</li>
+<li>A basic <b>MISRA-style audit checker</b> (Python)</li>
+<li><b>Doxygen documentation</b> generation</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md2"></a>
+Key Features</h1>
+<ul>
+<li><b>Multi-process management:</b> uses <code><a class="el" href="config_8c.html#a4aea176d6dafe443d89b8d850830709a" title="Number of worker processes (default: 3)">fork()</a></code> to create worker processes.</li>
+<li><b>IPC (Inter-Process Communication):</b><ul>
+<li><b>Shared Memory (System V)</b> for publishing worker statistics.</li>
+<li><b>Semaphores (System V)</b> to protect shared data and avoid race conditions.</li>
+</ul>
+</li>
+<li><b>Signals:</b> supervisor can signal workers (pause/resume strategy) using <code>SIGUSR1</code> / <code>SIGUSR2</code>.</li>
+<li><b>Healing / Auto-restart:</b> supervisor detects dead workers (via <code><a class="el" href="config_8c.html#a4aea176d6dafe443d89b8d850830709a" title="Number of worker processes (default: 3)">waitpid()</a></code>) and restarts them.</li>
+<li><b>Real-time monitoring UI:</b> <code>ncurses</code> dashboard with live stats and log messages.</li>
+<li><b>Static analysis support:</b> includes a Python checker for basic MISRA-like rules.</li>
+<li><b>Doxygen documentation:</b> codebase is documented using Doxygen comments.</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md4"></a>
+Repository Structure</h1>
+<div class="fragment"><div class="line">.</div>
+<div class="line">├── include/                 # Public headers</div>
+<div class="line">│   ├── config.h</div>
+<div class="line">│   ├── ipc.h</div>
+<div class="line">│   ├── logger.h</div>
+<div class="line">│   ├── project.h</div>
+<div class="line">│   ├── signals.h</div>
+<div class="line">│   ├── UI.h</div>
+<div class="line">│   └── worker.h</div>
+<div class="line">├── src/                     # Implementation files</div>
+<div class="line">│   ├── config.c</div>
+<div class="line">│   ├── ipc_utils.c</div>
+<div class="line">│   ├── logger.c</div>
+<div class="line">│   ├── main.c</div>
+<div class="line">│   ├── signals.c</div>
+<div class="line">│   ├── UI.c</div>
+<div class="line">│   └── worker.c</div>
+<div class="line">├── Documentation/           # Reports / docs output (and Doxygen output)</div>
+<div class="line">├── config.txt               # Runtime configuration</div>
+<div class="line">├── checker.py               # MISRA-style audit checker (basic rules)</div>
+<div class="line">├── makefile</div>
+<div class="line">└── baseProj.c               # Legacy / base prototype (if still used)</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md6"></a>
+Requirements</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Build dependencies</h2>
+<ul>
+<li>GCC (C99)</li>
+<li>ncurses development library</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Optional (documentation)</h2>
+<ul>
+<li>Doxygen</li>
+<li>Graphviz (<code>dot</code>) for call graphs</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md10"></a>
+Build &amp; Run</h1>
+<h2><a class="anchor" id="autotoc_md11"></a>
+1) Compile</h2>
+<div class="fragment"><div class="line">make</div>
+</div><!-- fragment --><p>Output executable: </p><div class="fragment"><div class="line">bin/rt-thm</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+2) Run</h2>
+<div class="fragment"><div class="line">make run</div>
+</div><!-- fragment --><p>Or: </p><div class="fragment"><div class="line">./bin/rt-thm</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md14"></a>
+UI Controls (Ncurses)</h1>
+<p>Inside the dashboard:</p><ul>
+<li><code>q</code> : quit cleanly</li>
+<li><code>r</code> : restart all workers (sends SIGTERM to all workers; supervisor restarts them)</li>
+<li>Terminal resize is handled (KEY_RESIZE)</li>
+</ul>
+<blockquote class="doxtable">
+<p>&zwj;Note: If ncurses fails to initialize, the program may fall back to console logging output depending on your implementation. </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md15"></a>
+&lt;/blockquote&gt;</h1>
+<h1><a class="anchor" id="autotoc_md16"></a>
+Configuration</h1>
+<p>The project reads runtime parameters from:</p>
+<ul>
+<li><code>config.txt</code></li>
+</ul>
+<p>Typical configurable fields (depending on your <code><a class="el" href="config_8c.html" title="Configuration parser implementation for RT-THM.">config.c</a></code> implementation) may include:</p><ul>
+<li>number of workers</li>
+<li>refresh rate</li>
+<li>timeout thresholds</li>
+<li>log verbosity</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md18"></a>
+Logging</h1>
+<p>Logs are written to a log file (commonly <code>system.log</code> if configured in code). <br  />
+ Logged events typically include:</p><ul>
+<li>startup/shutdown</li>
+<li>worker crash detection</li>
+<li>worker restart events</li>
+<li>timeouts and health alerts <img src="Documentation/images/LogOUT.png" alt="system log output" class="inline"/></li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md20"></a>
+IPC Model (High Level)</h1>
+<p>Workers write their status into a shared array in System V shared memory, commonly using a structure like:</p>
+<ul>
+<li>PID</li>
+<li>health score</li>
+<li>tasks completed</li>
+<li>last update timestamp</li>
+<li>slow/hang detection flags</li>
+<li>command field (pause/resume)</li>
+</ul>
+<p>The supervisor reads this data periodically to:</p><ul>
+<li>display live metrics in the UI</li>
+<li>detect timeouts / instability</li>
+<li>restart crashed processes</li>
+</ul>
+<p>To avoid race conditions, a System V semaphore is used as a <b>mutex</b> around shared memory access.</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md22"></a>
+Signals (Control Channel)</h1>
+<p>RT-THM uses signals for quick control commands:</p>
+<ul>
+<li><code>SIGUSR1</code>: ask a worker to slow down / pause (depending on implementation)</li>
+<li><code>SIGUSR2</code>: resume normal operation</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md24"></a>
+MISRA-Style Audit Checker</h1>
+<p>Run the basic checker:</p>
+<div class="fragment"><div class="line">make audit</div>
+</div><!-- fragment --><p>This uses <code>checker.py</code> to scan files (for example <code><a class="el" href="main_8c.html" title="RT-THM supervisor process (parent) implementation.">src/main.c</a></code>) and emits a report.</p>
+<blockquote class="doxtable">
+<p>&zwj;The checker is intentionally simple and should be extended for deeper MISRA compliance. </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md25"></a>
+&lt;/blockquote&gt;</h1>
+<h1><a class="anchor" id="autotoc_md26"></a>
+Generate Doxygen Documentation</h1>
+<h2><a class="anchor" id="autotoc_md27"></a>
+1) Install tools</h2>
+<p>Ubuntu/Debian: </p><div class="fragment"><div class="line">sudo apt update</div>
+<div class="line">sudo apt install doxygen graphviz</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
+2) Generate docs</h2>
+<p>If you have a <code>Doxyfile</code> at repo root:</p>
+<div class="fragment"><div class="line">doxygen Doxyfile</div>
+</div><!-- fragment --><p>Typical output: </p><div class="fragment"><div class="line">Documentation/doxygen/html/index.html</div>
+</div><!-- fragment --><p>Open in browser: </p><div class="fragment"><div class="line">xdg-open Documentation/doxygen/html/index.html</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
+Recommended Doxyfile settings</h2>
+<p>To use this README as the Doxygen main page:</p>
+<div class="fragment"><div class="line">USE_MDFILE_AS_MAINPAGE = README.md</div>
+<div class="line">MARKDOWN_SUPPORT       = YES</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md31"></a>
+Troubleshooting</h1>
+<h2><a class="anchor" id="autotoc_md32"></a>
+Doxygen "Main Page" is empty</h2>
+<p>Enable README as main page:</p><ul>
+<li>Ensure <code><a class="el" href="README_8md.html">README.md</a></code> is included in <code>INPUT</code></li>
+<li>Add: <code>USE_MDFILE_AS_MAINPAGE = <a class="el" href="README_8md.html">README.md</a></code></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md33"></a>
+Ncurses build errors</h2>
+<p>Install ncurses dev package:</p><ul>
+<li>Ubuntu/Debian: <code>sudo apt install libncurses-dev</code></li>
+<li>Fedora: <code>sudo dnf install ncurses-devel</code></li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md35"></a>
+Roadmap / Next Improvements</h1>
+<ul>
+<li>Improve watchdog logic for hung workers (kill + restart policy)</li>
+<li>Add richer ncurses panels (global system stats, scrolling logs)</li>
+<li>Expand configuration format (INI/TOML/JSON)</li>
+<li>Expand MISRA checker + integrate with CI</li>
+<li>Add unit tests for config parser and IPC helpers</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md37"></a>
+License</h1>
+<p>No license specified yet. If you want this to be open-source, consider adding a LICENSE file (MIT/BSD-2-Clause/GPLv3). </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
