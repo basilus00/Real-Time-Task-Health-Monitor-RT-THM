@@ -1,12 +1,19 @@
 # RT-THM — Real-Time Task & Health Monitor
 
-RT-THM is a **real-time process supervision project**. A **Supervisor (parent)** process spawns and monitors multiple **Worker (child)** processes that execute simulated tasks. Workers continuously publish their status using **shared memory**, and the supervisor reacts in near real time when a worker becomes unstable, hangs, or crashes.
+RT-THM is a **real-time process supervision project**. A **Supervisor (parent)** process spawns and monitors multiple **Worker (child)** processes that execute simulated tasks. Workers continuously publish their status using **POSIX shared memory**, and the supervisor reacts in near real time when a worker becomes unstable, hangs, or crashes.
 
 This project also includes:
 - **Ncurses UI dashboard** for live monitoring in the terminal
 - **Logging** with timestamps
-- A basic **MISRA-style audit checker** (Python)
+- A **MISRA-style audit checker** (Python) with an output report
 - **Doxygen documentation** generation
+
+---
+
+## Project Dashboard
+
+### Live ncurses dashboard
+![Live Dashboard](Documentation/images/LiveDASH.png)
 
 ---
 
@@ -14,8 +21,8 @@ This project also includes:
 
 - **Multi-process management:** uses `fork()` to create worker processes.
 - **IPC (Inter-Process Communication):**
-  - **Shared Memory (System V)** for publishing worker statistics.
-  - **Semaphores (System V)** to protect shared data and avoid race conditions.
+  - **Shared Memory (POSIX)** for publishing worker statistics.
+  - **Semaphores (POSIX)** to protect shared data and avoid race conditions.
 - **Signals:** supervisor can signal workers (pause/resume strategy) using `SIGUSR1` / `SIGUSR2`.
 - **Healing / Auto-restart:** supervisor detects dead workers (via `waitpid()`) and restarts them.
 - **Real-time monitoring UI:** `ncurses` dashboard with live stats and log messages.
@@ -45,11 +52,14 @@ This project also includes:
 │   ├── UI.c
 │   └── worker.c
 ├── Documentation/           # Reports / docs output (and Doxygen output)
+│   └── images/              # README screenshots
 ├── config.txt               # Runtime configuration
-├── checker.py               # MISRA-style audit checker (basic rules)
+├── MISRA_compliance/        # MISRA checker (project tooling)
+│   └── checker.py
 ├── makefile
 └── baseProj.c               # Legacy / base prototype (if still used)
 ```
+
 
 ---
 
@@ -65,10 +75,9 @@ This project also includes:
 
 ---
 
-## Build & Run
+## Quick Start (Build & Run)
 
 ### 1) Compile
-
 ```bash
 make
 ```
@@ -79,7 +88,6 @@ bin/rt-thm
 ```
 
 ### 2) Run
-
 ```bash
 make run
 ```
@@ -96,9 +104,12 @@ Or:
 Inside the dashboard:
 - `q` : quit cleanly
 - `r` : restart all workers (sends SIGTERM to all workers; supervisor restarts them)
-- Terminal resize is handled (KEY_RESIZE)
+- Terminal resize is handled (`KEY_RESIZE`)
 
-> Note: If ncurses fails to initialize, the program may fall back to console logging output depending on your implementation.
+> If ncurses fails to initialize, the program may fall back to console mode depending on the implementation.
+
+### Terminal output
+![Terminal Output](Documentation/images/terminalOUT.png)
 
 ---
 
@@ -124,13 +135,16 @@ Logged events typically include:
 - worker crash detection
 - worker restart events
 - timeouts and health alerts
-![system log output](Documentation/images/LogOUT.png)
+
+### Log output example
+![System log output](Documentation/images/LogOUT.png)
+
 
 ---
 
 ## IPC Model (High Level)
 
-Workers write their status into a shared array in System V shared memory, commonly using a structure like:
+Workers write their status into a shared array in POSIX shared memory, commonly using a structure like:
 
 - PID
 - health score
@@ -144,7 +158,7 @@ The supervisor reads this data periodically to:
 - detect timeouts / instability
 - restart crashed processes
 
-To avoid race conditions, a System V semaphore is used as a **mutex** around shared memory access.
+To avoid race conditions, a POSIX semaphore is used as a **mutex** around shared memory access.
 
 ---
 
@@ -159,32 +173,41 @@ RT-THM uses signals for quick control commands:
 
 ## MISRA-Style Audit Checker
 
-Run the basic checker:
+Run the checker:
 
 ```bash
 make audit
 ```
 
-This uses `checker.py` to scan files (for example `src/main.c`) and emits a report.
+Recommended checker invocation (if your checker supports directory scan):
+```bash
+python3 MISRA_compliance/checker.py --scan src/
+```
 
-> The checker is intentionally simple and should be extended for deeper MISRA compliance.
+The tool generates:
+- `misra_audit_report.txt`
+
+> The checker is intentionally simple (regex-based). Treat results as guidance and extend it for stricter compliance.
+
+
+### MISRA checker — detection (before)
+![MISRA checker - errors detected](Documentation/images/MisraErrorDetect.png)
+
+### MISRA checker — rectified (after)
+![MISRA checker - rectified](Documentation/images/misraRectified.png)
+
 
 ---
 
 ## Generate Doxygen Documentation
 
-### 1) Install tools
-
-Ubuntu/Debian:
+### 1) Install tools (Ubuntu/Debian/WSL)
 ```bash
 sudo apt update
 sudo apt install doxygen graphviz
 ```
 
 ### 2) Generate docs
-
-If you have a `Doxyfile` at repo root:
-
 ```bash
 doxygen Doxyfile
 ```
@@ -194,32 +217,31 @@ Typical output:
 Documentation/doxygen/html/index.html
 ```
 
-Open in browser:
+Open in browser (Linux/WSL GUI):
 ```bash
 xdg-open Documentation/doxygen/html/index.html
 ```
-
-### Recommended Doxyfile settings
-To use this README as the Doxygen main page:
-
-```ini
-USE_MDFILE_AS_MAINPAGE = README.md
-MARKDOWN_SUPPORT       = YES
+Or use the powershell (windows):
+```bash
+start Documentation/doxygen/html/index.html
 ```
 
 ---
 
 ## Troubleshooting
 
-### Doxygen "Main Page" is empty
-Enable README as main page:
-- Ensure `README.md` is included in `INPUT`
-- Add: `USE_MDFILE_AS_MAINPAGE = README.md`
-
 ### Ncurses build errors
 Install ncurses dev package:
 - Ubuntu/Debian: `sudo apt install libncurses-dev`
 - Fedora: `sudo dnf install ncurses-devel`
+
+### `powershell: not found` when running `make doc-open`
+If you run `make` inside Linux/WSL, `powershell` may not exist. Prefer:
+```bash
+xdg-open Documentation/doxygen/html/index.html
+```
+
+Or use `wslview` if installed.
 
 ---
 
@@ -235,4 +257,4 @@ Install ncurses dev package:
 
 ## License
 
-No license specified yet. If you want this to be open-source, consider adding a LICENSE file (MIT/BSD-2-Clause/GPLv3).
+Feel free to use it as you wish. It is a beginner friendly work. If you have any comments or want to help me improve something or simply for collaboration feel free to contact me .

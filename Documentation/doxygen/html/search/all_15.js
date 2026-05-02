@@ -1,16 +1,11 @@
 var searchData=
 [
-  ['ui_20controls_20ncurses_0',['UI Controls (Ncurses)',['../md_README.html#autotoc_md14',1,'']]],
-  ['ui_2ec_1',['UI.c',['../UI_8c.html',1,'']]],
-  ['ui_2eh_2',['UI.h',['../UI_8h.html',1,'']]],
-  ['ui_5fadd_5flog_3',['ui_add_log',['../UI_8h.html#a9b8732dbdb4366722be35168f39129bb',1,'ui_add_log(const char *format,...) __attribute__((format(printf:&#160;UI.h'],['../UI_8c.html#a10c714946805ecbf63e0fa546403bc47',1,'ui_add_log(const char *format,...):&#160;UI.c']]],
-  ['ui_5fcleanup_4',['ui_cleanup',['../UI_8h.html#a254dff79870a08e3feccded6a95cd791',1,'ui_cleanup(void):&#160;UI.c'],['../UI_8c.html#a254dff79870a08e3feccded6a95cd791',1,'ui_cleanup(void):&#160;UI.c']]],
-  ['ui_5fdraw_5fdashboard_5',['ui_draw_dashboard',['../UI_8h.html#ae631a5a3ad2c24dd944f5573487f98a3',1,'ui_draw_dashboard(void):&#160;UI.c'],['../UI_8c.html#ae631a5a3ad2c24dd944f5573487f98a3',1,'ui_draw_dashboard(void):&#160;UI.c']]],
-  ['ui_5fdraw_5flogs_5fconsole_6',['ui_draw_logs_console',['../UI_8c.html#a0c8a8e30c481fd6b8a234acef9cd0e75',1,'ui_draw_logs_console(void):&#160;UI.c'],['../UI_8h.html#a0c8a8e30c481fd6b8a234acef9cd0e75',1,'ui_draw_logs_console(void):&#160;UI.c']]],
-  ['ui_5fdraw_5fsystem_5finfo_7',['ui_draw_system_info',['../UI_8c.html#a38bf702c2b7d95494c0fd8e838debce4',1,'ui_draw_system_info(void):&#160;UI.c'],['../UI_8h.html#a38bf702c2b7d95494c0fd8e838debce4',1,'ui_draw_system_info(void):&#160;UI.c']]],
-  ['ui_5fdraw_5fworkers_5ftable_8',['ui_draw_workers_table',['../UI_8c.html#a3e6d8479ebd16234c91a359c675e0329',1,'ui_draw_workers_table(void):&#160;UI.c'],['../UI_8h.html#a3e6d8479ebd16234c91a359c675e0329',1,'ui_draw_workers_table(void):&#160;UI.c']]],
-  ['ui_5fget_5flatest_5flog_9',['ui_get_latest_log',['../UI_8c.html#a7a4757a4d61ed6e8c3b0e4f76c534f2a',1,'ui_get_latest_log(void):&#160;UI.c'],['../UI_8h.html#af8d45821532a40cd6b4d1dc0106a604e',1,'ui_get_latest_log(void):&#160;UI.c']]],
-  ['ui_5fhandle_5fresize_10',['ui_handle_resize',['../UI_8c.html#adc2734583ef4ca75088c32901f593e09',1,'ui_handle_resize(void):&#160;UI.c'],['../UI_8h.html#adc2734583ef4ca75088c32901f593e09',1,'ui_handle_resize(void):&#160;UI.c']]],
-  ['ui_5finit_11',['ui_init',['../UI_8c.html#ab7bfb453918dcc296ff0cea3c79453d0',1,'ui_init(void):&#160;UI.c'],['../UI_8h.html#ab7bfb453918dcc296ff0cea3c79453d0',1,'ui_init(void):&#160;UI.c']]],
-  ['ui_5frefresh_12',['ui_refresh',['../UI_8c.html#a490ef24341463347d93ff0da36b17180',1,'ui_refresh(void):&#160;UI.c'],['../UI_8h.html#a490ef24341463347d93ff0da36b17180',1,'ui_refresh(void):&#160;UI.c']]]
+  ['task_20health_20monitor_0',['RT-THM — Real-Time Task &amp; Health Monitor',['../index.html',1,'']]],
+  ['tasks_5fcompleted_1',['tasks_completed',['../structProcessStat.html#a6570e376be127f8859c72127d760bbee',1,'ProcessStat']]],
+  ['terminal_20output_2',['Terminal output',['../index.html#autotoc_md18',1,'']]],
+  ['thm_20—_20real_20time_20task_20health_20monitor_3',['RT-THM — Real-Time Task &amp; Health Monitor',['../index.html',1,'']]],
+  ['time_20task_20health_20monitor_4',['RT-THM — Real-Time Task &amp; Health Monitor',['../index.html',1,'']]],
+  ['tools_20ubuntu_20debian_20wsl_5',['1) Install tools (Ubuntu/Debian/WSL)',['../index.html#autotoc_md34',1,'']]],
+  ['troubleshooting_6',['Troubleshooting',['../index.html#autotoc_md37',1,'']]],
+  ['tt_20powershell_3a_20not_20found_20tt_20when_20running_20tt_20make_20doc_20open_20tt_7',['&lt;tt&gt;powershell: not found&lt;/tt&gt; when running &lt;tt&gt;make doc-open&lt;/tt&gt;',['../index.html#autotoc_md39',1,'']]]
 ];

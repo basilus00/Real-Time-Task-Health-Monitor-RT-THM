@@ -16,7 +16,8 @@ Ncurses dashboard implementation for RT-\/\+THM.
 {\ttfamily \#include $<$sys/time.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$pthread.\+h$>$}\newline
-Include dependency graph for UI.\+c\+:\nopagebreak
+Include dependency graph for UI.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -180,7 +181,8 @@ Add formatted log message to UI console buffer.
 \begin{DoxyNote}{Note}
 Thread-\/safe via mutex; truncates long messages to prevent wrap 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -200,7 +202,8 @@ Cleanup ncurses and restore terminal to normal mode.
 \begin{DoxyNote}{Note}
 Must be called before exit to prevent terminal corruption 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -220,14 +223,16 @@ Draw complete dashboard (header + workers + logs)
 \begin{DoxyNote}{Note}
 Uses \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{doupdate()} for atomic, flicker-\/free screen refresh 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8c_ae631a5a3ad2c24dd944f5573487f98a3_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -247,7 +252,8 @@ Draw live log console at bottom of screen.
 \begin{DoxyNote}{Note}
 Thread-\/safe read via mutex; truncates messages to prevent line wrap 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -267,14 +273,16 @@ Draw system status header (time, workers, tasks)
 \begin{DoxyNote}{Note}
 Reads shared\+\_\+stats atomically via semaphore; bounds-\/checks all output 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8c_a38bf702c2b7d95494c0fd8e838debce4_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -294,14 +302,16 @@ Draw worker statistics table with color-\/coded status.
 \begin{DoxyNote}{Note}
 Uses atomic snapshot of shared\+\_\+stats to minimize semaphore hold time 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8c_a3e6d8479ebd16234c91a359c675e0329_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -334,7 +344,8 @@ Handle terminal resize event.
 \begin{DoxyNote}{Note}
 Recreates all windows with new dimensions; call on KEY\+\_\+\+RESIZE 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -357,7 +368,8 @@ Initialize ncurses and create dashboard windows.
 \begin{DoxyNote}{Note}
 Sets up colors, key handling, and window layout; call once at startup 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -377,14 +389,16 @@ Refresh entire dashboard display.
 \begin{DoxyNote}{Note}
 Clears stdscr first to prevent ghosting; includes small delay 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8c_a490ef24341463347d93ff0da36b17180_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

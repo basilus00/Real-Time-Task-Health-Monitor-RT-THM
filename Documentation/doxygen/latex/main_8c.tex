@@ -16,7 +16,8 @@ RT-\/\+THM supervisor process (parent) implementation.
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include $<$sys/wait.\+h$>$}\newline
 {\ttfamily \#include $<$stdarg.\+h$>$}\newline
-Include dependency graph for main.\+c\+:\nopagebreak
+Include dependency graph for main.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -76,14 +77,16 @@ Must be called periodically from main supervision loop
 \begin{DoxySeeAlso}{See also}
 \doxylink{signals_8c_a9b352f5e054878b135c4d45ee28f17d9}{send\+\_\+signal\+\_\+to\+\_\+worker()} 
 \end{DoxySeeAlso}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{main_8c_a1594c6785b808f6766d6f6a82852bf61_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -123,7 +126,8 @@ This function contains the main infinite loop; normal exit via \textquotesingle{
 Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{exit()} in error paths; \doxylink{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5}{cleanup()} handles IPC resource release 
 \end{DoxyWarning}
 
-\end{DoxyEnumerate}Here is the call graph for this function\+:\nopagebreak
+\end{DoxyEnumerate}Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

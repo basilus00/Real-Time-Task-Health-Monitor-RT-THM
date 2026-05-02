@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['empty_0',['Doxygen &quot;Main Page&quot; is empty',['../md_README.html#autotoc_md32',1,'']]],
-  ['errors_1',['Ncurses build errors',['../md_README.html#autotoc_md33',1,'']]]
+  ['errors_0',['Ncurses build errors',['../index.html#autotoc_md38',1,'']]],
+  ['example_1',['Log output example',['../index.html#autotoc_md23',1,'']]]
 ];

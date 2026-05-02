@@ -1,0 +1,304 @@
+\chapter{RT-\/\+THM — Real-\/\+Time Task \& Health Monitor}
+\hypertarget{index}{}\label{index}\index{RT-\/THM — Real-\/Time Task \& Health Monitor@{RT-\/THM — Real-\/Time Task \& Health Monitor}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ RT-\/\+THM is a {\bfseries{real-\/time process supervision project}}. A {\bfseries{Supervisor (parent)}} process spawns and monitors multiple {\bfseries{Worker (child)}} processes that execute simulated tasks. Workers continuously publish their status using {\bfseries{POSIX shared memory}}, and the supervisor reacts in near real time when a worker becomes unstable, hangs, or crashes.
+
+This project also includes\+:
+\begin{DoxyItemize}
+\item {\bfseries{Ncurses UI dashboard}} for live monitoring in the terminal
+\item {\bfseries{Logging}} with timestamps
+\item A {\bfseries{MISRA-\/style audit checker}} (Python) with an output report
+\item {\bfseries{Doxygen documentation}} generation
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Project Dashboard}{Project Dashboard}}\label{index_autotoc_md2}
+\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{Live ncurses dashboard}{Live ncurses dashboard}}\label{index_autotoc_md3}
+ 
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{LiveDASH.png}%Live Dashboard
+\end{DoxyInlineImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Key Features}{Key Features}}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\bfseries{Multi-\/process management\+:}} uses {\ttfamily \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{fork()}} to create worker processes.
+\item {\bfseries{IPC (Inter-\/\+Process Communication)\+:}}
+\begin{DoxyItemize}
+\item {\bfseries{Shared Memory (POSIX)}} for publishing worker statistics.
+\item {\bfseries{Semaphores (POSIX)}} to protect shared data and avoid race conditions.
+\end{DoxyItemize}
+\item {\bfseries{Signals\+:}} supervisor can signal workers (pause/resume strategy) using {\ttfamily SIGUSR1} / {\ttfamily SIGUSR2}.
+\item {\bfseries{Healing / Auto-\/restart\+:}} supervisor detects dead workers (via {\ttfamily \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{waitpid()}}) and restarts them.
+\item {\bfseries{Real-\/time monitoring UI\+:}} {\ttfamily ncurses} dashboard with live stats and log messages.
+\item {\bfseries{Static analysis support\+:}} includes a Python checker for basic MISRA-\/like rules.
+\item {\bfseries{Doxygen documentation\+:}} codebase is documented using Doxygen comments.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{Repository Structure}{Repository Structure}}\label{index_autotoc_md7}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.}
+\DoxyCodeLine{├──\ include/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ headers}
+\DoxyCodeLine{│\ \ \ ├──\ config.h}
+\DoxyCodeLine{│\ \ \ ├──\ ipc.h}
+\DoxyCodeLine{│\ \ \ ├──\ logger.h}
+\DoxyCodeLine{│\ \ \ ├──\ project.h}
+\DoxyCodeLine{│\ \ \ ├──\ signals.h}
+\DoxyCodeLine{│\ \ \ ├──\ UI.h}
+\DoxyCodeLine{│\ \ \ └──\ worker.h}
+\DoxyCodeLine{├──\ src/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Implementation\ files}
+\DoxyCodeLine{│\ \ \ ├──\ config.c}
+\DoxyCodeLine{│\ \ \ ├──\ ipc\_utils.c}
+\DoxyCodeLine{│\ \ \ ├──\ logger.c}
+\DoxyCodeLine{│\ \ \ ├──\ main.c}
+\DoxyCodeLine{│\ \ \ ├──\ signals.c}
+\DoxyCodeLine{│\ \ \ ├──\ UI.c}
+\DoxyCodeLine{│\ \ \ └──\ worker.c}
+\DoxyCodeLine{├──\ Documentation/\ \ \ \ \ \ \ \ \ \ \ \#\ Reports\ /\ docs\ output\ (and\ Doxygen\ output)}
+\DoxyCodeLine{│\ \ \ └──\ images/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ README\ screenshots}
+\DoxyCodeLine{├──\ config.txt\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Runtime\ configuration}
+\DoxyCodeLine{├──\ MISRA\_compliance/\ \ \ \ \ \ \ \ \#\ MISRA\ checker\ (project\ tooling)}
+\DoxyCodeLine{│\ \ \ └──\ checker.py}
+\DoxyCodeLine{├──\ makefile}
+\DoxyCodeLine{└──\ baseProj.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Legacy\ /\ base\ prototype\ (if\ still\ used)}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{index_autotoc_md9}
+\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{Build dependencies}{Build dependencies}}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
+\item GCC (C99)
+\item ncurses development library
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{Optional (documentation)}{Optional (documentation)}}\label{index_autotoc_md11}
+
+\begin{DoxyItemize}
+\item Doxygen
+\item Graphviz ({\ttfamily dot}) for call graphs
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{Quick Start (\+Build \& Run)}{Quick Start (Build \& Run)}}\label{index_autotoc_md13}
+\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{1) Compile}{1) Compile}}\label{index_autotoc_md14}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+Output executable\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bin/rt-\/thm}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md15}{}\doxysubsection{\texorpdfstring{2) Run}{2) Run}}\label{index_autotoc_md15}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ run}
+
+\end{DoxyCode}
+
+
+Or\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./bin/rt-\/thm}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md17}{}\doxysection{\texorpdfstring{UI Controls (\+Ncurses)}{UI Controls (Ncurses)}}\label{index_autotoc_md17}
+Inside the dashboard\+:
+\begin{DoxyItemize}
+\item {\ttfamily q} \+: quit cleanly
+\item {\ttfamily r} \+: restart all workers (sends SIGTERM to all workers; supervisor restarts them)
+\item Terminal resize is handled ({\ttfamily KEY\+\_\+\+RESIZE})
+\end{DoxyItemize}
+
+\begin{quote}
+If ncurses fails to initialize, the program may fall back to console mode depending on the implementation. \end{quote}
+\hypertarget{index_autotoc_md18}{}\doxysubsection{\texorpdfstring{Terminal output}{Terminal output}}\label{index_autotoc_md18}
+ 
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{terminalOUT.png}%Terminal Output
+\end{DoxyInlineImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md20}{}\doxysection{\texorpdfstring{Configuration}{Configuration}}\label{index_autotoc_md20}
+The project reads runtime parameters from\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily config.\+txt}
+\end{DoxyItemize}
+
+Typical configurable fields (depending on your {\ttfamily \doxylink{config_8c}{config.\+c}} implementation) may include\+:
+\begin{DoxyItemize}
+\item number of workers
+\item refresh rate
+\item timeout thresholds
+\item log verbosity
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md22}{}\doxysection{\texorpdfstring{Logging}{Logging}}\label{index_autotoc_md22}
+Logs are written to a log file (commonly {\ttfamily system.\+log} if configured in code). ~\newline
+ Logged events typically include\+:
+\begin{DoxyItemize}
+\item startup/shutdown
+\item worker crash detection
+\item worker restart events
+\item timeouts and health alerts
+\end{DoxyItemize}\hypertarget{index_autotoc_md23}{}\doxysubsection{\texorpdfstring{Log output example}{Log output example}}\label{index_autotoc_md23}
+ 
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{LogOUT.png}%System log output
+\end{DoxyInlineImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md25}{}\doxysection{\texorpdfstring{IPC Model (\+High Level)}{IPC Model (High Level)}}\label{index_autotoc_md25}
+Workers write their status into a shared array in POSIX shared memory, commonly using a structure like\+:
+
+
+\begin{DoxyItemize}
+\item PID
+\item health score
+\item tasks completed
+\item last update timestamp
+\item slow/hang detection flags
+\item command field (pause/resume)
+\end{DoxyItemize}
+
+The supervisor reads this data periodically to\+:
+\begin{DoxyItemize}
+\item display live metrics in the UI
+\item detect timeouts / instability
+\item restart crashed processes
+\end{DoxyItemize}
+
+To avoid race conditions, a POSIX semaphore is used as a {\bfseries{mutex}} around shared memory access.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md27}{}\doxysection{\texorpdfstring{Signals (\+Control Channel)}{Signals (Control Channel)}}\label{index_autotoc_md27}
+RT-\/\+THM uses signals for quick control commands\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily SIGUSR1}\+: ask a worker to slow down / pause (depending on implementation)
+\item {\ttfamily SIGUSR2}\+: resume normal operation
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md29}{}\doxysection{\texorpdfstring{MISRA-\/\+Style Audit Checker}{MISRA-Style Audit Checker}}\label{index_autotoc_md29}
+Run the checker\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ audit}
+
+\end{DoxyCode}
+
+
+Recommended checker invocation (if your checker supports directory scan)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python3\ MISRA\_compliance/checker.py\ -\/-\/scan\ src/}
+
+\end{DoxyCode}
+
+
+The tool generates\+:
+\begin{DoxyItemize}
+\item {\ttfamily misra\+\_\+audit\+\_\+report.\+txt}
+\end{DoxyItemize}
+
+\begin{quote}
+The checker is intentionally simple (regex-\/based). Treat results as guidance and extend it for stricter compliance. \end{quote}
+\hypertarget{index_autotoc_md30}{}\doxysubsection{\texorpdfstring{MISRA checker — detection (before)}{MISRA checker — detection (before)}}\label{index_autotoc_md30}
+ 
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{MisraErrorDetect.png}%MISRA checker -\/ errors detected
+\end{DoxyInlineImage}
+   \hypertarget{index_autotoc_md31}{}\doxysubsection{\texorpdfstring{MISRA checker — rectified (after)}{MISRA checker — rectified (after)}}\label{index_autotoc_md31}
+ 
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{misraRectified.png}%MISRA checker -\/ rectified
+\end{DoxyInlineImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md33}{}\doxysection{\texorpdfstring{Generate Doxygen Documentation}{Generate Doxygen Documentation}}\label{index_autotoc_md33}
+\hypertarget{index_autotoc_md34}{}\doxysubsection{\texorpdfstring{1) Install tools (\+Ubuntu/\+Debian/\+WSL)}{1) Install tools (Ubuntu/Debian/WSL)}}\label{index_autotoc_md34}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt\ update}
+\DoxyCodeLine{sudo\ apt\ install\ doxygen\ graphviz}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md35}{}\doxysubsection{\texorpdfstring{2) Generate docs}{2) Generate docs}}\label{index_autotoc_md35}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{doxygen\ Doxyfile}
+
+\end{DoxyCode}
+
+
+Typical output\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Documentation/doxygen/html/index.html}
+
+\end{DoxyCode}
+
+
+Open in browser (Linux/\+WSL GUI)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{xdg-\/open\ Documentation/doxygen/html/index.html}
+
+\end{DoxyCode}
+ Or use the powershell (windows)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{start\ Documentation/doxygen/html/index.html}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md37}{}\doxysection{\texorpdfstring{Troubleshooting}{Troubleshooting}}\label{index_autotoc_md37}
+\hypertarget{index_autotoc_md38}{}\doxysubsection{\texorpdfstring{Ncurses build errors}{Ncurses build errors}}\label{index_autotoc_md38}
+Install ncurses dev package\+:
+\begin{DoxyItemize}
+\item Ubuntu/\+Debian\+: {\ttfamily sudo apt install libncurses-\/dev}
+\item Fedora\+: {\ttfamily sudo dnf install ncurses-\/devel}
+\end{DoxyItemize}\hypertarget{index_autotoc_md39}{}\doxysubsection{\texorpdfstring{$<$tt$>$powershell\+: not found$<$/tt$>$ when running $<$tt$>$make doc-\/open$<$/tt$>$}{<tt>powershell: not found</tt> when running <tt>make doc-open</tt>}}\label{index_autotoc_md39}
+If you run {\ttfamily make} inside Linux/\+WSL, {\ttfamily powershell} may not exist. Prefer\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{xdg-\/open\ Documentation/doxygen/html/index.html}
+
+\end{DoxyCode}
+
+
+Or use {\ttfamily wslview} if installed.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md41}{}\doxysection{\texorpdfstring{Roadmap / Next Improvements}{Roadmap / Next Improvements}}\label{index_autotoc_md41}
+
+\begin{DoxyItemize}
+\item Improve watchdog logic for hung workers (kill + restart policy)
+\item Add richer ncurses panels (global system stats, scrolling logs)
+\item Expand configuration format (INI/\+TOML/\+JSON)
+\item Expand MISRA checker + integrate with CI
+\item Add unit tests for config parser and IPC helpers
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md43}{}\doxysection{\texorpdfstring{License}{License}}\label{index_autotoc_md43}
+Feel free to use it as you wish. It is a beginner friendly work. If you have any comments or want to help me improve something or simply for collaboration feel free to contact me . 

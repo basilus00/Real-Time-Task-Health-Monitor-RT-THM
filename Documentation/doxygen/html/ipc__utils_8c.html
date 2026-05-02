@@ -119,7 +119,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>IPC utilities implementation (Shared Memory &amp; Semaphores) </p>
-<p>Thread-safe operations for POSIX IPC with error handling and logging. </p>
+<p>Thread-safe operations for System V IPC with error handling and logging. </p><dl class="section note"><dt>Note</dt><dd>This module uses System V shared memory (shmget/shmat) and semaphores (semget/semop). </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ab1210bbe865327d0657417f58a0a32db" name="ab1210bbe865327d0657417f58a0a32db"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1210bbe865327d0657417f58a0a32db">&#9670;&#160;</a></span>attach_shared_memory()</h2>
@@ -176,7 +176,7 @@ Here is the caller graph for this function:</div>
 
 <p>Create and initialize binary semaphore. </p>
 <dl class="section return"><dt>Returns</dt><dd>Semaphore ID on success, -1 on error </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Initialized to 1 (unlocked); logs creation on success </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Initialized to 1 (unlocked); logs creation on success. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -298,7 +298,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Must be called with semaphore held; sets last_update, is_slow, command </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function acquires/releases the semaphore internally to protect shared memory. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -336,7 +336,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Segment destroyed after all processes detach; ignores EINVAL (already removed) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Segment is destroyed after all processes detach; ignores EINVAL (already removed). </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -373,7 +373,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Logs error and exits on failure </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Logs error and exits on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -410,7 +410,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Blocks until available; logs error and exits on failure </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Blocks until available; logs error and exits on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

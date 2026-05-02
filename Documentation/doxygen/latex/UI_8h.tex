@@ -3,7 +3,8 @@
 {\ttfamily \#include "{}project.\+h"{}}\newline
 {\ttfamily \#include $<$ncurses.\+h$>$}\newline
 {\ttfamily \#include $<$stdarg.\+h$>$}\newline
-Include dependency graph for UI.\+h\+:\nopagebreak
+Include dependency graph for UI.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -69,7 +70,8 @@ Cleanup ncurses and restore terminal to normal mode.
 \begin{DoxyNote}{Note}
 Must be called before exit to prevent terminal corruption 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -91,14 +93,16 @@ Uses double-\/buffering via \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709
 
 Uses \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{doupdate()} for atomic, flicker-\/free screen refresh 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8h_ae631a5a3ad2c24dd944f5573487f98a3_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -120,7 +124,8 @@ Displays last N messages from circular log buffer
 
 Thread-\/safe read via mutex; truncates messages to prevent line wrap 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -142,14 +147,16 @@ Reads shared\+\_\+stats atomically via semaphore
 
 Reads shared\+\_\+stats atomically via semaphore; bounds-\/checks all output 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8h_a38bf702c2b7d95494c0fd8e838debce4_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -171,14 +178,16 @@ Each row shows\+: ID, PID, Health, Tasks, Status, Last Update
 
 Uses atomic snapshot of shared\+\_\+stats to minimize semaphore hold time 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8h_a3e6d8479ebd16234c91a359c675e0329_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -211,7 +220,8 @@ Handle terminal resize event.
 \begin{DoxyNote}{Note}
 Recreates all windows with new dimensions; call on KEY\+\_\+\+RESIZE 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -240,7 +250,8 @@ Call once at startup before any drawing functions
 \begin{DoxyNote}{Note}
 Sets up colors, key handling, and window layout; call once at startup 
 \end{DoxyNote}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -262,14 +273,16 @@ Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{doupdate()} for ato
 
 Clears stdscr first to prevent ghosting; includes small delay 
 \end{DoxyNote}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{UI_8h_a490ef24341463347d93ff0da36b17180_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

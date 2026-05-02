@@ -183,7 +183,7 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>Semaphore ID on success, -1 on error</dd>
 <dd>
 Semaphore ID on success, -1 on error </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Initialized to 1 (unlocked); logs creation on success </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Initialized to 1 (unlocked); logs creation on success. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -313,7 +313,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Must be called with semaphore held; sets last_update, is_slow, command </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function acquires/releases the semaphore internally to protect shared memory. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -359,7 +359,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Segment destroyed after all processes detach; ignores EINVAL (already removed) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Segment is destroyed after all processes detach; ignores EINVAL (already removed). </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -397,7 +397,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Logs error and exits on failure </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Logs error and exits on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -441,7 +441,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Blocks until available; logs error and exits on failure </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Blocks until available; logs error and exits on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

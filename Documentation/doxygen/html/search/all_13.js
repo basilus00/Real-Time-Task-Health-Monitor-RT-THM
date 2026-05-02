@@ -1,18 +1,15 @@
 var searchData=
 [
-  ['safe_5fshutdown_0',['safe_shutdown',['../signals_8c.html#a2227b50e2e42d7fbcaf283ae0b04bda5',1,'signals.c']]],
-  ['sem_5fsignal_5fop_1',['sem_signal_op',['../ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b',1,'sem_signal_op(int semid):&#160;ipc_utils.c'],['../ipc_8h.html#a10e9222ec21173d9cec5e4a2abc7454b',1,'sem_signal_op(int semid):&#160;ipc_utils.c']]],
-  ['sem_5fwait_5fop_2',['sem_wait_op',['../ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594',1,'sem_wait_op(int semid):&#160;ipc_utils.c'],['../ipc_8h.html#a5d0cc554e478b3289951da79d95b8594',1,'sem_wait_op(int semid):&#160;ipc_utils.c']]],
-  ['semid_3',['semid',['../config_8c.html#a7c35ac5305085cf7360645b8d52988b5',1,'semid:&#160;config.c'],['../project_8h.html#a7c35ac5305085cf7360645b8d52988b5',1,'semid:&#160;config.c']]],
-  ['semun_4',['semun',['../unionsemun.html',1,'']]],
-  ['send_5fsignal_5fto_5fworker_5',['send_signal_to_worker',['../signals_8h.html#a9b352f5e054878b135c4d45ee28f17d9',1,'send_signal_to_worker(pid_t pid, int sig_num):&#160;signals.c'],['../signals_8c.html#a9b352f5e054878b135c4d45ee28f17d9',1,'send_signal_to_worker(pid_t pid, int sig_num):&#160;signals.c']]],
-  ['settings_6',['Recommended Doxyfile settings',['../md_README.html#autotoc_md29',1,'']]],
-  ['shared_5fstats_7',['shared_stats',['../config_8c.html#a15f03333a7c534eed2e16f8c87ff30fb',1,'shared_stats:&#160;config.c'],['../project_8h.html#a15f03333a7c534eed2e16f8c87ff30fb',1,'shared_stats:&#160;config.c']]],
-  ['shm_5fsize_8',['SHM_SIZE',['../project_8h.html#a16e67aa18d42bbdb08ac9af1c8d0f4f9',1,'project.h']]],
-  ['shmid_9',['shmid',['../config_8c.html#ac8807d215d2ee6d9779d76aeb1147430',1,'shmid:&#160;config.c'],['../project_8h.html#ac8807d215d2ee6d9779d76aeb1147430',1,'shmid:&#160;config.c']]],
-  ['signals_20control_20channel_10',['Signals (Control Channel)',['../md_README.html#autotoc_md22',1,'']]],
-  ['signals_2ec_11',['signals.c',['../signals_8c.html',1,'']]],
-  ['signals_2eh_12',['signals.h',['../signals_8h.html',1,'']]],
-  ['structure_13',['Repository Structure',['../md_README.html#autotoc_md4',1,'']]],
-  ['style_20audit_20checker_14',['MISRA-Style Audit Checker',['../md_README.html#autotoc_md24',1,'']]]
+  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
+  ['real_20time_20task_20health_20monitor_1',['RT-THM — Real-Time Task &amp; Health Monitor',['../index.html',1,'']]],
+  ['rectified_20after_2',['MISRA checker — rectified (after)',['../index.html#autotoc_md31',1,'']]],
+  ['refresh_5frate_3',['refresh_rate',['../config_8c.html#a101a44f6ae94b1cd1b073c99a911dff0',1,'REFRESH_RATE:&#160;config.c'],['../project_8h.html#a101a44f6ae94b1cd1b073c99a911dff0',1,'REFRESH_RATE:&#160;config.c']]],
+  ['register_5fsignal_5fhandlers_4',['register_signal_handlers',['../signals_8c.html#adde3bef4aac394c78441b059135e7343',1,'register_signal_handlers(void):&#160;signals.c'],['../signals_8h.html#adde3bef4aac394c78441b059135e7343',1,'register_signal_handlers(void):&#160;signals.c']]],
+  ['remove_5fshared_5fmemory_5',['remove_shared_memory',['../ipc__utils_8c.html#a40ad696ee6efdf12b78c06e26bc95de7',1,'remove_shared_memory(int shmid):&#160;ipc_utils.c'],['../ipc_8h.html#a40ad696ee6efdf12b78c06e26bc95de7',1,'remove_shared_memory(int shmid):&#160;ipc_utils.c']]],
+  ['repository_20structure_6',['Repository Structure',['../index.html#autotoc_md7',1,'']]],
+  ['requirements_7',['Requirements',['../index.html#autotoc_md9',1,'']]],
+  ['roadmap_20next_20improvements_8',['Roadmap / Next Improvements',['../index.html#autotoc_md41',1,'']]],
+  ['rt_20thm_20—_20real_20time_20task_20health_20monitor_9',['RT-THM — Real-Time Task &amp; Health Monitor',['../index.html',1,'']]],
+  ['run_10',['run',['../index.html#autotoc_md15',1,'2) Run'],['../index.html#autotoc_md13',1,'Quick Start (Build &amp; Run)']]],
+  ['running_20tt_20make_20doc_20open_20tt_11',['&lt;tt&gt;powershell: not found&lt;/tt&gt; when running &lt;tt&gt;make doc-open&lt;/tt&gt;',['../index.html#autotoc_md39',1,'']]]
 ];
