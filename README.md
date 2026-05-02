@@ -225,6 +225,8 @@ Or use the powershell (windows):
 ```bash
 start Documentation/doxygen/html/index.html
 ```
+### Doxyfile Visualisation (file description & graphs)
+![DOXY - Visualisation](Documentation/images/doxygenHTML.png)
 
 ---
 
