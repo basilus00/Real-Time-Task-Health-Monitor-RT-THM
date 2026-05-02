@@ -1,0 +1,76 @@
+\doxysection{src/worker.c File Reference}
+\hypertarget{worker_8c}{}\label{worker_8c}\index{src/worker.c@{src/worker.c}}
+
+
+Worker process implementation for RT-\/\+THM.  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+{\ttfamily \#include "{}worker.\+h"{}}\newline
+{\ttfamily \#include "{}ipc.\+h"{}}\newline
+{\ttfamily \#include "{}logger.\+h"{}}\newline
+{\ttfamily \#include "{}signals.\+h"{}}\newline
+Include dependency graph for worker.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{worker_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{worker_8c_a46fd66c7fed50332a474537b6c986f4b}{worker\+\_\+process}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{id}})
+\begin{DoxyCompactList}\small\item\em Main entry point for worker process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Worker process implementation for RT-\/\+THM. 
+
+Each worker simulates tasks, updates shared memory stats, and responds to pause/resume commands from the supervisor. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{worker_8c_a46fd66c7fed50332a474537b6c986f4b}\label{worker_8c_a46fd66c7fed50332a474537b6c986f4b} 
+\index{worker.c@{worker.c}!worker\_process@{worker\_process}}
+\index{worker\_process@{worker\_process}!worker.c@{worker.c}}
+\doxysubsubsection{\texorpdfstring{worker\_process()}{worker\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} worker\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Main entry point for worker process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Worker identifier (0 to MAX\+\_\+\+WORKERS-\/1)\\
+\hline
+\end{DoxyParams}
+Infinite loop that\+:
+\begin{DoxyItemize}
+\item Checks for pause/resume commands from parent via shared memory
+\item Simulates work with random sleep (1-\/3s normal, 5s paused)
+\item Updates shared memory with health stats atomically
+\item Simulates random crash (5\% probability) for testing auto-\/restart \begin{DoxyNote}{Note}
+This function never returns normally; calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{exit()} on crash 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Must be called only in child process after \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{fork()} 
+\end{DoxyWarning}
+
+\end{DoxyItemize}Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{worker_8c_a46fd66c7fed50332a474537b6c986f4b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{worker_8c_a46fd66c7fed50332a474537b6c986f4b_icgraph}
+\end{center}
+\end{figure}

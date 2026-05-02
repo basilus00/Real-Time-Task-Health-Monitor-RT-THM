@@ -1,0 +1,5 @@
+<map id="create_semaphore" name="create_semaphore">
+<area shape="rect" id="Node000001" title="Create and initialize binary semaphore." alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="196,5,283,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,15,182,15,182,21,148,21"/>
+</map>

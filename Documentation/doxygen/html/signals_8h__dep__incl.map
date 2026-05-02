@@ -1,0 +1,9 @@
+<map id="include/signals.h" name="include/signals.h">
+<area shape="rect" id="Node000001" title="Signal handling for RT&#45;THM (SIGINT, SIGUSR1, SIGUSR2)" alt="" coords="105,5,235,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html" title="RT&#45;THM supervisor process (parent) implementation." alt="" coords="5,79,95,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,40,71,81,68,76,137,35"/>
+<area shape="rect" id="Node000003" href="$signals_8c.html" title="Signal handling implementation for RT&#45;THM." alt="" coords="119,79,221,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,44,173,79,167,79,167,44"/>
+<area shape="rect" id="Node000004" href="$worker_8c.html" title="Worker process implementation for RT&#45;THM." alt="" coords="246,79,345,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,35,276,76,274,81,201,40"/>
+</map>

@@ -1,0 +1,99 @@
+\doxysection{Process\+Stat Struct Reference}
+\hypertarget{structProcessStat}{}\label{structProcessStat}\index{ProcessStat@{ProcessStat}}
+
+
+Process status structure for shared memory IPC.  
+
+
+
+
+{\ttfamily \#include $<$project.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{structProcessStat_a43da2e5650c27456b57f3aec4351ca68}{pid}}
+\begin{DoxyCompactList}\small\item\em Worker process ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{structProcessStat_ae5c40fe11f3debbc934ef22743523753}{health\+\_\+score}}
+\begin{DoxyCompactList}\small\item\em Health percentage (0-\/100) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{structProcessStat_a6570e376be127f8859c72127d760bbee}{tasks\+\_\+completed}}
+\begin{DoxyCompactList}\small\item\em Total tasks finished. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{time\+\_\+t}} \mbox{\hyperlink{structProcessStat_a369c7b6f21f01c68c7a8e930d8117f5c}{last\+\_\+update}}
+\begin{DoxyCompactList}\small\item\em Last stats update timestamp. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{structProcessStat_a0744978ac89302cc95c687a43a31eeae}{is\+\_\+slow}}
+\begin{DoxyCompactList}\small\item\em Slow-\/mode flag (0=normal, 1=slow) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{structProcessStat_aaf4dc36fff2a46817cac387213430d97}{command}}
+\begin{DoxyCompactList}\small\item\em Command from parent (CMD\+\_\+\texorpdfstring{$\ast$}{*}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Process status structure for shared memory IPC. 
+
+Each worker updates its own entry; parent reads for dashboard. All accesses must be protected by semaphore. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structProcessStat_aaf4dc36fff2a46817cac387213430d97}\label{structProcessStat_aaf4dc36fff2a46817cac387213430d97} 
+\index{ProcessStat@{ProcessStat}!command@{command}}
+\index{command@{command}!ProcessStat@{ProcessStat}}
+\doxysubsubsection{\texorpdfstring{command}{command}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} Process\+Stat\+::command}
+
+
+
+Command from parent (CMD\+\_\+\texorpdfstring{$\ast$}{*}) 
+
+\Hypertarget{structProcessStat_ae5c40fe11f3debbc934ef22743523753}\label{structProcessStat_ae5c40fe11f3debbc934ef22743523753} 
+\index{ProcessStat@{ProcessStat}!health\_score@{health\_score}}
+\index{health\_score@{health\_score}!ProcessStat@{ProcessStat}}
+\doxysubsubsection{\texorpdfstring{health\_score}{health\_score}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} Process\+Stat\+::health\+\_\+score}
+
+
+
+Health percentage (0-\/100) 
+
+\Hypertarget{structProcessStat_a0744978ac89302cc95c687a43a31eeae}\label{structProcessStat_a0744978ac89302cc95c687a43a31eeae} 
+\index{ProcessStat@{ProcessStat}!is\_slow@{is\_slow}}
+\index{is\_slow@{is\_slow}!ProcessStat@{ProcessStat}}
+\doxysubsubsection{\texorpdfstring{is\_slow}{is\_slow}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} Process\+Stat\+::is\+\_\+slow}
+
+
+
+Slow-\/mode flag (0=normal, 1=slow) 
+
+\Hypertarget{structProcessStat_a369c7b6f21f01c68c7a8e930d8117f5c}\label{structProcessStat_a369c7b6f21f01c68c7a8e930d8117f5c} 
+\index{ProcessStat@{ProcessStat}!last\_update@{last\_update}}
+\index{last\_update@{last\_update}!ProcessStat@{ProcessStat}}
+\doxysubsubsection{\texorpdfstring{last\_update}{last\_update}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{time\+\_\+t}} Process\+Stat\+::last\+\_\+update}
+
+
+
+Last stats update timestamp. 
+
+\Hypertarget{structProcessStat_a43da2e5650c27456b57f3aec4351ca68}\label{structProcessStat_a43da2e5650c27456b57f3aec4351ca68} 
+\index{ProcessStat@{ProcessStat}!pid@{pid}}
+\index{pid@{pid}!ProcessStat@{ProcessStat}}
+\doxysubsubsection{\texorpdfstring{pid}{pid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} Process\+Stat\+::pid}
+
+
+
+Worker process ID. 
+
+\Hypertarget{structProcessStat_a6570e376be127f8859c72127d760bbee}\label{structProcessStat_a6570e376be127f8859c72127d760bbee} 
+\index{ProcessStat@{ProcessStat}!tasks\_completed@{tasks\_completed}}
+\index{tasks\_completed@{tasks\_completed}!ProcessStat@{ProcessStat}}
+\doxysubsubsection{\texorpdfstring{tasks\_completed}{tasks\_completed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} Process\+Stat\+::tasks\+\_\+completed}
+
+
+
+Total tasks finished. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{project_8h}{project.\+h}}\end{DoxyCompactItemize}

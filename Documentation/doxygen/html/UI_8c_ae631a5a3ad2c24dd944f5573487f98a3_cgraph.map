@@ -1,0 +1,18 @@
+<map id="ui_draw_dashboard" name="ui_draw_dashboard">
+<area shape="rect" id="Node000001" title="Draw complete dashboard (header + workers + logs)" alt="" coords="5,55,153,80"/>
+<area shape="rect" id="Node000002" href="$UI_8c.html#a0c8a8e30c481fd6b8a234acef9cd0e75" title="Draw live log console at bottom of screen." alt="" coords="205,5,369,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,52,219,31,220,37,134,57"/>
+<area shape="rect" id="Node000003" href="$UI_8c.html#a38bf702c2b7d95494c0fd8e838debce4" title="Draw system status header (time, workers, tasks)" alt="" coords="207,104,367,129"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="134,77,220,98,219,103,133,83"/>
+<area shape="rect" id="Node000007" href="$UI_8c.html#a3e6d8479ebd16234c91a359c675e0329" title="Draw worker statistics table with color&#45;coded status." alt="" coords="201,55,372,80"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="153,65,188,65,188,70,153,70"/>
+<area shape="rect" id="Node000004" href="$ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b" title="Release semaphore lock (V operation)" alt="" coords="420,55,539,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="336,101,415,81,416,86,338,107"/>
+<area shape="rect" id="Node000006" href="$ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594" title="Acquire semaphore lock (P operation)" alt="" coords="425,104,533,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="367,114,412,114,412,119,367,119"/>
+<area shape="rect" id="Node000005" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="587,80,673,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="539,75,573,81,573,86,538,80"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="533,105,572,99,573,104,534,111"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="372,65,406,65,406,70,372,70"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="338,77,416,98,415,103,336,83"/>
+</map>

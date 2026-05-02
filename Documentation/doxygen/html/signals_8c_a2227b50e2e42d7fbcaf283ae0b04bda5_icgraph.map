@@ -1,0 +1,7 @@
+<map id="safe_shutdown" name="safe_shutdown">
+<area shape="rect" id="Node000001" title="Wrapper signal handler for safe terminal restoration." alt="" coords="337,5,457,31"/>
+<area shape="rect" id="Node000002" href="$signals_8c.html#adde3bef4aac394c78441b059135e7343" title="Register all signal handlers for the process." alt="" coords="108,5,289,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="323,21,290,21,290,15,323,15"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+</map>

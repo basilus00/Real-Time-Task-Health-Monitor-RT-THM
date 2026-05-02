@@ -1,0 +1,12 @@
+<map id="register_signal_handlers" name="register_signal_handlers">
+<area shape="rect" id="Node000001" title="Register all signal handlers for the process." alt="" coords="5,29,187,55"/>
+<area shape="rect" id="Node000002" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="533,5,619,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,35,519,18,519,23,187,40"/>
+<area shape="rect" id="Node000003" href="$signals_8c.html#a2227b50e2e42d7fbcaf283ae0b04bda5" title="Wrapper signal handler for safe terminal restoration." alt="" coords="235,55,355,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,51,221,55,221,61,186,56"/>
+<area shape="rect" id="Node000004" href="$signals_8c.html#aa79b2985b495e6db8bf7675d0a32c3c5" title="Cleanup handler for graceful system shutdown." alt="" coords="403,55,476,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="355,65,389,65,389,70,355,70"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="474,52,526,33,528,38,476,57"/>
+<area shape="rect" id="Node000005" href="$logger_8c.html#a59c77d233157db1c24d6553a2567e442" title="Close log file and cleanup resources." alt="" coords="524,55,628,80"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="476,65,510,65,510,70,476,70"/>
+</map>

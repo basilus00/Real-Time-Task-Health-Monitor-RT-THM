@@ -1,0 +1,490 @@
+\doxysection{src/\+UI.c File Reference}
+\hypertarget{UI_8c}{}\label{UI_8c}\index{src/UI.c@{src/UI.c}}
+
+
+Ncurses dashboard implementation for RT-\/\+THM.  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+{\ttfamily \#include "{}ipc.\+h"{}}\newline
+{\ttfamily \#include "{}config.\+h"{}}\newline
+{\ttfamily \#include "{}ui.\+h"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+Include dependency graph for UI.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{UI_8c_a3024ccd4a9af5109d24e6c57565d74a1}{\+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE}}~200809\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{L}}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{UI_8c_a8fb447618db946a9e2a596d9ea18763f}{\+\_\+\+DEFAULT\+\_\+\+SOURCE}}
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Screen Layout Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{UI_8c_a7e5e6e1e05dc5ddc893d245f0222b762}{HEADER\+\_\+\+HEIGHT}}~3
+\begin{DoxyCompactList}\small\item\em Height of header window (lines) \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{UI_8c_a2260e279efc169640b3b0e73684fbb81}{LOGS\+\_\+\+HEIGHT}}~8
+\begin{DoxyCompactList}\small\item\em Height of logs window (lines) \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{UI_8c_ae67f6166ead23bf5716abf7aad29b7fb}{MIN\+\_\+\+COLS}}~80
+\begin{DoxyCompactList}\small\item\em Minimum terminal width. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{UI_8c_a50fb761199e8a95d4e856e4139af452b}{MIN\+\_\+\+LINES}}~24
+\begin{DoxyCompactList}\small\item\em Minimum terminal height. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{UI_8c_ab7bfb453918dcc296ff0cea3c79453d0}{ui\+\_\+init}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Initialize ncurses and create dashboard windows. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_a254dff79870a08e3feccded6a95cd791}{ui\+\_\+cleanup}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Cleanup ncurses and restore terminal to normal mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{UI_8c_a7a4757a4d61ed6e8c3b0e4f76c534f2a}{ui\+\_\+get\+\_\+latest\+\_\+log}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Get most recent log message. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_a10c714946805ecbf63e0fa546403bc47}{ui\+\_\+add\+\_\+log}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{format}},...)
+\begin{DoxyCompactList}\small\item\em Add formatted log message to UI console buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_a38bf702c2b7d95494c0fd8e838debce4}{ui\+\_\+draw\+\_\+system\+\_\+info}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw system status header (time, workers, tasks) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_a3e6d8479ebd16234c91a359c675e0329}{ui\+\_\+draw\+\_\+workers\+\_\+table}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw worker statistics table with color-\/coded status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_a0c8a8e30c481fd6b8a234acef9cd0e75}{ui\+\_\+draw\+\_\+logs\+\_\+console}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw live log console at bottom of screen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_ae631a5a3ad2c24dd944f5573487f98a3}{ui\+\_\+draw\+\_\+dashboard}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw complete dashboard (header + workers + logs) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_a490ef24341463347d93ff0da36b17180}{ui\+\_\+refresh}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Refresh entire dashboard display. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8c_adc2734583ef4ca75088c32901f593e09}{ui\+\_\+handle\+\_\+resize}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Handle terminal resize event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{Indent}\textbf{ Global Ncurses Windows (static to this module)}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{UI_8c_a402bd32f5a568a9433a7528ef2d3a878}{main\+\_\+win}} = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}
+\begin{DoxyCompactList}\small\item\em Main screen window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{UI_8c_af4a02b56ea48d8a6eca6f253ad70aa5f}{header\+\_\+win}} = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}
+\begin{DoxyCompactList}\small\item\em Top status bar window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{UI_8c_aba0c73cab2ba8f9ab84d793cf4189a8b}{workers\+\_\+win}} = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}
+\begin{DoxyCompactList}\small\item\em Worker table window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{UI_8c_ae5ccbef9c54917ce58ab8df1884738c5}{logs\+\_\+win}} = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}
+\begin{DoxyCompactList}\small\item\em Live logs console window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Log Buffer (circular, thread-\/safe)}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{UI_8c_a90a2fc1fcdc1fb0aa0706e78cc498f01}{MAX\+\_\+\+LOGS}}~100
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \mbox{\hyperlink{UI_8c_a866db2b3303f8daaa9f38005cf75ca63}{log\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{UI_8c_a90a2fc1fcdc1fb0aa0706e78cc498f01}{MAX\+\_\+\+LOGS}}\mbox{]}\mbox{[}256\mbox{]}
+\begin{DoxyCompactList}\small\item\em Circular buffer for log messages. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{UI_8c_a8159879301332c0c801d519a7476c211}{log\+\_\+index}} = 0
+\begin{DoxyCompactList}\small\item\em Current write index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \mbox{\hyperlink{UI_8c_afdbbb4b1102029a08e13d53d31feb4a5}{latest\+\_\+log}} \mbox{[}256\mbox{]} = "{}\mbox{[}SYSTEM\mbox{]} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{Dashboard}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{initialized"{}}}
+\begin{DoxyCompactList}\small\item\em Most recent log. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{static}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{pthread\+\_\+mutex\+\_\+t}} \mbox{\hyperlink{UI_8c_a54baead9ac1aa7d2d2f886956ac57c1e}{log\+\_\+mutex}} = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{PTHREAD\+\_\+\+MUTEX\+\_\+\+INITIALIZER}}
+\begin{DoxyCompactList}\small\item\em Mutex for log access. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ncurses dashboard implementation for RT-\/\+THM. 
+
+Provides real-\/time visual interface with system info, worker table, and live logs. Uses double-\/buffering and atomic snapshots for flicker-\/free, thread-\/safe rendering. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{UI_8c_a8fb447618db946a9e2a596d9ea18763f}\label{UI_8c_a8fb447618db946a9e2a596d9ea18763f} 
+\index{UI.c@{UI.c}!\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}}
+\index{\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{\_DEFAULT\_SOURCE}{\_DEFAULT\_SOURCE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \+\_\+\+DEFAULT\+\_\+\+SOURCE}
+
+\Hypertarget{UI_8c_a3024ccd4a9af5109d24e6c57565d74a1}\label{UI_8c_a3024ccd4a9af5109d24e6c57565d74a1} 
+\index{UI.c@{UI.c}!\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}}
+\index{\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{\_POSIX\_C\_SOURCE}{\_POSIX\_C\_SOURCE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE~200809\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{L}}}
+
+\Hypertarget{UI_8c_a7e5e6e1e05dc5ddc893d245f0222b762}\label{UI_8c_a7e5e6e1e05dc5ddc893d245f0222b762} 
+\index{UI.c@{UI.c}!HEADER\_HEIGHT@{HEADER\_HEIGHT}}
+\index{HEADER\_HEIGHT@{HEADER\_HEIGHT}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_HEIGHT}{HEADER\_HEIGHT}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} HEADER\+\_\+\+HEIGHT~3}
+
+
+
+Height of header window (lines) 
+
+\Hypertarget{UI_8c_a2260e279efc169640b3b0e73684fbb81}\label{UI_8c_a2260e279efc169640b3b0e73684fbb81} 
+\index{UI.c@{UI.c}!LOGS\_HEIGHT@{LOGS\_HEIGHT}}
+\index{LOGS\_HEIGHT@{LOGS\_HEIGHT}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{LOGS\_HEIGHT}{LOGS\_HEIGHT}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} LOGS\+\_\+\+HEIGHT~8}
+
+
+
+Height of logs window (lines) 
+
+\Hypertarget{UI_8c_a90a2fc1fcdc1fb0aa0706e78cc498f01}\label{UI_8c_a90a2fc1fcdc1fb0aa0706e78cc498f01} 
+\index{UI.c@{UI.c}!MAX\_LOGS@{MAX\_LOGS}}
+\index{MAX\_LOGS@{MAX\_LOGS}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_LOGS}{MAX\_LOGS}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} MAX\+\_\+\+LOGS~100}
+
+\Hypertarget{UI_8c_ae67f6166ead23bf5716abf7aad29b7fb}\label{UI_8c_ae67f6166ead23bf5716abf7aad29b7fb} 
+\index{UI.c@{UI.c}!MIN\_COLS@{MIN\_COLS}}
+\index{MIN\_COLS@{MIN\_COLS}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_COLS}{MIN\_COLS}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} MIN\+\_\+\+COLS~80}
+
+
+
+Minimum terminal width. 
+
+\Hypertarget{UI_8c_a50fb761199e8a95d4e856e4139af452b}\label{UI_8c_a50fb761199e8a95d4e856e4139af452b} 
+\index{UI.c@{UI.c}!MIN\_LINES@{MIN\_LINES}}
+\index{MIN\_LINES@{MIN\_LINES}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{MIN\_LINES}{MIN\_LINES}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} MIN\+\_\+\+LINES~24}
+
+
+
+Minimum terminal height. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{UI_8c_a10c714946805ecbf63e0fa546403bc47}\label{UI_8c_a10c714946805ecbf63e0fa546403bc47} 
+\index{UI.c@{UI.c}!ui\_add\_log@{ui\_add\_log}}
+\index{ui\_add\_log@{ui\_add\_log}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_add\_log()}{ui\_add\_log()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+add\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Add formatted log message to UI console buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & Printf-\/style format string \\
+\hline
+{\em ...} & Variable arguments for format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread-\/safe via mutex; truncates long messages to prevent wrap 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_a10c714946805ecbf63e0fa546403bc47_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_a254dff79870a08e3feccded6a95cd791}\label{UI_8c_a254dff79870a08e3feccded6a95cd791} 
+\index{UI.c@{UI.c}!ui\_cleanup@{ui\_cleanup}}
+\index{ui\_cleanup@{ui\_cleanup}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_cleanup()}{ui\_cleanup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+cleanup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Cleanup ncurses and restore terminal to normal mode. 
+
+\begin{DoxyNote}{Note}
+Must be called before exit to prevent terminal corruption 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{UI_8c_a254dff79870a08e3feccded6a95cd791_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_ae631a5a3ad2c24dd944f5573487f98a3}\label{UI_8c_ae631a5a3ad2c24dd944f5573487f98a3} 
+\index{UI.c@{UI.c}!ui\_draw\_dashboard@{ui\_draw\_dashboard}}
+\index{ui\_draw\_dashboard@{ui\_draw\_dashboard}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_dashboard()}{ui\_draw\_dashboard()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+dashboard (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw complete dashboard (header + workers + logs) 
+
+\begin{DoxyNote}{Note}
+Uses \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{doupdate()} for atomic, flicker-\/free screen refresh 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_ae631a5a3ad2c24dd944f5573487f98a3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_ae631a5a3ad2c24dd944f5573487f98a3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_a0c8a8e30c481fd6b8a234acef9cd0e75}\label{UI_8c_a0c8a8e30c481fd6b8a234acef9cd0e75} 
+\index{UI.c@{UI.c}!ui\_draw\_logs\_console@{ui\_draw\_logs\_console}}
+\index{ui\_draw\_logs\_console@{ui\_draw\_logs\_console}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_logs\_console()}{ui\_draw\_logs\_console()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+logs\+\_\+console (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw live log console at bottom of screen. 
+
+\begin{DoxyNote}{Note}
+Thread-\/safe read via mutex; truncates messages to prevent line wrap 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_a0c8a8e30c481fd6b8a234acef9cd0e75_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_a38bf702c2b7d95494c0fd8e838debce4}\label{UI_8c_a38bf702c2b7d95494c0fd8e838debce4} 
+\index{UI.c@{UI.c}!ui\_draw\_system\_info@{ui\_draw\_system\_info}}
+\index{ui\_draw\_system\_info@{ui\_draw\_system\_info}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_system\_info()}{ui\_draw\_system\_info()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+system\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw system status header (time, workers, tasks) 
+
+\begin{DoxyNote}{Note}
+Reads shared\+\_\+stats atomically via semaphore; bounds-\/checks all output 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_a38bf702c2b7d95494c0fd8e838debce4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_a38bf702c2b7d95494c0fd8e838debce4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_a3e6d8479ebd16234c91a359c675e0329}\label{UI_8c_a3e6d8479ebd16234c91a359c675e0329} 
+\index{UI.c@{UI.c}!ui\_draw\_workers\_table@{ui\_draw\_workers\_table}}
+\index{ui\_draw\_workers\_table@{ui\_draw\_workers\_table}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_workers\_table()}{ui\_draw\_workers\_table()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+workers\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw worker statistics table with color-\/coded status. 
+
+\begin{DoxyNote}{Note}
+Uses atomic snapshot of shared\+\_\+stats to minimize semaphore hold time 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_a3e6d8479ebd16234c91a359c675e0329_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_a3e6d8479ebd16234c91a359c675e0329_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_a7a4757a4d61ed6e8c3b0e4f76c534f2a}\label{UI_8c_a7a4757a4d61ed6e8c3b0e4f76c534f2a} 
+\index{UI.c@{UI.c}!ui\_get\_latest\_log@{ui\_get\_latest\_log}}
+\index{ui\_get\_latest\_log@{ui\_get\_latest\_log}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_get\_latest\_log()}{ui\_get\_latest\_log()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*} ui\+\_\+get\+\_\+latest\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Get most recent log message. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to latest log string (do not modify) 
+\end{DoxyReturn}
+\Hypertarget{UI_8c_adc2734583ef4ca75088c32901f593e09}\label{UI_8c_adc2734583ef4ca75088c32901f593e09} 
+\index{UI.c@{UI.c}!ui\_handle\_resize@{ui\_handle\_resize}}
+\index{ui\_handle\_resize@{ui\_handle\_resize}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_handle\_resize()}{ui\_handle\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+handle\+\_\+resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Handle terminal resize event. 
+
+\begin{DoxyNote}{Note}
+Recreates all windows with new dimensions; call on KEY\+\_\+\+RESIZE 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{UI_8c_adc2734583ef4ca75088c32901f593e09_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_ab7bfb453918dcc296ff0cea3c79453d0}\label{UI_8c_ab7bfb453918dcc296ff0cea3c79453d0} 
+\index{UI.c@{UI.c}!ui\_init@{ui\_init}}
+\index{ui\_init@{ui\_init}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_init()}{ui\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} ui\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize ncurses and create dashboard windows. 
+
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if terminal too small or init fails 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Sets up colors, key handling, and window layout; call once at startup 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{UI_8c_ab7bfb453918dcc296ff0cea3c79453d0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8c_a490ef24341463347d93ff0da36b17180}\label{UI_8c_a490ef24341463347d93ff0da36b17180} 
+\index{UI.c@{UI.c}!ui\_refresh@{ui\_refresh}}
+\index{ui\_refresh@{ui\_refresh}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{ui\_refresh()}{ui\_refresh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Refresh entire dashboard display. 
+
+\begin{DoxyNote}{Note}
+Clears stdscr first to prevent ghosting; includes small delay 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8c_a490ef24341463347d93ff0da36b17180_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{UI_8c_a490ef24341463347d93ff0da36b17180_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{UI_8c_af4a02b56ea48d8a6eca6f253ad70aa5f}\label{UI_8c_af4a02b56ea48d8a6eca6f253ad70aa5f} 
+\index{UI.c@{UI.c}!header\_win@{header\_win}}
+\index{header\_win@{header\_win}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{header\_win}{header\_win}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}}\texorpdfstring{$\ast$}{*} header\+\_\+win = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Top status bar window. 
+
+\Hypertarget{UI_8c_afdbbb4b1102029a08e13d53d31feb4a5}\label{UI_8c_afdbbb4b1102029a08e13d53d31feb4a5} 
+\index{UI.c@{UI.c}!latest\_log@{latest\_log}}
+\index{latest\_log@{latest\_log}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{latest\_log}{latest\_log}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} latest\+\_\+log\mbox{[}256\mbox{]} = "{}\mbox{[}SYSTEM\mbox{]} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{Dashboard}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{initialized"{}}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Most recent log. 
+
+\Hypertarget{UI_8c_a866db2b3303f8daaa9f38005cf75ca63}\label{UI_8c_a866db2b3303f8daaa9f38005cf75ca63} 
+\index{UI.c@{UI.c}!log\_buffer@{log\_buffer}}
+\index{log\_buffer@{log\_buffer}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{log\_buffer}{log\_buffer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} log\+\_\+buffer\mbox{[}\mbox{\hyperlink{UI_8c_a90a2fc1fcdc1fb0aa0706e78cc498f01}{MAX\+\_\+\+LOGS}}\mbox{]}\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Circular buffer for log messages. 
+
+\Hypertarget{UI_8c_a8159879301332c0c801d519a7476c211}\label{UI_8c_a8159879301332c0c801d519a7476c211} 
+\index{UI.c@{UI.c}!log\_index@{log\_index}}
+\index{log\_index@{log\_index}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{log\_index}{log\_index}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} log\+\_\+index = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Current write index. 
+
+\Hypertarget{UI_8c_a54baead9ac1aa7d2d2f886956ac57c1e}\label{UI_8c_a54baead9ac1aa7d2d2f886956ac57c1e} 
+\index{UI.c@{UI.c}!log\_mutex@{log\_mutex}}
+\index{log\_mutex@{log\_mutex}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{log\_mutex}{log\_mutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{pthread\+\_\+mutex\+\_\+t}} log\+\_\+mutex = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{PTHREAD\+\_\+\+MUTEX\+\_\+\+INITIALIZER}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Mutex for log access. 
+
+\Hypertarget{UI_8c_ae5ccbef9c54917ce58ab8df1884738c5}\label{UI_8c_ae5ccbef9c54917ce58ab8df1884738c5} 
+\index{UI.c@{UI.c}!logs\_win@{logs\_win}}
+\index{logs\_win@{logs\_win}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{logs\_win}{logs\_win}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}}\texorpdfstring{$\ast$}{*} logs\+\_\+win = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Live logs console window. 
+
+\Hypertarget{UI_8c_a402bd32f5a568a9433a7528ef2d3a878}\label{UI_8c_a402bd32f5a568a9433a7528ef2d3a878} 
+\index{UI.c@{UI.c}!main\_win@{main\_win}}
+\index{main\_win@{main\_win}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{main\_win}{main\_win}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}}\texorpdfstring{$\ast$}{*} main\+\_\+win = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Main screen window. 
+
+\Hypertarget{UI_8c_aba0c73cab2ba8f9ab84d793cf4189a8b}\label{UI_8c_aba0c73cab2ba8f9ab84d793cf4189a8b} 
+\index{UI.c@{UI.c}!workers\_win@{workers\_win}}
+\index{workers\_win@{workers\_win}!UI.c@{UI.c}}
+\doxysubsubsection{\texorpdfstring{workers\_win}{workers\_win}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{WINDOW}}\texorpdfstring{$\ast$}{*} workers\+\_\+win = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Worker table window. 
+

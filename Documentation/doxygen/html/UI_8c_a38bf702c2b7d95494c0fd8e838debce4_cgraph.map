@@ -1,0 +1,10 @@
+<map id="ui_draw_system_info" name="ui_draw_system_info">
+<area shape="rect" id="Node000001" title="Draw system status header (time, workers, tasks)" alt="" coords="5,31,165,56"/>
+<area shape="rect" id="Node000002" href="$ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b" title="Release semaphore lock (V operation)" alt="" coords="213,5,332,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,30,199,25,200,30,166,35"/>
+<area shape="rect" id="Node000004" href="$ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594" title="Acquire semaphore lock (P operation)" alt="" coords="219,55,327,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="166,51,205,56,205,61,165,56"/>
+<area shape="rect" id="Node000003" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="380,31,467,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,25,367,31,366,36,332,31"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="327,56,366,50,366,55,327,61"/>
+</map>

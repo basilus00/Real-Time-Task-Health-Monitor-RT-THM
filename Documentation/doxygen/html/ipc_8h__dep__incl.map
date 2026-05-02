@@ -1,0 +1,13 @@
+<map id="include/ipc.h" name="include/ipc.h">
+<area shape="rect" id="Node000001" title="IPC utilities for RT&#45;THM (Shared Memory &amp; Semaphores)" alt="" coords="227,5,331,31"/>
+<area shape="rect" id="Node000002" href="$UI_8c.html" title="Ncurses dashboard implementation for RT&#45;THM." alt="" coords="5,79,76,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,37,77,82,75,77,227,32"/>
+<area shape="rect" id="Node000003" href="$ipc__utils_8c.html" title="IPC utilities implementation (Shared Memory &amp; Semaphores)" alt="" coords="100,79,211,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="249,40,177,81,174,76,246,35"/>
+<area shape="rect" id="Node000004" href="$main_8c.html" title="RT&#45;THM supervisor process (parent) implementation." alt="" coords="235,79,324,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="282,44,282,79,277,79,277,44"/>
+<area shape="rect" id="Node000005" href="$signals_8c.html" title="Signal handling implementation for RT&#45;THM." alt="" coords="348,79,451,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="312,35,381,76,378,81,309,40"/>
+<area shape="rect" id="Node000006" href="$worker_8c.html" title="Worker process implementation for RT&#45;THM." alt="" coords="475,79,574,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="332,32,486,76,484,81,331,37"/>
+</map>

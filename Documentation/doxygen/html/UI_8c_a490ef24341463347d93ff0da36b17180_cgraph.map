@@ -1,0 +1,20 @@
+<map id="ui_refresh" name="ui_refresh">
+<area shape="rect" id="Node000001" title="Refresh entire dashboard display." alt="" coords="5,55,92,80"/>
+<area shape="rect" id="Node000002" href="$UI_8c.html#ae631a5a3ad2c24dd944f5573487f98a3" title="Draw complete dashboard (header + workers + logs)" alt="" coords="140,55,288,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,65,126,65,126,70,92,70"/>
+<area shape="rect" id="Node000003" href="$UI_8c.html#a0c8a8e30c481fd6b8a234acef9cd0e75" title="Draw live log console at bottom of screen." alt="" coords="339,5,503,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="267,52,353,31,354,37,269,57"/>
+<area shape="rect" id="Node000004" href="$UI_8c.html#a38bf702c2b7d95494c0fd8e838debce4" title="Draw system status header (time, workers, tasks)" alt="" coords="341,104,501,129"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="269,77,354,98,353,103,267,83"/>
+<area shape="rect" id="Node000008" href="$UI_8c.html#a3e6d8479ebd16234c91a359c675e0329" title="Draw worker statistics table with color&#45;coded status." alt="" coords="336,55,507,80"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="288,65,322,65,322,70,288,70"/>
+<area shape="rect" id="Node000005" href="$ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b" title="Release semaphore lock (V operation)" alt="" coords="555,55,673,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="471,101,550,81,551,86,472,107"/>
+<area shape="rect" id="Node000007" href="$ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594" title="Acquire semaphore lock (P operation)" alt="" coords="560,104,668,129"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="502,114,546,114,546,119,502,119"/>
+<area shape="rect" id="Node000006" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="721,80,808,105"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="674,75,708,81,707,86,673,80"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="668,105,707,99,708,104,669,111"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="507,65,541,65,541,70,507,70"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="472,77,551,98,550,103,471,83"/>
+</map>

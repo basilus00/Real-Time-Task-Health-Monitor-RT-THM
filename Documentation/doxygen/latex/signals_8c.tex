@@ -1,0 +1,240 @@
+\doxysection{src/signals.c File Reference}
+\hypertarget{signals_8c}{}\label{signals_8c}\index{src/signals.c@{src/signals.c}}
+
+
+Signal handling implementation for RT-\/\+THM.  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+{\ttfamily \#include "{}signals.\+h"{}}\newline
+{\ttfamily \#include "{}ipc.\+h"{}}\newline
+{\ttfamily \#include "{}logger.\+h"{}}\newline
+Include dependency graph for signals.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signals_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{signals_8c_a3024ccd4a9af5109d24e6c57565d74a1}{\+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE}}~200809\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{L}}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{signals_8c_a8fb447618db946a9e2a596d9ea18763f}{\+\_\+\+DEFAULT\+\_\+\+SOURCE}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{signals_8c_a9b352f5e054878b135c4d45ee28f17d9}{send\+\_\+signal\+\_\+to\+\_\+worker}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{pid\+\_\+t}} pid, \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig\+\_\+num}})
+\begin{DoxyCompactList}\small\item\em Send signal to a specific worker process. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{signals_8c_aae335edcfdcb000211d477ee50cbfdae}{worker\+\_\+signal\+\_\+handler}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig}})
+\begin{DoxyCompactList}\small\item\em Worker signal handler for SIGUSR1/\+SIGUSR2. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5}{cleanup}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig}})
+\begin{DoxyCompactList}\small\item\em Cleanup handler for graceful system shutdown. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{signals_8c_a2227b50e2e42d7fbcaf283ae0b04bda5}{safe\+\_\+shutdown}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig}})
+\begin{DoxyCompactList}\small\item\em Wrapper signal handler for safe terminal restoration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{signals_8c_adde3bef4aac394c78441b059135e7343}{register\+\_\+signal\+\_\+handlers}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Register all signal handlers for the process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Signal handling implementation for RT-\/\+THM. 
+
+Manages cleanup, worker pause/resume signals, and graceful shutdown. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{signals_8c_a8fb447618db946a9e2a596d9ea18763f}\label{signals_8c_a8fb447618db946a9e2a596d9ea18763f} 
+\index{signals.c@{signals.c}!\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}}
+\index{\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}!signals.c@{signals.c}}
+\doxysubsubsection{\texorpdfstring{\_DEFAULT\_SOURCE}{\_DEFAULT\_SOURCE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \+\_\+\+DEFAULT\+\_\+\+SOURCE}
+
+\Hypertarget{signals_8c_a3024ccd4a9af5109d24e6c57565d74a1}\label{signals_8c_a3024ccd4a9af5109d24e6c57565d74a1} 
+\index{signals.c@{signals.c}!\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}}
+\index{\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}!signals.c@{signals.c}}
+\doxysubsubsection{\texorpdfstring{\_POSIX\_C\_SOURCE}{\_POSIX\_C\_SOURCE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE~200809\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{L}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5}\label{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5} 
+\index{signals.c@{signals.c}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!signals.c@{signals.c}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} cleanup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{sig }\end{DoxyParamCaption})}
+
+
+
+Cleanup handler for graceful system shutdown. 
+
+Cleanup handler for graceful shutdown.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & Signal that triggered cleanup (SIGINT/\+SIGTERM)\\
+\hline
+\end{DoxyParams}
+Performs in order\+:
+\begin{DoxyEnumerate}
+\item Restores terminal via \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{endwin()}
+\item Sends SIGTERM to all workers
+\item Detaches and removes shared memory
+\item Removes semaphore
+\item Closes log file
+\item Exits via \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{\+\_\+exit()} (signal-\/safe) \begin{DoxyNote}{Note}
+Uses cleanup\+\_\+done flag to prevent double-\/execution 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{\+\_\+exit()} instead of \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{exit()} for signal-\/handler safety 
+\end{DoxyWarning}
+
+\end{DoxyEnumerate}Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{signals_8c_adde3bef4aac394c78441b059135e7343}\label{signals_8c_adde3bef4aac394c78441b059135e7343} 
+\index{signals.c@{signals.c}!register\_signal\_handlers@{register\_signal\_handlers}}
+\index{register\_signal\_handlers@{register\_signal\_handlers}!signals.c@{signals.c}}
+\doxysubsubsection{\texorpdfstring{register\_signal\_handlers()}{register\_signal\_handlers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} register\+\_\+signal\+\_\+handlers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Register all signal handlers for the process. 
+
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Registers safe\+\_\+shutdown for SIGINT and SIGTERM 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signals_8c_adde3bef4aac394c78441b059135e7343_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{signals_8c_adde3bef4aac394c78441b059135e7343_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{signals_8c_a2227b50e2e42d7fbcaf283ae0b04bda5}\label{signals_8c_a2227b50e2e42d7fbcaf283ae0b04bda5} 
+\index{signals.c@{signals.c}!safe\_shutdown@{safe\_shutdown}}
+\index{safe\_shutdown@{safe\_shutdown}!signals.c@{signals.c}}
+\doxysubsubsection{\texorpdfstring{safe\_shutdown()}{safe\_shutdown()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} safe\+\_\+shutdown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{sig }\end{DoxyParamCaption})}
+
+
+
+Wrapper signal handler for safe terminal restoration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & Signal received (SIGINT/\+SIGTERM) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{endwin()} immediately before delegating to \doxylink{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5}{cleanup()} 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5}{cleanup()} 
+\end{DoxySeeAlso}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signals_8c_a2227b50e2e42d7fbcaf283ae0b04bda5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signals_8c_a2227b50e2e42d7fbcaf283ae0b04bda5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{signals_8c_a9b352f5e054878b135c4d45ee28f17d9}\label{signals_8c_a9b352f5e054878b135c4d45ee28f17d9} 
+\index{signals.c@{signals.c}!send\_signal\_to\_worker@{send\_signal\_to\_worker}}
+\index{send\_signal\_to\_worker@{send\_signal\_to\_worker}!signals.c@{signals.c}}
+\doxysubsubsection{\texorpdfstring{send\_signal\_to\_worker()}{send\_signal\_to\_worker()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} send\+\_\+signal\+\_\+to\+\_\+worker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{pid\+\_\+t}}}]{pid,  }\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{sig\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Send signal to a specific worker process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pid} & Target worker process ID \\
+\hline
+{\em sig\+\_\+num} & Signal to send (SIGUSR1, SIGUSR2, SIGTERM) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Logs warning on failure; ignores ESRCH (process already exited) 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{signals_8c_a9b352f5e054878b135c4d45ee28f17d9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signals_8c_a9b352f5e054878b135c4d45ee28f17d9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{signals_8c_aae335edcfdcb000211d477ee50cbfdae}\label{signals_8c_aae335edcfdcb000211d477ee50cbfdae} 
+\index{signals.c@{signals.c}!worker\_signal\_handler@{worker\_signal\_handler}}
+\index{worker\_signal\_handler@{worker\_signal\_handler}!signals.c@{signals.c}}
+\doxysubsubsection{\texorpdfstring{worker\_signal\_handler()}{worker\_signal\_handler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} worker\+\_\+signal\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{sig }\end{DoxyParamCaption})}
+
+
+
+Worker signal handler for SIGUSR1/\+SIGUSR2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & Signal received \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Async-\/signal-\/safe\+: minimal operations only; actual behavior handled in worker loop 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signals_8c_aae335edcfdcb000211d477ee50cbfdae_icgraph}
+\end{center}
+\end{figure}

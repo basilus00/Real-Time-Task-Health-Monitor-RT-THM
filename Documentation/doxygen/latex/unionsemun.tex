@@ -1,0 +1,66 @@
+\doxysection{semun Union Reference}
+\hypertarget{unionsemun}{}\label{unionsemun}\index{semun@{semun}}
+
+
+Union for \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{semctl()} -\/ required by POSIX.  
+
+
+
+
+{\ttfamily \#include $<$project.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{unionsemun_ac6121ecb6d04a024e07e12bd71b94031}{val}}
+\begin{DoxyCompactList}\small\item\em Value for SETVAL. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{struct}} \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{semid\+\_\+ds}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{unionsemun_ac6b6428d07d4147fd2cc698b53555bed}{buf}}
+\begin{DoxyCompactList}\small\item\em Buffer for IPC\+\_\+\+STAT/\+SET. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{unsigned}} \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{short}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{unionsemun_aca23b8e730a0553205813c0cb7692b54}{array}}
+\begin{DoxyCompactList}\small\item\em Array for GETALL/\+SETALL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Union for \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{semctl()} -\/ required by POSIX. 
+
+\begin{DoxyNote}{Note}
+POSIX does not define this union; must be declared by application 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{unionsemun_aca23b8e730a0553205813c0cb7692b54}\label{unionsemun_aca23b8e730a0553205813c0cb7692b54} 
+\index{semun@{semun}!array@{array}}
+\index{array@{array}!semun@{semun}}
+\doxysubsubsection{\texorpdfstring{array}{array}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{unsigned}} \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{short}}\texorpdfstring{$\ast$}{*} semun\+::array}
+
+
+
+Array for GETALL/\+SETALL. 
+
+\Hypertarget{unionsemun_ac6b6428d07d4147fd2cc698b53555bed}\label{unionsemun_ac6b6428d07d4147fd2cc698b53555bed} 
+\index{semun@{semun}!buf@{buf}}
+\index{buf@{buf}!semun@{semun}}
+\doxysubsubsection{\texorpdfstring{buf}{buf}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{struct}} \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{semid\+\_\+ds}}\texorpdfstring{$\ast$}{*} semun\+::buf}
+
+
+
+Buffer for IPC\+\_\+\+STAT/\+SET. 
+
+\Hypertarget{unionsemun_ac6121ecb6d04a024e07e12bd71b94031}\label{unionsemun_ac6121ecb6d04a024e07e12bd71b94031} 
+\index{semun@{semun}!val@{val}}
+\index{val@{val}!semun@{semun}}
+\doxysubsubsection{\texorpdfstring{val}{val}}
+{\footnotesize\ttfamily \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{int}} semun\+::val}
+
+
+
+Value for SETVAL. 
+
+
+
+The documentation for this union was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{project_8h}{project.\+h}}\end{DoxyCompactItemize}

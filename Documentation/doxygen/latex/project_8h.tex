@@ -1,0 +1,304 @@
+\doxysection{include/project.h File Reference}
+\hypertarget{project_8h}{}\label{project_8h}\index{include/project.h@{include/project.h}}
+
+
+Main header for RT-\/\+THM (Real-\/\+Time Task \& Health Monitor)  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ipc.\+h$>$}\newline
+{\ttfamily \#include $<$sys/shm.\+h$>$}\newline
+{\ttfamily \#include $<$sys/sem.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+Include dependency graph for project.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{project_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{project_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structProcessStat}{Process\+Stat}}
+\begin{DoxyCompactList}\small\item\em Process status structure for shared memory IPC. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{unionsemun}{semun}}
+\begin{DoxyCompactList}\small\item\em Union for \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{semctl()} -\/ required by POSIX. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Configuration Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a16e67aa18d42bbdb08ac9af1c8d0f4f9}{SHM\+\_\+\+SIZE}}~1024
+\begin{DoxyCompactList}\small\item\em Shared memory segment size in bytes. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a42bf63540ee0039a3a23db1b5ec3202b}{CONFIG\+\_\+\+FILE}}~"{}config.\+txt"{}
+\begin{DoxyCompactList}\small\item\em Runtime config file path. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a69d4676733f5e850f451942b6d901382}{LOG\+\_\+\+FILE}}~"{}system.\+log"{}
+\begin{DoxyCompactList}\small\item\em Log output file path. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a842ed03f27719bc87666bfd1f75415b8}{MAX\+\_\+\+LINE}}~256
+\begin{DoxyCompactList}\small\item\em Max line length for config parsing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Command Constants (Bidirectional IPC)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a29878fb9d1aa37f0a2a05dbd83a4e856}{CMD\+\_\+\+NONE}}~0
+\begin{DoxyCompactList}\small\item\em No command pending. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a09d313980b85793823000daba0ee1a03}{CMD\+\_\+\+PAUSE}}~1
+\begin{DoxyCompactList}\small\item\em Pause worker execution. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_ad94c1b5ed2f3487c7245445a27fb5912}{CMD\+\_\+\+RESUME}}~2
+\begin{DoxyCompactList}\small\item\em Resume worker execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Log Level Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a1632479322efa3952798f98177b54471}{LOG\+\_\+\+NONE}}~0
+\begin{DoxyCompactList}\small\item\em Disable logging. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_aeb4f36db01bd128c7afeac5889dac311}{LOG\+\_\+\+INFO}}~1
+\begin{DoxyCompactList}\small\item\em Info and error messages. \end{DoxyCompactList}\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{project_8h_a6ff63e8955665c4a58b1598f2b07c51a}{LOG\+\_\+\+DEBUG}}~2
+\begin{DoxyCompactList}\small\item\em Verbose debug output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Variables}
+\begin{Indent}\textbf{ Global Variables (Defined in config.\+c / main.\+c)}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structProcessStat}{Process\+Stat}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{project_8h_a15f03333a7c534eed2e16f8c87ff30fb}{shared\+\_\+stats}}
+\begin{DoxyCompactList}\small\item\em Pointer to shared memory segment. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{project_8h_ac8807d215d2ee6d9779d76aeb1147430}{shmid}}
+\begin{DoxyCompactList}\small\item\em Shared memory segment ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{project_8h_a7c35ac5305085cf7360645b8d52988b5}{semid}}
+\begin{DoxyCompactList}\small\item\em Semaphore set ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{volatile}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig\+\_\+atomic\+\_\+t}} \mbox{\hyperlink{project_8h_a7a263f3585d4479275c267e172000951}{cleanup\+\_\+done}}
+\begin{DoxyCompactList}\small\item\em Shutdown flag (signal-\/safe) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{FILE}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{project_8h_aa574e45a6e318dd8f45530c13db10cc1}{log\+\_\+fp}}
+\begin{DoxyCompactList}\small\item\em Log file pointer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{MAX\+\_\+\+WORKERS}}
+\begin{DoxyCompactList}\small\item\em Number of worker processes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{project_8h_a4f741fb3d2c037aa23ac407f9909d766}{WORKER\+\_\+\+TIMEOUT}}
+\begin{DoxyCompactList}\small\item\em Timeout threshold (seconds) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{project_8h_a101a44f6ae94b1cd1b073c99a911dff0}{REFRESH\+\_\+\+RATE}}
+\begin{DoxyCompactList}\small\item\em Dashboard refresh interval (seconds) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{project_8h_a3ecebc9d2fcb9f207a3373191a0ca251}{LOG\+\_\+\+LEVEL}}
+\begin{DoxyCompactList}\small\item\em Current logging verbosity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+Main header for RT-\/\+THM (Real-\/\+Time Task \& Health Monitor) 
+
+Core definitions\+: structures, constants, and extern declarations shared across all modules. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{project_8h_a29878fb9d1aa37f0a2a05dbd83a4e856}\label{project_8h_a29878fb9d1aa37f0a2a05dbd83a4e856} 
+\index{project.h@{project.h}!CMD\_NONE@{CMD\_NONE}}
+\index{CMD\_NONE@{CMD\_NONE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_NONE}{CMD\_NONE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} CMD\+\_\+\+NONE~0}
+
+
+
+No command pending. 
+
+\Hypertarget{project_8h_a09d313980b85793823000daba0ee1a03}\label{project_8h_a09d313980b85793823000daba0ee1a03} 
+\index{project.h@{project.h}!CMD\_PAUSE@{CMD\_PAUSE}}
+\index{CMD\_PAUSE@{CMD\_PAUSE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_PAUSE}{CMD\_PAUSE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} CMD\+\_\+\+PAUSE~1}
+
+
+
+Pause worker execution. 
+
+\Hypertarget{project_8h_ad94c1b5ed2f3487c7245445a27fb5912}\label{project_8h_ad94c1b5ed2f3487c7245445a27fb5912} 
+\index{project.h@{project.h}!CMD\_RESUME@{CMD\_RESUME}}
+\index{CMD\_RESUME@{CMD\_RESUME}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_RESUME}{CMD\_RESUME}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} CMD\+\_\+\+RESUME~2}
+
+
+
+Resume worker execution. 
+
+\Hypertarget{project_8h_a42bf63540ee0039a3a23db1b5ec3202b}\label{project_8h_a42bf63540ee0039a3a23db1b5ec3202b} 
+\index{project.h@{project.h}!CONFIG\_FILE@{CONFIG\_FILE}}
+\index{CONFIG\_FILE@{CONFIG\_FILE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{CONFIG\_FILE}{CONFIG\_FILE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} CONFIG\+\_\+\+FILE~"{}config.\+txt"{}}
+
+
+
+Runtime config file path. 
+
+\Hypertarget{project_8h_a6ff63e8955665c4a58b1598f2b07c51a}\label{project_8h_a6ff63e8955665c4a58b1598f2b07c51a} 
+\index{project.h@{project.h}!LOG\_DEBUG@{LOG\_DEBUG}}
+\index{LOG\_DEBUG@{LOG\_DEBUG}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_DEBUG}{LOG\_DEBUG}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} LOG\+\_\+\+DEBUG~2}
+
+
+
+Verbose debug output. 
+
+\Hypertarget{project_8h_a69d4676733f5e850f451942b6d901382}\label{project_8h_a69d4676733f5e850f451942b6d901382} 
+\index{project.h@{project.h}!LOG\_FILE@{LOG\_FILE}}
+\index{LOG\_FILE@{LOG\_FILE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_FILE}{LOG\_FILE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} LOG\+\_\+\+FILE~"{}system.\+log"{}}
+
+
+
+Log output file path. 
+
+\Hypertarget{project_8h_aeb4f36db01bd128c7afeac5889dac311}\label{project_8h_aeb4f36db01bd128c7afeac5889dac311} 
+\index{project.h@{project.h}!LOG\_INFO@{LOG\_INFO}}
+\index{LOG\_INFO@{LOG\_INFO}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_INFO}{LOG\_INFO}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} LOG\+\_\+\+INFO~1}
+
+
+
+Info and error messages. 
+
+\Hypertarget{project_8h_a1632479322efa3952798f98177b54471}\label{project_8h_a1632479322efa3952798f98177b54471} 
+\index{project.h@{project.h}!LOG\_NONE@{LOG\_NONE}}
+\index{LOG\_NONE@{LOG\_NONE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_NONE}{LOG\_NONE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} LOG\+\_\+\+NONE~0}
+
+
+
+Disable logging. 
+
+\Hypertarget{project_8h_a842ed03f27719bc87666bfd1f75415b8}\label{project_8h_a842ed03f27719bc87666bfd1f75415b8} 
+\index{project.h@{project.h}!MAX\_LINE@{MAX\_LINE}}
+\index{MAX\_LINE@{MAX\_LINE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LINE}{MAX\_LINE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} MAX\+\_\+\+LINE~256}
+
+
+
+Max line length for config parsing. 
+
+\Hypertarget{project_8h_a16e67aa18d42bbdb08ac9af1c8d0f4f9}\label{project_8h_a16e67aa18d42bbdb08ac9af1c8d0f4f9} 
+\index{project.h@{project.h}!SHM\_SIZE@{SHM\_SIZE}}
+\index{SHM\_SIZE@{SHM\_SIZE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{SHM\_SIZE}{SHM\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} SHM\+\_\+\+SIZE~1024}
+
+
+
+Shared memory segment size in bytes. 
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{project_8h_a7a263f3585d4479275c267e172000951}\label{project_8h_a7a263f3585d4479275c267e172000951} 
+\index{project.h@{project.h}!cleanup\_done@{cleanup\_done}}
+\index{cleanup\_done@{cleanup\_done}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{cleanup\_done}{cleanup\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{volatile}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig\+\_\+atomic\+\_\+t}} cleanup\+\_\+done\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Shutdown flag (signal-\/safe) 
+
+Shutdown flag (signal-\/safe) \Hypertarget{project_8h_aa574e45a6e318dd8f45530c13db10cc1}\label{project_8h_aa574e45a6e318dd8f45530c13db10cc1} 
+\index{project.h@{project.h}!log\_fp@{log\_fp}}
+\index{log\_fp@{log\_fp}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{log\_fp}{log\_fp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{FILE}}\texorpdfstring{$\ast$}{*} log\+\_\+fp\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Log file pointer. 
+
+Log file pointer. \Hypertarget{project_8h_a3ecebc9d2fcb9f207a3373191a0ca251}\label{project_8h_a3ecebc9d2fcb9f207a3373191a0ca251} 
+\index{project.h@{project.h}!LOG\_LEVEL@{LOG\_LEVEL}}
+\index{LOG\_LEVEL@{LOG\_LEVEL}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{LOG\_LEVEL}{LOG\_LEVEL}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} LOG\+\_\+\+LEVEL\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Current logging verbosity. 
+
+Current logging verbosity. \Hypertarget{project_8h_a4aea176d6dafe443d89b8d850830709a}\label{project_8h_a4aea176d6dafe443d89b8d850830709a} 
+\index{project.h@{project.h}!MAX\_WORKERS@{MAX\_WORKERS}}
+\index{MAX\_WORKERS@{MAX\_WORKERS}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_WORKERS}{MAX\_WORKERS}}
+{\footnotesize\ttfamily int MAX\+\_\+\+WORKERS\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Number of worker processes. 
+
+Number of worker processes. \Hypertarget{project_8h_a101a44f6ae94b1cd1b073c99a911dff0}\label{project_8h_a101a44f6ae94b1cd1b073c99a911dff0} 
+\index{project.h@{project.h}!REFRESH\_RATE@{REFRESH\_RATE}}
+\index{REFRESH\_RATE@{REFRESH\_RATE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{REFRESH\_RATE}{REFRESH\_RATE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} REFRESH\+\_\+\+RATE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Dashboard refresh interval (seconds) 
+
+Dashboard refresh interval (seconds) \Hypertarget{project_8h_a7c35ac5305085cf7360645b8d52988b5}\label{project_8h_a7c35ac5305085cf7360645b8d52988b5} 
+\index{project.h@{project.h}!semid@{semid}}
+\index{semid@{semid}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{semid}{semid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} semid\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Semaphore set ID. 
+
+\Hypertarget{project_8h_a15f03333a7c534eed2e16f8c87ff30fb}\label{project_8h_a15f03333a7c534eed2e16f8c87ff30fb} 
+\index{project.h@{project.h}!shared\_stats@{shared\_stats}}
+\index{shared\_stats@{shared\_stats}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{shared\_stats}{shared\_stats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structProcessStat}{Process\+Stat}}\texorpdfstring{$\ast$}{*} shared\+\_\+stats\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Pointer to shared memory segment. 
+
+Pointer to shared memory segment. \Hypertarget{project_8h_ac8807d215d2ee6d9779d76aeb1147430}\label{project_8h_ac8807d215d2ee6d9779d76aeb1147430} 
+\index{project.h@{project.h}!shmid@{shmid}}
+\index{shmid@{shmid}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{shmid}{shmid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} shmid\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Shared memory segment ID. 
+
+\Hypertarget{project_8h_a4f741fb3d2c037aa23ac407f9909d766}\label{project_8h_a4f741fb3d2c037aa23ac407f9909d766} 
+\index{project.h@{project.h}!WORKER\_TIMEOUT@{WORKER\_TIMEOUT}}
+\index{WORKER\_TIMEOUT@{WORKER\_TIMEOUT}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{WORKER\_TIMEOUT}{WORKER\_TIMEOUT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} WORKER\+\_\+\+TIMEOUT\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Timeout threshold (seconds) 
+
+Timeout threshold (seconds) 

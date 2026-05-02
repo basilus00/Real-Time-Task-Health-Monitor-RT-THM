@@ -1,0 +1,8 @@
+<map id="ui_add_log" name="ui_add_log">
+<area shape="rect" id="Node000001" title="Add formatted log message to UI console buffer." alt="" coords="332,31,424,56"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a1594c6785b808f6766d6f6a82852bf61" title="Check for worker timeouts and send pause/resume signals." alt="" coords="108,5,284,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="318,38,284,33,285,28,319,32"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,31,60,56"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="318,46,60,46,60,41,318,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,36,61,42,60,37,100,30"/>
+</map>

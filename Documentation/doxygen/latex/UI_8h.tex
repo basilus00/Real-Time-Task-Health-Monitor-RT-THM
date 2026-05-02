@@ -1,0 +1,291 @@
+\doxysection{include/\+UI.h File Reference}
+\hypertarget{UI_8h}{}\label{UI_8h}\index{include/UI.h@{include/UI.h}}
+{\ttfamily \#include "{}project.\+h"{}}\newline
+{\ttfamily \#include $<$ncurses.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for UI.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{UI_8h_ab7bfb453918dcc296ff0cea3c79453d0}{ui\+\_\+init}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Initialize ncurses and create dashboard windows. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_a254dff79870a08e3feccded6a95cd791}{ui\+\_\+cleanup}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Cleanup ncurses and restore terminal to normal mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_ae631a5a3ad2c24dd944f5573487f98a3}{ui\+\_\+draw\+\_\+dashboard}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw complete dashboard (header + workers + logs) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_a38bf702c2b7d95494c0fd8e838debce4}{ui\+\_\+draw\+\_\+system\+\_\+info}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw system status header (time, workers, tasks) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_a3e6d8479ebd16234c91a359c675e0329}{ui\+\_\+draw\+\_\+workers\+\_\+table}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw worker statistics table with color-\/coded status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_a0c8a8e30c481fd6b8a234acef9cd0e75}{ui\+\_\+draw\+\_\+logs\+\_\+console}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Draw live log console at bottom of screen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_a9b8732dbdb4366722be35168f39129bb}{ui\+\_\+add\+\_\+log}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{format}},...) \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{format}}(\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{printf}}
+\begin{DoxyCompactList}\small\item\em Add formatted log message to UI console buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{UI_8h_af8d45821532a40cd6b4d1dc0106a604e}{ui\+\_\+get\+\_\+latest\+\_\+log}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Get most recent log message. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_a490ef24341463347d93ff0da36b17180}{ui\+\_\+refresh}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Refresh entire dashboard display. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{UI_8h_adc2734583ef4ca75088c32901f593e09}{ui\+\_\+handle\+\_\+resize}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Handle terminal resize event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{UI_8h_a9b8732dbdb4366722be35168f39129bb}\label{UI_8h_a9b8732dbdb4366722be35168f39129bb} 
+\index{UI.h@{UI.h}!ui\_add\_log@{ui\_add\_log}}
+\index{ui\_add\_log@{ui\_add\_log}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_add\_log()}{ui\_add\_log()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+add\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Add formatted log message to UI console buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & Printf-\/style format string \\
+\hline
+{\em ...} & Variable arguments for format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread-\/safe via mutex; truncates long messages to prevent wrap 
+\end{DoxyNote}
+\Hypertarget{UI_8h_a254dff79870a08e3feccded6a95cd791}\label{UI_8h_a254dff79870a08e3feccded6a95cd791} 
+\index{UI.h@{UI.h}!ui\_cleanup@{ui\_cleanup}}
+\index{ui\_cleanup@{ui\_cleanup}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_cleanup()}{ui\_cleanup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+cleanup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Cleanup ncurses and restore terminal to normal mode. 
+
+\begin{DoxyNote}{Note}
+Must be called before exit to prevent terminal corruption 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{UI_8h_a254dff79870a08e3feccded6a95cd791_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8h_ae631a5a3ad2c24dd944f5573487f98a3}\label{UI_8h_ae631a5a3ad2c24dd944f5573487f98a3} 
+\index{UI.h@{UI.h}!ui\_draw\_dashboard@{ui\_draw\_dashboard}}
+\index{ui\_draw\_dashboard@{ui\_draw\_dashboard}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_dashboard()}{ui\_draw\_dashboard()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+dashboard (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw complete dashboard (header + workers + logs) 
+
+\begin{DoxyNote}{Note}
+Uses double-\/buffering via \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{doupdate()} for flicker-\/free refresh
+
+Uses \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{doupdate()} for atomic, flicker-\/free screen refresh 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_ae631a5a3ad2c24dd944f5573487f98a3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_ae631a5a3ad2c24dd944f5573487f98a3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8h_a0c8a8e30c481fd6b8a234acef9cd0e75}\label{UI_8h_a0c8a8e30c481fd6b8a234acef9cd0e75} 
+\index{UI.h@{UI.h}!ui\_draw\_logs\_console@{ui\_draw\_logs\_console}}
+\index{ui\_draw\_logs\_console@{ui\_draw\_logs\_console}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_logs\_console()}{ui\_draw\_logs\_console()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+logs\+\_\+console (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw live log console at bottom of screen. 
+
+\begin{DoxyNote}{Note}
+Displays last N messages from circular log buffer
+
+Thread-\/safe read via mutex; truncates messages to prevent line wrap 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_a0c8a8e30c481fd6b8a234acef9cd0e75_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8h_a38bf702c2b7d95494c0fd8e838debce4}\label{UI_8h_a38bf702c2b7d95494c0fd8e838debce4} 
+\index{UI.h@{UI.h}!ui\_draw\_system\_info@{ui\_draw\_system\_info}}
+\index{ui\_draw\_system\_info@{ui\_draw\_system\_info}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_system\_info()}{ui\_draw\_system\_info()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+system\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw system status header (time, workers, tasks) 
+
+\begin{DoxyNote}{Note}
+Reads shared\+\_\+stats atomically via semaphore
+
+Reads shared\+\_\+stats atomically via semaphore; bounds-\/checks all output 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_a38bf702c2b7d95494c0fd8e838debce4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_a38bf702c2b7d95494c0fd8e838debce4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8h_a3e6d8479ebd16234c91a359c675e0329}\label{UI_8h_a3e6d8479ebd16234c91a359c675e0329} 
+\index{UI.h@{UI.h}!ui\_draw\_workers\_table@{ui\_draw\_workers\_table}}
+\index{ui\_draw\_workers\_table@{ui\_draw\_workers\_table}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_draw\_workers\_table()}{ui\_draw\_workers\_table()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+draw\+\_\+workers\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Draw worker statistics table with color-\/coded status. 
+
+\begin{DoxyNote}{Note}
+Each row shows\+: ID, PID, Health, Tasks, Status, Last Update
+
+Uses atomic snapshot of shared\+\_\+stats to minimize semaphore hold time 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_a3e6d8479ebd16234c91a359c675e0329_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_a3e6d8479ebd16234c91a359c675e0329_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8h_af8d45821532a40cd6b4d1dc0106a604e}\label{UI_8h_af8d45821532a40cd6b4d1dc0106a604e} 
+\index{UI.h@{UI.h}!ui\_get\_latest\_log@{ui\_get\_latest\_log}}
+\index{ui\_get\_latest\_log@{ui\_get\_latest\_log}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_get\_latest\_log()}{ui\_get\_latest\_log()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*} ui\+\_\+get\+\_\+latest\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Get most recent log message. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to latest log string (do not modify) 
+\end{DoxyReturn}
+\Hypertarget{UI_8h_adc2734583ef4ca75088c32901f593e09}\label{UI_8h_adc2734583ef4ca75088c32901f593e09} 
+\index{UI.h@{UI.h}!ui\_handle\_resize@{ui\_handle\_resize}}
+\index{ui\_handle\_resize@{ui\_handle\_resize}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_handle\_resize()}{ui\_handle\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+handle\+\_\+resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Handle terminal resize event. 
+
+\begin{DoxyNote}{Note}
+Recreates all windows with new dimensions; call on KEY\+\_\+\+RESIZE 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{UI_8h_adc2734583ef4ca75088c32901f593e09_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8h_ab7bfb453918dcc296ff0cea3c79453d0}\label{UI_8h_ab7bfb453918dcc296ff0cea3c79453d0} 
+\index{UI.h@{UI.h}!ui\_init@{ui\_init}}
+\index{ui\_init@{ui\_init}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_init()}{ui\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} ui\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize ncurses and create dashboard windows. 
+
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if terminal too small or init fails 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call once at startup before any drawing functions
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if terminal too small or init fails 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Sets up colors, key handling, and window layout; call once at startup 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{UI_8h_ab7bfb453918dcc296ff0cea3c79453d0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{UI_8h_a490ef24341463347d93ff0da36b17180}\label{UI_8h_a490ef24341463347d93ff0da36b17180} 
+\index{UI.h@{UI.h}!ui\_refresh@{ui\_refresh}}
+\index{ui\_refresh@{ui\_refresh}!UI.h@{UI.h}}
+\doxysubsubsection{\texorpdfstring{ui\_refresh()}{ui\_refresh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} ui\+\_\+refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Refresh entire dashboard display. 
+
+\begin{DoxyNote}{Note}
+Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{doupdate()} for atomic screen update
+
+Clears stdscr first to prevent ghosting; includes small delay 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{UI_8h_a490ef24341463347d93ff0da36b17180_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{UI_8h_a490ef24341463347d93ff0da36b17180_icgraph}
+\end{center}
+\end{figure}

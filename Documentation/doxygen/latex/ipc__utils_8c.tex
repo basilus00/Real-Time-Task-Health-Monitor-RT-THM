@@ -1,0 +1,320 @@
+\doxysection{src/ipc\+\_\+utils.c File Reference}
+\hypertarget{ipc__utils_8c}{}\label{ipc__utils_8c}\index{src/ipc\_utils.c@{src/ipc\_utils.c}}
+
+
+IPC utilities implementation (Shared Memory \& Semaphores)  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+{\ttfamily \#include "{}ipc.\+h"{}}\newline
+{\ttfamily \#include "{}logger.\+h"{}}\newline
+Include dependency graph for ipc\+\_\+utils.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ipc__utils_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{ipc__utils_8c_a5d0cc554e478b3289951da79d95b8594}{sem\+\_\+wait\+\_\+op}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a7c35ac5305085cf7360645b8d52988b5}{semid}})
+\begin{DoxyCompactList}\small\item\em Acquire semaphore lock (P operation) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{ipc__utils_8c_a10e9222ec21173d9cec5e4a2abc7454b}{sem\+\_\+signal\+\_\+op}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a7c35ac5305085cf7360645b8d52988b5}{semid}})
+\begin{DoxyCompactList}\small\item\em Release semaphore lock (V operation) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{ipc__utils_8c_a7519aa078998d162b3a8d9847d507242}{create\+\_\+semaphore}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Create and initialize binary semaphore. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{ipc__utils_8c_a0831e5dc4c665cd91d0e48ad09525386}{create\+\_\+shared\+\_\+memory}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{size\+\_\+t}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{num\+\_\+workers}})
+\begin{DoxyCompactList}\small\item\em Create shared memory segment for worker stats. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structProcessStat}{Process\+Stat}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ipc__utils_8c_ab1210bbe865327d0657417f58a0a32db}{attach\+\_\+shared\+\_\+memory}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_ac8807d215d2ee6d9779d76aeb1147430}{shmid}})
+\begin{DoxyCompactList}\small\item\em Attach shared memory to process address space. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{ipc__utils_8c_a24e2892a5d99a5ede87d81706193766b}{detach\+\_\+shared\+\_\+memory}} (\mbox{\hyperlink{structProcessStat}{Process\+Stat}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{stats}})
+\begin{DoxyCompactList}\small\item\em Detach shared memory from process address space. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{ipc__utils_8c_a40ad696ee6efdf12b78c06e26bc95de7}{remove\+\_\+shared\+\_\+memory}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_ac8807d215d2ee6d9779d76aeb1147430}{shmid}})
+\begin{DoxyCompactList}\small\item\em Mark shared memory segment for deletion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{ipc__utils_8c_a36bb24831bec33a68c2991a1225c74f1}{init\+\_\+worker\+\_\+stats}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{worker\+\_\+id}}, \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{pid\+\_\+t}} pid)
+\begin{DoxyCompactList}\small\item\em Initialize a worker\textquotesingle{}s stats entry in shared memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+IPC utilities implementation (Shared Memory \& Semaphores) 
+
+Thread-\/safe operations for POSIX IPC with error handling and logging. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ipc__utils_8c_ab1210bbe865327d0657417f58a0a32db}\label{ipc__utils_8c_ab1210bbe865327d0657417f58a0a32db} 
+\index{ipc\_utils.c@{ipc\_utils.c}!attach\_shared\_memory@{attach\_shared\_memory}}
+\index{attach\_shared\_memory@{attach\_shared\_memory}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{attach\_shared\_memory()}{attach\_shared\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structProcessStat}{Process\+Stat}} \texorpdfstring{$\ast$}{*} attach\+\_\+shared\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{shmid }\end{DoxyParamCaption})}
+
+
+
+Attach shared memory to process address space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shmid} & Shared memory ID from \doxylink{ipc__utils_8c_a0831e5dc4c665cd91d0e48ad09525386}{create\+\_\+shared\+\_\+memory()} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to \doxylink{structProcessStat}{Process\+Stat} array, or NULL on error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{ipc__utils_8c_ab1210bbe865327d0657417f58a0a32db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{ipc__utils_8c_ab1210bbe865327d0657417f58a0a32db_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ipc__utils_8c_a7519aa078998d162b3a8d9847d507242}\label{ipc__utils_8c_a7519aa078998d162b3a8d9847d507242} 
+\index{ipc\_utils.c@{ipc\_utils.c}!create\_semaphore@{create\_semaphore}}
+\index{create\_semaphore@{create\_semaphore}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{create\_semaphore()}{create\_semaphore()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} create\+\_\+semaphore (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Create and initialize binary semaphore. 
+
+\begin{DoxyReturn}{Returns}
+Semaphore ID on success, -\/1 on error 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Initialized to 1 (unlocked); logs creation on success 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{ipc__utils_8c_a7519aa078998d162b3a8d9847d507242_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{ipc__utils_8c_a7519aa078998d162b3a8d9847d507242_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ipc__utils_8c_a0831e5dc4c665cd91d0e48ad09525386}\label{ipc__utils_8c_a0831e5dc4c665cd91d0e48ad09525386} 
+\index{ipc\_utils.c@{ipc\_utils.c}!create\_shared\_memory@{create\_shared\_memory}}
+\index{create\_shared\_memory@{create\_shared\_memory}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{create\_shared\_memory()}{create\_shared\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} create\+\_\+shared\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{size\+\_\+t}}}]{num\+\_\+workers }\end{DoxyParamCaption})}
+
+
+
+Create shared memory segment for worker stats. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+workers} & Number of \doxylink{structProcessStat}{Process\+Stat} entries to allocate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Shared memory ID on success, -\/1 on error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{ipc__utils_8c_a0831e5dc4c665cd91d0e48ad09525386_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{ipc__utils_8c_a0831e5dc4c665cd91d0e48ad09525386_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ipc__utils_8c_a24e2892a5d99a5ede87d81706193766b}\label{ipc__utils_8c_a24e2892a5d99a5ede87d81706193766b} 
+\index{ipc\_utils.c@{ipc\_utils.c}!detach\_shared\_memory@{detach\_shared\_memory}}
+\index{detach\_shared\_memory@{detach\_shared\_memory}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{detach\_shared\_memory()}{detach\_shared\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} detach\+\_\+shared\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structProcessStat}{Process\+Stat}} \texorpdfstring{$\ast$}{*}}]{stats }\end{DoxyParamCaption})}
+
+
+
+Detach shared memory from process address space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & Pointer returned by \doxylink{ipc__utils_8c_ab1210bbe865327d0657417f58a0a32db}{attach\+\_\+shared\+\_\+memory()} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{ipc__utils_8c_a24e2892a5d99a5ede87d81706193766b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{ipc__utils_8c_a24e2892a5d99a5ede87d81706193766b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ipc__utils_8c_a36bb24831bec33a68c2991a1225c74f1}\label{ipc__utils_8c_a36bb24831bec33a68c2991a1225c74f1} 
+\index{ipc\_utils.c@{ipc\_utils.c}!init\_worker\_stats@{init\_worker\_stats}}
+\index{init\_worker\_stats@{init\_worker\_stats}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{init\_worker\_stats()}{init\_worker\_stats()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} init\+\_\+worker\+\_\+stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{worker\+\_\+id,  }\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{pid\+\_\+t}}}]{pid }\end{DoxyParamCaption})}
+
+
+
+Initialize a worker\textquotesingle{}s stats entry in shared memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em worker\+\_\+id} & Worker index (0 to MAX\+\_\+\+WORKERS-\/1) \\
+\hline
+{\em pid} & Worker process ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Must be called with semaphore held; sets last\+\_\+update, is\+\_\+slow, command 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ipc__utils_8c_a36bb24831bec33a68c2991a1225c74f1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{ipc__utils_8c_a36bb24831bec33a68c2991a1225c74f1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ipc__utils_8c_a40ad696ee6efdf12b78c06e26bc95de7}\label{ipc__utils_8c_a40ad696ee6efdf12b78c06e26bc95de7} 
+\index{ipc\_utils.c@{ipc\_utils.c}!remove\_shared\_memory@{remove\_shared\_memory}}
+\index{remove\_shared\_memory@{remove\_shared\_memory}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{remove\_shared\_memory()}{remove\_shared\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} remove\+\_\+shared\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{shmid }\end{DoxyParamCaption})}
+
+
+
+Mark shared memory segment for deletion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shmid} & Shared memory ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on error 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Segment destroyed after all processes detach; ignores EINVAL (already removed) 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{ipc__utils_8c_a40ad696ee6efdf12b78c06e26bc95de7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{ipc__utils_8c_a40ad696ee6efdf12b78c06e26bc95de7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ipc__utils_8c_a10e9222ec21173d9cec5e4a2abc7454b}\label{ipc__utils_8c_a10e9222ec21173d9cec5e4a2abc7454b} 
+\index{ipc\_utils.c@{ipc\_utils.c}!sem\_signal\_op@{sem\_signal\_op}}
+\index{sem\_signal\_op@{sem\_signal\_op}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{sem\_signal\_op()}{sem\_signal\_op()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} sem\+\_\+signal\+\_\+op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{semid }\end{DoxyParamCaption})}
+
+
+
+Release semaphore lock (V operation) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em semid} & Semaphore identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Logs error and exits on failure 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{ipc__utils_8c_a10e9222ec21173d9cec5e4a2abc7454b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ipc__utils_8c_a10e9222ec21173d9cec5e4a2abc7454b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ipc__utils_8c_a5d0cc554e478b3289951da79d95b8594}\label{ipc__utils_8c_a5d0cc554e478b3289951da79d95b8594} 
+\index{ipc\_utils.c@{ipc\_utils.c}!sem\_wait\_op@{sem\_wait\_op}}
+\index{sem\_wait\_op@{sem\_wait\_op}!ipc\_utils.c@{ipc\_utils.c}}
+\doxysubsubsection{\texorpdfstring{sem\_wait\_op()}{sem\_wait\_op()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} sem\+\_\+wait\+\_\+op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}}}]{semid }\end{DoxyParamCaption})}
+
+
+
+Acquire semaphore lock (P operation) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em semid} & Semaphore identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Blocks until available; logs error and exits on failure 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{ipc__utils_8c_a5d0cc554e478b3289951da79d95b8594_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ipc__utils_8c_a5d0cc554e478b3289951da79d95b8594_icgraph}
+\end{center}
+\end{figure}

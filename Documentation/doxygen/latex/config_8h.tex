@@ -1,0 +1,145 @@
+\doxysection{include/config.h File Reference}
+\hypertarget{config_8h}{}\label{config_8h}\index{include/config.h@{include/config.h}}
+
+
+Configuration parser for RT-\/\+THM.  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+Include dependency graph for config.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12}{load\+\_\+config}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{filename}})
+\begin{DoxyCompactList}\small\item\em Load configuration from external file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{config_8h_a0bf84941bc147c0b5514a033cb34379d}{print\+\_\+config}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Print current config values to stdout. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8h_a83b96494995d002bae79323b61b29e8b}{validate\+\_\+config}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Validate config values against constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration parser for RT-\/\+THM. 
+
+Loads runtime parameters from config.\+txt without recompilation. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12}\label{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12} 
+\index{config.h@{config.h}!load\_config@{load\_config}}
+\index{load\_config@{load\_config}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{load\_config()}{load\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} load\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Load configuration from external file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to config file (e.\+g., "{}config.\+txt"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if file not found (defaults used) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Modifies global vars\+: MAX\+\_\+\+WORKERS, WORKER\+\_\+\+TIMEOUT, REFRESH\+\_\+\+RATE, LOG\+\_\+\+LEVEL
+\end{DoxyNote}
+Load configuration from external file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to config file (e.\+g., "{}config.\+txt"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if file not found (defaults used) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Modifies global config variables\+: MAX\+\_\+\+WORKERS, WORKER\+\_\+\+TIMEOUT, etc. 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{config_8h_a0bf84941bc147c0b5514a033cb34379d}\label{config_8h_a0bf84941bc147c0b5514a033cb34379d} 
+\index{config.h@{config.h}!print\_config@{print\_config}}
+\index{print\_config@{print\_config}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{print\_config()}{print\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} print\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Print current config values to stdout. 
+
+Format\+: \mbox{[}CONFIG\mbox{]} workers=4, timeout=10s, refresh=2s, log\+\_\+level=2
+
+Print current config values to stdout.
+
+Format\+: \mbox{[}CONFIG\mbox{]} workers=4, timeout=10s, refresh=2s, log\+\_\+level=2 \Hypertarget{config_8h_a83b96494995d002bae79323b61b29e8b}\label{config_8h_a83b96494995d002bae79323b61b29e8b} 
+\index{config.h@{config.h}!validate\_config@{validate\_config}}
+\index{validate\_config@{validate\_config}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{validate\_config()}{validate\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} validate\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Validate config values against constraints. 
+
+\begin{DoxyReturn}{Returns}
+0 if valid, -\/1 if out-\/of-\/range value detected 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call after \doxylink{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12}{load\+\_\+config()} before main loop
+\end{DoxyNote}
+Validate config values against constraints.
+
+\begin{DoxyReturn}{Returns}
+0 if all values valid, -\/1 if any out-\/of-\/range 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call after \doxylink{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12}{load\+\_\+config()} before starting main loop 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{config_8h_a83b96494995d002bae79323b61b29e8b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{config_8h_a83b96494995d002bae79323b61b29e8b_icgraph}
+\end{center}
+\end{figure}

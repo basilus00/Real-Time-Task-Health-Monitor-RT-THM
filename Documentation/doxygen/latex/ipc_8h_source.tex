@@ -1,0 +1,29 @@
+\doxysection{ipc.\+h}
+\hypertarget{ipc_8h_source}{}\label{ipc_8h_source}\index{include/ipc.h@{include/ipc.h}}
+\mbox{\hyperlink{ipc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ IPC\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ IPC\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{project_8h}{project.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ipc_8h_a5d0cc554e478b3289951da79d95b8594}{sem\_wait\_op}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{config_8c_a7c35ac5305085cf7360645b8d52988b5}{semid}});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ipc_8h_a10e9222ec21173d9cec5e4a2abc7454b}{sem\_signal\_op}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{config_8c_a7c35ac5305085cf7360645b8d52988b5}{semid}});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ipc_8h_a7519aa078998d162b3a8d9847d507242}{create\_semaphore}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ipc_8h_a0831e5dc4c665cd91d0e48ad09525386}{create\_shared\_memory}}(\textcolor{keywordtype}{size\_t}\ num\_workers);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \mbox{\hyperlink{structProcessStat}{ProcessStat}}*\ \mbox{\hyperlink{ipc_8h_ab1210bbe865327d0657417f58a0a32db}{attach\_shared\_memory}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{config_8c_ac8807d215d2ee6d9779d76aeb1147430}{shmid}});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ipc_8h_a24e2892a5d99a5ede87d81706193766b}{detach\_shared\_memory}}(\mbox{\hyperlink{structProcessStat}{ProcessStat}}\ *stats);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ipc_8h_a40ad696ee6efdf12b78c06e26bc95de7}{remove\_shared\_memory}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{config_8c_ac8807d215d2ee6d9779d76aeb1147430}{shmid}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ipc_8h_a36bb24831bec33a68c2991a1225c74f1}{init\_worker\_stats}}(\textcolor{keywordtype}{int}\ worker\_id,\ pid\_t\ pid);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ IPC\_H}}
+
+\end{DoxyCode}

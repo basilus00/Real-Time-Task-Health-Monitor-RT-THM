@@ -1,0 +1,16 @@
+<map id="check_worker_timeouts" name="check_worker_timeouts">
+<area shape="rect" id="Node000001" title="Check for worker timeouts and send pause/resume signals." alt="" coords="5,82,181,107"/>
+<area shape="rect" id="Node000002" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="448,58,535,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,79,161,46,194,29,229,17,276,6,315,3,353,6,401,17,434,30,463,47,461,52,432,35,399,22,352,12,315,8,277,12,230,22,196,34,163,51,113,84"/>
+<area shape="rect" id="Node000003" href="$ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b" title="Release semaphore lock (V operation)" alt="" coords="255,32,374,58"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,79,243,58,244,63,152,84"/>
+<area shape="rect" id="Node000004" href="$ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594" title="Acquire semaphore lock (P operation)" alt="" coords="261,82,369,107"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="182,92,247,92,247,97,182,97"/>
+<area shape="rect" id="Node000005" href="$signals_8c.html#a9b352f5e054878b135c4d45ee28f17d9" title="Send signal to a specific worker process." alt="" coords="229,131,400,156"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="152,104,244,125,243,131,150,110"/>
+<area shape="rect" id="Node000006" href="$UI_8c.html#a10c714946805ecbf63e0fa546403bc47" title="Add formatted log message to UI console buffer." alt="" coords="269,180,361,206"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="116,105,167,134,230,165,256,175,255,180,228,170,165,139,114,109"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="375,51,435,60,434,65,374,56"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="368,84,434,75,435,81,369,90"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="363,128,399,116,456,88,458,92,401,121,365,133"/>
+</map>

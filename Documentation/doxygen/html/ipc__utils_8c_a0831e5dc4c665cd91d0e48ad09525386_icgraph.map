@@ -1,0 +1,5 @@
+<map id="create_shared_memory" name="create_shared_memory">
+<area shape="rect" id="Node000001" title="Create shared memory segment for worker stats." alt="" coords="108,5,284,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+</map>

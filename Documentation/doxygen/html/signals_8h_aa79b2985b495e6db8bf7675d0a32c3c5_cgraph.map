@@ -1,0 +1,7 @@
+<map id="cleanup" name="cleanup">
+<area shape="rect" id="Node000001" title="Cleanup handler for graceful shutdown." alt="" coords="5,31,79,56"/>
+<area shape="rect" id="Node000002" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="135,5,222,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,34,121,26,122,31,79,39"/>
+<area shape="rect" id="Node000003" href="$logger_8c.html#a59c77d233157db1c24d6553a2567e442" title="Close log file and cleanup resources." alt="" coords="127,55,231,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="79,47,114,53,113,58,78,52"/>
+</map>

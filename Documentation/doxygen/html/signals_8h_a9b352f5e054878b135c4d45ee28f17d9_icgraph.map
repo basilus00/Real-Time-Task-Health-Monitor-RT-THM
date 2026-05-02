@@ -1,0 +1,7 @@
+<map id="send_signal_to_worker" name="send_signal_to_worker">
+<area shape="rect" id="Node000001" title="Send signal to a specific worker process." alt="" coords="332,5,503,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a1594c6785b808f6766d6f6a82852bf61" title="Check for worker timeouts and send pause/resume signals." alt="" coords="108,5,284,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="318,21,284,21,284,15,318,15"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+</map>

@@ -1,0 +1,237 @@
+\doxysection{src/config.c File Reference}
+\hypertarget{config_8c}{}\label{config_8c}\index{src/config.c@{src/config.c}}
+
+
+Configuration parser implementation for RT-\/\+THM.  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+{\ttfamily \#include "{}config.\+h"{}}\newline
+{\ttfamily \#include "{}logger.\+h"{}}\newline
+Include dependency graph for config.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a5ba22acdff5d198406a9d4aa0c73cb12}{load\+\_\+config}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{filename}})
+\begin{DoxyCompactList}\small\item\em Load configuration parameters from external file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{config_8c_a0bf84941bc147c0b5514a033cb34379d}{print\+\_\+config}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Print current configuration values to stdout. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a83b96494995d002bae79323b61b29e8b}{validate\+\_\+config}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Validate loaded configuration values against constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{Indent}\textbf{ Global Variables (Defined here, declared extern in project.\+h)}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structProcessStat}{Process\+Stat}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8c_a15f03333a7c534eed2e16f8c87ff30fb}{shared\+\_\+stats}} = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}
+\begin{DoxyCompactList}\small\item\em Shared memory pointer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_ac8807d215d2ee6d9779d76aeb1147430}{shmid}} = -\/1
+\begin{DoxyCompactList}\small\item\em Shared memory segment ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a7c35ac5305085cf7360645b8d52988b5}{semid}} = -\/1
+\begin{DoxyCompactList}\small\item\em Semaphore set ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{volatile}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig\+\_\+atomic\+\_\+t}} \mbox{\hyperlink{config_8c_a7a263f3585d4479275c267e172000951}{cleanup\+\_\+done}} = 0
+\begin{DoxyCompactList}\small\item\em Signal-\/safe shutdown flag. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{FILE}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8c_aa574e45a6e318dd8f45530c13db10cc1}{log\+\_\+fp}} = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}
+\begin{DoxyCompactList}\small\item\em Log file handle. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{MAX\+\_\+\+WORKERS}} = 3
+\begin{DoxyCompactList}\small\item\em Number of worker processes (default\+: 3) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a4f741fb3d2c037aa23ac407f9909d766}{WORKER\+\_\+\+TIMEOUT}} = 10
+\begin{DoxyCompactList}\small\item\em Timeout threshold in seconds (default\+: 10) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a101a44f6ae94b1cd1b073c99a911dff0}{REFRESH\+\_\+\+RATE}} = 2
+\begin{DoxyCompactList}\small\item\em Dashboard refresh interval in seconds (default\+: 2) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{config_8c_a3ecebc9d2fcb9f207a3373191a0ca251}{LOG\+\_\+\+LEVEL}} = \mbox{\hyperlink{project_8h_aeb4f36db01bd128c7afeac5889dac311}{LOG\+\_\+\+INFO}}
+\begin{DoxyCompactList}\small\item\em Logging verbosity level (default\+: INFO) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+Configuration parser implementation for RT-\/\+THM. 
+
+Loads runtime parameters from config.\+txt; defines global config variables. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{config_8c_a5ba22acdff5d198406a9d4aa0c73cb12}\label{config_8c_a5ba22acdff5d198406a9d4aa0c73cb12} 
+\index{config.c@{config.c}!load\_config@{load\_config}}
+\index{load\_config@{load\_config}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{load\_config()}{load\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} load\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Load configuration parameters from external file. 
+
+Load configuration from external file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to config file (e.\+g., "{}config.\+txt"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if file not found (defaults used) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Modifies global config variables\+: MAX\+\_\+\+WORKERS, WORKER\+\_\+\+TIMEOUT, etc. 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{config_8c_a5ba22acdff5d198406a9d4aa0c73cb12_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{config_8c_a5ba22acdff5d198406a9d4aa0c73cb12_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{config_8c_a0bf84941bc147c0b5514a033cb34379d}\label{config_8c_a0bf84941bc147c0b5514a033cb34379d} 
+\index{config.c@{config.c}!print\_config@{print\_config}}
+\index{print\_config@{print\_config}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{print\_config()}{print\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} print\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Print current configuration values to stdout. 
+
+Print current config values to stdout.
+
+Format\+: \mbox{[}CONFIG\mbox{]} workers=4, timeout=10s, refresh=2s, log\+\_\+level=2 \Hypertarget{config_8c_a83b96494995d002bae79323b61b29e8b}\label{config_8c_a83b96494995d002bae79323b61b29e8b} 
+\index{config.c@{config.c}!validate\_config@{validate\_config}}
+\index{validate\_config@{validate\_config}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{validate\_config()}{validate\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} validate\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Validate loaded configuration values against constraints. 
+
+Validate config values against constraints.
+
+\begin{DoxyReturn}{Returns}
+0 if all values valid, -\/1 if any out-\/of-\/range 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call after \doxylink{config_8h_a5ba22acdff5d198406a9d4aa0c73cb12}{load\+\_\+config()} before starting main loop 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{config_8c_a83b96494995d002bae79323b61b29e8b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{config_8c_a83b96494995d002bae79323b61b29e8b_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{config_8c_a7a263f3585d4479275c267e172000951}\label{config_8c_a7a263f3585d4479275c267e172000951} 
+\index{config.c@{config.c}!cleanup\_done@{cleanup\_done}}
+\index{cleanup\_done@{cleanup\_done}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{cleanup\_done}{cleanup\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{volatile}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{sig\+\_\+atomic\+\_\+t}} cleanup\+\_\+done = 0}
+
+
+
+Signal-\/safe shutdown flag. 
+
+Shutdown flag (signal-\/safe) \Hypertarget{config_8c_aa574e45a6e318dd8f45530c13db10cc1}\label{config_8c_aa574e45a6e318dd8f45530c13db10cc1} 
+\index{config.c@{config.c}!log\_fp@{log\_fp}}
+\index{log\_fp@{log\_fp}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{log\_fp}{log\_fp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{FILE}}\texorpdfstring{$\ast$}{*} log\+\_\+fp = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}}
+
+
+
+Log file handle. 
+
+Log file pointer. \Hypertarget{config_8c_a3ecebc9d2fcb9f207a3373191a0ca251}\label{config_8c_a3ecebc9d2fcb9f207a3373191a0ca251} 
+\index{config.c@{config.c}!LOG\_LEVEL@{LOG\_LEVEL}}
+\index{LOG\_LEVEL@{LOG\_LEVEL}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_LEVEL}{LOG\_LEVEL}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} LOG\+\_\+\+LEVEL = \mbox{\hyperlink{project_8h_aeb4f36db01bd128c7afeac5889dac311}{LOG\+\_\+\+INFO}}}
+
+
+
+Logging verbosity level (default\+: INFO) 
+
+Current logging verbosity. \Hypertarget{config_8c_a4aea176d6dafe443d89b8d850830709a}\label{config_8c_a4aea176d6dafe443d89b8d850830709a} 
+\index{config.c@{config.c}!MAX\_WORKERS@{MAX\_WORKERS}}
+\index{MAX\_WORKERS@{MAX\_WORKERS}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_WORKERS}{MAX\_WORKERS}}
+{\footnotesize\ttfamily int MAX\+\_\+\+WORKERS = 3}
+
+
+
+Number of worker processes (default\+: 3) 
+
+Number of worker processes. \Hypertarget{config_8c_a101a44f6ae94b1cd1b073c99a911dff0}\label{config_8c_a101a44f6ae94b1cd1b073c99a911dff0} 
+\index{config.c@{config.c}!REFRESH\_RATE@{REFRESH\_RATE}}
+\index{REFRESH\_RATE@{REFRESH\_RATE}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{REFRESH\_RATE}{REFRESH\_RATE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} REFRESH\+\_\+\+RATE = 2}
+
+
+
+Dashboard refresh interval in seconds (default\+: 2) 
+
+Dashboard refresh interval (seconds) \Hypertarget{config_8c_a7c35ac5305085cf7360645b8d52988b5}\label{config_8c_a7c35ac5305085cf7360645b8d52988b5} 
+\index{config.c@{config.c}!semid@{semid}}
+\index{semid@{semid}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{semid}{semid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} semid = -\/1}
+
+
+
+Semaphore set ID. 
+
+\Hypertarget{config_8c_a15f03333a7c534eed2e16f8c87ff30fb}\label{config_8c_a15f03333a7c534eed2e16f8c87ff30fb} 
+\index{config.c@{config.c}!shared\_stats@{shared\_stats}}
+\index{shared\_stats@{shared\_stats}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{shared\_stats}{shared\_stats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structProcessStat}{Process\+Stat}}\texorpdfstring{$\ast$}{*} shared\+\_\+stats = \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{NULL}}}
+
+
+
+Shared memory pointer. 
+
+Pointer to shared memory segment. \Hypertarget{config_8c_ac8807d215d2ee6d9779d76aeb1147430}\label{config_8c_ac8807d215d2ee6d9779d76aeb1147430} 
+\index{config.c@{config.c}!shmid@{shmid}}
+\index{shmid@{shmid}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{shmid}{shmid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} shmid = -\/1}
+
+
+
+Shared memory segment ID. 
+
+\Hypertarget{config_8c_a4f741fb3d2c037aa23ac407f9909d766}\label{config_8c_a4f741fb3d2c037aa23ac407f9909d766} 
+\index{config.c@{config.c}!WORKER\_TIMEOUT@{WORKER\_TIMEOUT}}
+\index{WORKER\_TIMEOUT@{WORKER\_TIMEOUT}!config.c@{config.c}}
+\doxysubsubsection{\texorpdfstring{WORKER\_TIMEOUT}{WORKER\_TIMEOUT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} WORKER\+\_\+\+TIMEOUT = 10}
+
+
+
+Timeout threshold in seconds (default\+: 10) 
+
+Timeout threshold (seconds) 

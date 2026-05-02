@@ -1,0 +1,10 @@
+<map id="init_worker_stats" name="init_worker_stats">
+<area shape="rect" id="Node000001" title="Initialize a worker&#39;s stats entry in shared memory." alt="" coords="5,31,139,56"/>
+<area shape="rect" id="Node000002" href="$ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b" title="Release semaphore lock (V operation)" alt="" coords="187,5,305,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,31,173,26,174,31,139,36"/>
+<area shape="rect" id="Node000004" href="$ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594" title="Acquire semaphore lock (P operation)" alt="" coords="192,55,300,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="139,50,178,55,178,61,139,55"/>
+<area shape="rect" id="Node000003" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="353,31,440,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="306,25,340,31,339,36,305,31"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="300,56,339,50,340,55,301,61"/>
+</map>

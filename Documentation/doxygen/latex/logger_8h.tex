@@ -1,0 +1,130 @@
+\doxysection{include/logger.h File Reference}
+\hypertarget{logger_8h}{}\label{logger_8h}\index{include/logger.h@{include/logger.h}}
+
+
+Logging system for RT-\/\+THM with microsecond precision.  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+Include dependency graph for logger.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{logger_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{logger_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{logger_8h_a5453dcbc4c790a4aea0e136877073d4d}{log\+\_\+event}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{level}}, \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{format}},...)
+\begin{DoxyCompactList}\small\item\em Write formatted log event to file and optionally console. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{logger_8h_a5c9881b498d2fe84d5ef9c89cb81d93d}{logger\+\_\+init}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Initialize logging system and open log file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{logger_8h_a59c77d233157db1c24d6553a2567e442}{logger\+\_\+close}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Close log file and cleanup resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Logging system for RT-\/\+THM with microsecond precision. 
+
+Supports multiple log levels and thread-\/safe file output. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{logger_8h_a5453dcbc4c790a4aea0e136877073d4d}\label{logger_8h_a5453dcbc4c790a4aea0e136877073d4d} 
+\index{logger.h@{logger.h}!log\_event@{log\_event}}
+\index{log\_event@{log\_event}!logger.h@{logger.h}}
+\doxysubsubsection{\texorpdfstring{log\_event()}{log\_event()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} log\+\_\+event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}}]{level,  }\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{const}} \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{char}} \texorpdfstring{$\ast$}{*}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Write formatted log event to file and optionally console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Log level string ("{}\+INFO"{}, "{}\+WARN"{}, "{}\+ERROR"{}, "{}\+DEBUG"{}) \\
+\hline
+{\em format} & Printf-\/style format string \\
+\hline
+{\em ...} & Variable arguments for format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread-\/safe via file append mode; respects LOG\+\_\+\+LEVEL global
+\end{DoxyNote}
+Write formatted log event to file and optionally console.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Log level string ("{}\+INFO"{}, "{}\+WARN"{}, "{}\+ERROR"{}, "{}\+DEBUG"{}) \\
+\hline
+{\em format} & Printf-\/style format string \\
+\hline
+{\em ...} & Variable arguments for format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Opens file in append mode for each write (fork-\/safe); respects LOG\+\_\+\+LEVEL 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{logger_8h_a5453dcbc4c790a4aea0e136877073d4d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{logger_8h_a59c77d233157db1c24d6553a2567e442}\label{logger_8h_a59c77d233157db1c24d6553a2567e442} 
+\index{logger.h@{logger.h}!logger\_close@{logger\_close}}
+\index{logger\_close@{logger\_close}!logger.h@{logger.h}}
+\doxysubsubsection{\texorpdfstring{logger\_close()}{logger\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} logger\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Close log file and cleanup resources. 
+
+\begin{DoxyNote}{Note}
+Call during shutdown to ensure all logs are flushed 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{logger_8h_a59c77d233157db1c24d6553a2567e442_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{logger_8h_a5c9881b498d2fe84d5ef9c89cb81d93d}\label{logger_8h_a5c9881b498d2fe84d5ef9c89cb81d93d} 
+\index{logger.h@{logger.h}!logger\_init@{logger\_init}}
+\index{logger\_init@{logger\_init}!logger.h@{logger.h}}
+\doxysubsubsection{\texorpdfstring{logger\_init()}{logger\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} logger\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize logging system and open log file. 
+
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if log file cannot be opened 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call once at program startup before any \doxylink{logger_8h_a5453dcbc4c790a4aea0e136877073d4d}{log\+\_\+event()} calls 
+\end{DoxyNote}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{logger_8h_a5c9881b498d2fe84d5ef9c89cb81d93d_icgraph}
+\end{center}
+\end{figure}

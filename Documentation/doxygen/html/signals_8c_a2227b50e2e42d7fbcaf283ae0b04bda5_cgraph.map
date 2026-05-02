@@ -1,0 +1,9 @@
+<map id="safe_shutdown" name="safe_shutdown">
+<area shape="rect" id="Node000001" title="Wrapper signal handler for safe terminal restoration." alt="" coords="5,31,125,56"/>
+<area shape="rect" id="Node000002" href="$signals_8c.html#aa79b2985b495e6db8bf7675d0a32c3c5" title="Cleanup handler for graceful system shutdown." alt="" coords="173,31,247,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,41,160,41,160,46,126,46"/>
+<area shape="rect" id="Node000003" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="303,5,390,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="246,34,289,26,290,31,247,39"/>
+<area shape="rect" id="Node000004" href="$logger_8c.html#a59c77d233157db1c24d6553a2567e442" title="Close log file and cleanup resources." alt="" coords="295,55,399,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="247,47,282,53,281,58,246,52"/>
+</map>

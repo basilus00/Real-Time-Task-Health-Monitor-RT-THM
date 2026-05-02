@@ -1,0 +1,10 @@
+<map id="ui_draw_workers_table" name="ui_draw_workers_table">
+<area shape="rect" id="Node000001" title="Draw worker statistics table with color&#45;coded status." alt="" coords="5,31,176,56"/>
+<area shape="rect" id="Node000002" href="$ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b" title="Release semaphore lock (V operation)" alt="" coords="224,5,343,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,29,210,25,211,30,177,35"/>
+<area shape="rect" id="Node000004" href="$ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594" title="Acquire semaphore lock (P operation)" alt="" coords="229,55,337,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="177,51,216,56,215,62,176,57"/>
+<area shape="rect" id="Node000003" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="391,31,477,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,25,377,31,377,36,342,31"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="337,56,376,50,377,55,338,61"/>
+</map>

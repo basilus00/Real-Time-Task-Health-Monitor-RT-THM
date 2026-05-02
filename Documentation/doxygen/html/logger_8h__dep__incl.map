@@ -1,0 +1,15 @@
+<map id="include/logger.h" name="include/logger.h">
+<area shape="rect" id="Node000001" title="Logging system for RT&#45;THM with microsecond precision." alt="" coords="303,5,429,31"/>
+<area shape="rect" id="Node000002" href="$config_8c.html" title="Configuration parser implementation for RT&#45;THM." alt="" coords="5,79,100,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="303,36,101,82,100,77,302,31"/>
+<area shape="rect" id="Node000003" href="$ipc__utils_8c.html" title="IPC utilities implementation (Shared Memory &amp; Semaphores)" alt="" coords="124,79,235,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="324,38,211,81,209,76,323,33"/>
+<area shape="rect" id="Node000004" href="$logger_8c.html" title="Logging system implementation with microsecond precision." alt="" coords="259,79,355,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="350,43,319,80,315,77,346,40"/>
+<area shape="rect" id="Node000005" href="$main_8c.html" title="RT&#45;THM supervisor process (parent) implementation." alt="" coords="380,79,469,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="386,40,417,77,413,80,382,43"/>
+<area shape="rect" id="Node000006" href="$signals_8c.html" title="Signal handling implementation for RT&#45;THM." alt="" coords="493,79,596,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="408,33,516,76,514,81,406,38"/>
+<area shape="rect" id="Node000007" href="$worker_8c.html" title="Worker process implementation for RT&#45;THM." alt="" coords="621,79,719,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="429,31,621,76,620,81,427,36"/>
+</map>

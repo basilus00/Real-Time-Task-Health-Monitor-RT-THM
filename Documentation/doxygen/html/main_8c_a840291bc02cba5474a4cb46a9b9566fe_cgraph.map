@@ -1,0 +1,89 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,622,60,647"/>
+<area shape="rect" id="Node000002" href="$ipc__utils_8c.html#ab1210bbe865327d0657417f58a0a32db" title="Attach shared memory to process address space." alt="" coords="289,246,465,271"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="32,621,38,552,51,451,73,353,88,314,106,288,147,262,193,247,241,242,286,242,286,247,241,247,194,253,149,267,110,292,93,317,78,354,57,452,43,552,37,622"/>
+<area shape="rect" id="Node000003" href="$logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d" title="Write formatted log event to file with microsecond timestamp." alt="" coords="982,448,1069,474"/>
+<area shape="poly" id="edge26_Node000001_Node000003" title=" " alt="" coords="32,621,37,545,49,431,58,373,71,319,87,275,106,246,138,220,169,204,199,196,229,194,296,200,376,205,605,205,699,199,776,193,811,195,847,203,885,219,927,246,949,265,968,288,995,340,1013,392,1023,434,1018,435,1008,393,991,342,963,291,945,269,924,250,883,224,846,208,811,201,776,199,700,205,605,210,376,210,295,205,229,199,200,201,171,209,141,224,110,249,91,278,76,321,64,374,54,432,42,545,37,622"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#a1594c6785b808f6766d6f6a82852bf61" title="Check for worker timeouts and send pause/resume signals." alt="" coords="516,296,692,322"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="33,621,40,561,54,475,76,392,90,360,106,339,135,323,175,311,224,303,279,298,395,296,502,299,502,305,395,301,279,304,225,309,177,316,137,328,110,343,95,363,81,394,60,476,45,561,38,622"/>
+<area shape="rect" id="Node000005" href="$ipc__utils_8c.html#a10e9222ec21173d9cec5e4a2abc7454b" title="Release semaphore lock (V operation)" alt="" coords="773,448,892,474"/>
+<area shape="poly" id="edge34_Node000001_Node000005" title=" " alt="" coords="35,620,59,565,80,533,106,506,151,478,191,466,286,453,399,434,488,426,578,426,692,434,760,444,760,449,692,440,578,432,489,431,400,439,287,458,192,471,153,483,110,510,84,536,64,568,40,622"/>
+<area shape="rect" id="Node000006" href="$ipc__utils_8c.html#a5d0cc554e478b3289951da79d95b8594" title="Acquire semaphore lock (P operation)" alt="" coords="779,498,887,523"/>
+<area shape="poly" id="edge35_Node000001_Node000006" title=" " alt="" coords="60,635,188,647,374,658,470,660,560,657,636,648,691,632,707,620,716,606,724,590,738,572,796,529,799,533,742,576,729,593,721,609,711,624,693,637,637,653,560,662,470,665,373,663,188,652,60,640"/>
+<area shape="rect" id="Node000008" href="$UI_8c.html#a10c714946805ecbf63e0fa546403bc47" title="Add formatted log message to UI console buffer." alt="" coords="787,396,879,422"/>
+<area shape="poly" id="edge36_Node000001_Node000008" title=" " alt="" coords="33,621,40,589,53,547,74,502,89,482,106,464,145,436,186,413,229,394,275,379,368,361,463,354,555,357,640,366,774,391,773,396,639,371,555,362,463,360,369,366,276,385,231,399,188,418,148,441,110,468,93,485,79,505,57,549,45,590,38,622"/>
+<area shape="rect" id="Node000009" href="$signals_8c.html#aa79b2985b495e6db8bf7675d0a32c3c5" title="Cleanup handler for graceful system shutdown." alt="" coords="796,900,869,926"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="38,647,46,707,60,793,81,875,95,907,110,927,130,941,157,952,223,966,302,971,388,969,560,953,692,936,782,921,783,926,692,941,560,958,388,974,302,976,222,971,155,957,128,946,106,931,90,909,76,877,55,794,40,708,33,648"/>
+<area shape="rect" id="Node000011" href="$ipc__utils_8c.html#a7519aa078998d162b3a8d9847d507242" title="Create and initialize binary semaphore." alt="" coords="306,748,449,774"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="42,646,67,687,86,709,109,727,153,746,201,757,248,763,293,764,293,770,248,768,200,763,152,751,107,731,83,713,63,690,38,649"/>
+<area shape="rect" id="Node000012" href="$ipc__utils_8c.html#a0831e5dc4c665cd91d0e48ad09525386" title="Create shared memory segment for worker stats." alt="" coords="289,799,465,824"/>
+<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="40,647,48,673,61,706,82,739,110,767,148,788,190,802,234,810,276,814,275,819,233,815,189,807,146,793,106,771,78,743,57,708,43,675,34,648"/>
+<area shape="rect" id="Node000013" href="$ipc__utils_8c.html#a24e2892a5d99a5ede87d81706193766b" title="Detach shared memory from process address space." alt="" coords="288,912,467,938"/>
+<area shape="poly" id="edge19_Node000001_Node000013" title=" " alt="" coords="36,647,39,690,48,751,57,783,70,814,88,843,110,868,146,894,188,910,231,921,274,925,274,931,231,926,186,916,144,898,106,872,83,847,66,817,52,784,43,752,33,691,31,648"/>
+<area shape="rect" id="Node000014" href="$ipc__utils_8c.html#a36bb24831bec33a68c2991a1225c74f1" title="Initialize a worker&#39;s stats entry in shared memory." alt="" coords="537,448,671,474"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="40,620,66,585,85,566,107,551,159,526,214,505,270,489,326,478,433,463,523,458,523,463,434,468,327,483,271,495,215,510,161,530,109,555,88,570,70,588,44,623"/>
+<area shape="rect" id="Node000015" href="$config_8c.html#a5ba22acdff5d198406a9d4aa0c73cb12" title="Load configuration parameters from external file." alt="" coords="329,43,425,68"/>
+<area shape="poly" id="edge24_Node000001_Node000015" title=" " alt="" coords="31,621,31,517,38,355,47,270,60,193,80,129,92,104,106,86,128,68,154,55,209,40,265,37,316,41,316,47,265,43,210,45,156,60,131,72,110,90,96,107,85,131,66,194,52,271,44,356,36,517,36,621"/>
+<area shape="rect" id="Node000016" href="$logger_8c.html#a5c9881b498d2fe84d5ef9c89cb81d93d" title="Initialize logging system and open log file." alt="" coords="128,1002,219,1027"/>
+<area shape="poly" id="edge27_Node000001_Node000016" title=" " alt="" coords="38,647,46,715,61,815,82,914,95,954,110,981,123,993,119,997,106,984,91,956,77,916,55,816,40,716,33,647"/>
+<area shape="rect" id="Node000017" href="$signals_8c.html#adde3bef4aac394c78441b059135e7343" title="Register all signal handlers for the process." alt="" coords="287,850,468,875"/>
+<area shape="poly" id="edge28_Node000001_Node000017" title=" " alt="" coords="38,647,43,681,54,728,76,776,91,798,110,816,147,839,188,854,231,862,273,866,272,871,230,868,186,859,144,844,106,820,87,801,71,779,49,730,37,682,32,648"/>
+<area shape="rect" id="Node000019" href="$ipc__utils_8c.html#a40ad696ee6efdf12b78c06e26bc95de7" title="Mark shared memory segment for deletion." alt="" coords="740,94,925,119"/>
+<area shape="poly" id="edge32_Node000001_Node000019" title=" " alt="" coords="31,621,32,524,40,375,49,297,62,226,81,168,93,146,106,130,139,116,196,107,363,97,556,97,726,100,726,105,556,102,363,103,197,112,140,121,110,134,97,149,86,170,67,227,54,298,45,375,37,524,36,622"/>
+<area shape="rect" id="Node000020" href="$UI_8c.html#a254dff79870a08e3feccded6a95cd791" title="Cleanup ncurses and restore terminal to normal mode." alt="" coords="127,1051,219,1076"/>
+<area shape="poly" id="edge37_Node000001_Node000020" title=" " alt="" coords="37,647,43,726,56,843,78,960,93,1007,110,1038,117,1044,113,1048,106,1041,88,1009,73,962,51,844,38,726,32,647"/>
+<area shape="rect" id="Node000021" href="$UI_8c.html#ae631a5a3ad2c24dd944f5573487f98a3" title="Draw complete dashboard (header + workers + logs)" alt="" coords="303,547,451,572"/>
+<area shape="poly" id="edge38_Node000001_Node000021" title=" " alt="" coords="47,619,74,600,107,583,153,570,200,561,289,555,289,560,201,566,154,575,109,588,77,604,50,624"/>
+<area shape="rect" id="Node000025" href="$UI_8c.html#adc2734583ef4ca75088c32901f593e09" title="Handle terminal resize event." alt="" coords="108,1100,239,1126"/>
+<area shape="poly" id="edge46_Node000001_Node000025" title=" " alt="" coords="37,647,41,735,53,867,63,936,75,999,91,1052,110,1088,113,1091,109,1094,106,1091,86,1054,70,1000,57,936,48,867,36,735,32,648"/>
+<area shape="rect" id="Node000026" href="$UI_8c.html#ab7bfb453918dcc296ff0cea3c79453d0" title="Initialize ncurses and create dashboard windows." alt="" coords="142,1150,205,1175"/>
+<area shape="poly" id="edge47_Node000001_Node000026" title=" " alt="" coords="37,647,40,743,50,890,60,967,72,1038,89,1097,110,1137,131,1151,128,1156,106,1140,84,1099,67,1039,54,968,45,890,35,743,32,647"/>
+<area shape="rect" id="Node000027" href="$UI_8c.html#a490ef24341463347d93ff0da36b17180" title="Refresh entire dashboard display." alt="" coords="130,596,217,622"/>
+<area shape="poly" id="edge48_Node000001_Node000027" title=" " alt="" coords="60,627,116,617,117,622,61,632"/>
+<area shape="rect" id="Node000028" href="$config_8c.html#a83b96494995d002bae79323b61b29e8b" title="Validate loaded configuration values against constraints." alt="" coords="113,144,234,170"/>
+<area shape="poly" id="edge50_Node000001_Node000028" title=" " alt="" coords="32,621,37,536,50,407,72,277,87,224,106,187,118,175,122,179,110,191,92,226,77,278,55,408,43,536,37,621"/>
+<area shape="rect" id="Node000029" href="$worker_8c.html#a46fd66c7fed50332a474537b6c986f4b" title="Main entry point for worker process." alt="" coords="543,698,665,723"/>
+<area shape="poly" id="edge52_Node000001_Node000029" title=" " alt="" coords="52,645,78,662,109,676,164,690,221,701,336,713,442,716,529,713,529,719,442,721,336,719,220,707,163,696,107,681,75,667,49,650"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="439,243,539,230,600,226,665,226,733,232,800,244,866,265,927,295,962,325,988,362,1007,401,1019,434,1014,436,1002,403,983,365,958,328,924,299,864,270,799,249,732,237,665,232,600,232,539,235,440,248"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="692,296,747,294,808,298,869,310,927,333,956,355,981,382,1015,435,1010,438,977,385,953,359,924,338,867,316,807,304,747,300,692,301"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="621,320,741,432,761,442,759,446,739,437,617,324"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="616,320,675,408,711,455,742,484,767,496,764,501,738,489,707,458,671,411,611,323"/>
+<area shape="rect" id="Node000007" href="$signals_8c.html#a9b352f5e054878b135c4d45ee28f17d9" title="Send signal to a specific worker process." alt="" coords="747,347,918,372"/>
+<area shape="poly" id="edge9_Node000004_Node000007" title=" " alt="" coords="663,319,762,341,761,347,662,324"/>
+<area shape="poly" id="edge11_Node000004_Node000008" title=" " alt="" coords="651,319,693,339,708,350,718,362,727,372,741,383,774,396,772,401,739,387,723,376,714,365,704,354,691,343,649,324"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="892,458,968,458,968,464,892,464"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="882,495,968,473,969,478,884,500"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="894,370,927,383,968,409,1002,437,999,441,965,413,924,387,892,375"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="869,906,898,897,923,879,942,849,959,805,987,692,1007,575,1018,487,1024,488,1012,576,992,693,964,807,947,852,927,883,900,902,870,911"/>
+<area shape="rect" id="Node000010" href="$logger_8c.html#a59c77d233157db1c24d6553a2567e442" title="Close log file and cleanup resources." alt="" coords="973,900,1077,926"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="870,910,960,910,960,916,870,916"/>
+<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="449,764,568,771,708,773,776,769,838,762,888,751,924,734,951,709,972,678,989,645,1001,610,1016,542,1021,488,1026,488,1021,543,1006,611,994,647,977,681,955,712,927,738,890,756,839,768,777,775,708,778,568,777,449,770"/>
+<area shape="poly" id="edge18_Node000012_Node000003" title=" " alt="" coords="466,815,585,820,720,819,785,814,843,806,890,794,924,776,954,746,977,710,995,670,1007,628,1020,548,1022,487,1028,487,1025,549,1012,630,1000,672,982,712,958,749,927,781,892,798,844,811,786,820,721,824,585,825,465,821"/>
+<area shape="poly" id="edge20_Node000013_Node000003" title=" " alt="" coords="410,935,507,968,572,985,643,996,717,1001,791,994,827,986,861,974,894,957,924,936,936,923,947,905,967,856,983,794,996,725,1013,588,1020,487,1025,488,1018,589,1001,726,989,795,972,857,952,907,940,926,927,940,896,962,863,979,828,991,792,999,718,1006,643,1002,571,990,505,973,408,940"/>
+<area shape="poly" id="edge22_Node000014_Node000005" title=" " alt="" coords="671,458,759,458,759,464,671,464"/>
+<area shape="poly" id="edge23_Node000014_Node000006" title=" " alt="" coords="664,471,766,493,764,499,663,476"/>
+<area shape="poly" id="edge25_Node000015_Node000003" title=" " alt="" coords="419,40,519,17,583,8,653,3,726,5,798,17,866,41,897,58,927,79,947,105,965,143,993,245,1013,352,1024,434,1019,435,1008,353,988,246,960,145,943,107,923,83,895,63,864,46,796,22,725,11,654,9,584,13,520,23,420,46"/>
+<area shape="poly" id="edge29_Node000017_Node000003" title=" " alt="" coords="468,866,588,870,722,868,787,862,844,854,891,841,924,823,942,800,959,764,987,668,1007,566,1018,487,1023,488,1012,567,992,669,964,765,947,803,927,827,893,846,845,859,787,868,723,873,588,875,468,871"/>
+<area shape="rect" id="Node000018" href="$signals_8c.html#a2227b50e2e42d7fbcaf283ae0b04bda5" title="Wrapper signal handler for safe terminal restoration." alt="" coords="544,900,664,926"/>
+<area shape="poly" id="edge30_Node000017_Node000018" title=" " alt="" coords="436,873,534,895,533,900,435,878"/>
+<area shape="poly" id="edge31_Node000018_Node000009" title=" " alt="" coords="664,910,782,910,782,916,664,916"/>
+<area shape="poly" id="edge33_Node000019_Node000003" title=" " alt="" coords="897,117,927,136,955,171,977,211,994,252,1007,295,1021,374,1026,434,1021,435,1016,375,1002,296,989,254,972,213,951,174,924,140,894,121"/>
+<area shape="rect" id="Node000022" href="$UI_8c.html#a0c8a8e30c481fd6b8a234acef9cd0e75" title="Draw live log console at bottom of screen." alt="" coords="522,596,686,622"/>
+<area shape="poly" id="edge39_Node000021_Node000022" title=" " alt="" coords="437,570,532,591,531,596,436,575"/>
+<area shape="rect" id="Node000023" href="$UI_8c.html#a38bf702c2b7d95494c0fd8e838debce4" title="Draw system status header (time, workers, tasks)" alt="" coords="524,498,684,523"/>
+<area shape="poly" id="edge40_Node000021_Node000023" title=" " alt="" coords="436,544,531,523,532,529,437,550"/>
+<area shape="rect" id="Node000024" href="$UI_8c.html#a3e6d8479ebd16234c91a359c675e0329" title="Draw worker statistics table with color&#45;coded status." alt="" coords="519,547,689,572"/>
+<area shape="poly" id="edge43_Node000021_Node000024" title=" " alt="" coords="451,557,505,557,505,562,451,562"/>
+<area shape="poly" id="edge41_Node000023_Node000005" title=" " alt="" coords="663,495,759,474,760,479,664,500"/>
+<area shape="poly" id="edge42_Node000023_Node000006" title=" " alt="" coords="684,508,765,508,765,513,684,513"/>
+<area shape="poly" id="edge44_Node000024_Node000005" title=" " alt="" coords="666,545,691,533,705,522,714,509,723,497,739,484,759,474,761,479,741,489,727,500,718,513,709,525,693,538,668,549"/>
+<area shape="poly" id="edge45_Node000024_Node000006" title=" " alt="" coords="663,544,764,522,766,527,664,550"/>
+<area shape="poly" id="edge49_Node000027_Node000021" title=" " alt="" coords="216,596,310,573,312,578,218,601"/>
+<area shape="poly" id="edge51_Node000028_Node000003" title=" " alt="" coords="234,149,393,138,598,132,700,136,794,145,872,161,902,173,927,187,954,212,976,243,993,277,1006,312,1021,380,1026,434,1021,435,1016,381,1001,313,988,279,972,246,950,216,924,191,900,178,870,166,793,150,700,141,598,138,393,143,234,154"/>
+<area shape="poly" id="edge54_Node000029_Node000003" title=" " alt="" coords="644,695,691,676,759,641,811,611,924,534,996,480,999,484,927,538,813,615,762,646,693,681,646,700"/>
+<area shape="poly" id="edge55_Node000029_Node000005" title=" " alt="" coords="624,696,658,669,690,633,700,612,706,593,709,556,714,521,723,503,738,484,759,471,762,475,742,488,727,506,719,522,714,557,711,594,705,614,694,636,661,673,627,700"/>
+<area shape="poly" id="edge56_Node000029_Node000006" title=" " alt="" coords="657,695,690,676,707,656,716,636,723,615,738,590,769,557,801,529,805,533,773,561,742,593,728,617,721,638,712,659,694,680,659,700"/>
+<area shape="poly" id="edge53_Node000029_Node000009" title=" " alt="" coords="621,721,809,889,805,893,618,725"/>
+<area shape="rect" id="Node000030" href="$signals_8c.html#aae335edcfdcb000211d477ee50cbfdae" title="Worker signal handler for SIGUSR1/SIGUSR2." alt="" coords="749,698,917,723"/>
+<area shape="poly" id="edge57_Node000029_Node000030" title=" " alt="" coords="666,708,735,708,735,713,666,713"/>
+</map>

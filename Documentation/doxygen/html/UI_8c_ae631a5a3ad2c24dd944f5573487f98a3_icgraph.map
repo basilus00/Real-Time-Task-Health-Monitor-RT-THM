@@ -1,0 +1,8 @@
+<map id="ui_draw_dashboard" name="ui_draw_dashboard">
+<area shape="rect" id="Node000001" title="Draw complete dashboard (header + workers + logs)" alt="" coords="243,5,391,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,21,60,21,60,15,229,15"/>
+<area shape="rect" id="Node000003" href="$UI_8c.html#a490ef24341463347d93ff0da36b17180" title="Refresh entire dashboard display." alt="" coords="108,31,195,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="230,34,195,39,195,34,229,29"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="94,34,59,26,61,21,95,29"/>
+</map>

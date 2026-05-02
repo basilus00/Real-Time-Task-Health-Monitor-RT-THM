@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['last_5fupdate_0',['last_update',['../structProcessStat.html#a369c7b6f21f01c68c7a8e930d8117f5c',1,'ProcessStat']]],
+  ['latest_5flog_1',['latest_log',['../UI_8c.html#afdbbb4b1102029a08e13d53d31feb4a5',1,'UI.c']]],
+  ['load_5fconfig_2',['load_config',['../config_8c.html#a5ba22acdff5d198406a9d4aa0c73cb12',1,'load_config(const char *filename):&#160;config.c'],['../config_8h.html#a5ba22acdff5d198406a9d4aa0c73cb12',1,'load_config(const char *filename):&#160;config.c']]],
+  ['log_5fbuffer_3',['log_buffer',['../UI_8c.html#a866db2b3303f8daaa9f38005cf75ca63',1,'UI.c']]],
+  ['log_5fdebug_4',['LOG_DEBUG',['../project_8h.html#a6ff63e8955665c4a58b1598f2b07c51a',1,'project.h']]],
+  ['log_5fevent_5',['log_event',['../logger_8c.html#a5453dcbc4c790a4aea0e136877073d4d',1,'log_event(const char *level, const char *format,...):&#160;logger.c'],['../logger_8h.html#a5453dcbc4c790a4aea0e136877073d4d',1,'log_event(const char *level, const char *format,...):&#160;logger.c']]],
+  ['log_5ffile_6',['LOG_FILE',['../project_8h.html#a69d4676733f5e850f451942b6d901382',1,'project.h']]],
+  ['log_5ffp_7',['log_fp',['../config_8c.html#aa574e45a6e318dd8f45530c13db10cc1',1,'log_fp:&#160;config.c'],['../project_8h.html#aa574e45a6e318dd8f45530c13db10cc1',1,'log_fp:&#160;config.c']]],
+  ['log_5findex_8',['log_index',['../UI_8c.html#a8159879301332c0c801d519a7476c211',1,'UI.c']]],
+  ['log_5finfo_9',['LOG_INFO',['../project_8h.html#aeb4f36db01bd128c7afeac5889dac311',1,'project.h']]],
+  ['log_5flevel_10',['log_level',['../project_8h.html#a3ecebc9d2fcb9f207a3373191a0ca251',1,'LOG_LEVEL:&#160;config.c'],['../config_8c.html#a3ecebc9d2fcb9f207a3373191a0ca251',1,'LOG_LEVEL:&#160;config.c']]],
+  ['log_5fmutex_11',['log_mutex',['../UI_8c.html#a54baead9ac1aa7d2d2f886956ac57c1e',1,'UI.c']]],
+  ['log_5fnone_12',['LOG_NONE',['../project_8h.html#a1632479322efa3952798f98177b54471',1,'project.h']]],
+  ['logger_2ec_13',['logger.c',['../logger_8c.html',1,'']]],
+  ['logger_2eh_14',['logger.h',['../logger_8h.html',1,'']]],
+  ['logger_5fclose_15',['logger_close',['../logger_8c.html#a59c77d233157db1c24d6553a2567e442',1,'logger_close(void):&#160;logger.c'],['../logger_8h.html#a59c77d233157db1c24d6553a2567e442',1,'logger_close(void):&#160;logger.c']]],
+  ['logger_5finit_16',['logger_init',['../logger_8c.html#a5c9881b498d2fe84d5ef9c89cb81d93d',1,'logger_init(void):&#160;logger.c'],['../logger_8h.html#a5c9881b498d2fe84d5ef9c89cb81d93d',1,'logger_init(void):&#160;logger.c']]],
+  ['logs_5fheight_17',['LOGS_HEIGHT',['../UI_8c.html#a2260e279efc169640b3b0e73684fbb81',1,'UI.c']]],
+  ['logs_5fwin_18',['logs_win',['../UI_8c.html#ae5ccbef9c54917ce58ab8df1884738c5',1,'UI.c']]]
+];

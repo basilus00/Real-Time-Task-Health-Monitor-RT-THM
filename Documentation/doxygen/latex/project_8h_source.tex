@@ -1,0 +1,62 @@
+\doxysection{project.\+h}
+\hypertarget{project_8h_source}{}\label{project_8h_source}\index{include/project.h@{include/project.h}}
+\mbox{\hyperlink{project_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ PROJECT\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ PROJECT\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <sys/ipc.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <sys/shm.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <sys/sem.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <sys/wait.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <signal.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <sys/time.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <ctype.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <ncurses.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SHM\_SIZE\ 1024\ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ CONFIG\_FILE\ "{}config.txt"{}\ }}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ LOG\_FILE\ "{}system.log"{}\ \ \ \ }}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ MAX\_LINE\ 256\ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ CMD\_NONE\ \ \ 0\ \ }}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ CMD\_PAUSE\ \ 1\ \ }}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ CMD\_RESUME\ 2\ \ }}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ LOG\_NONE\ \ 0\ \ }}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ LOG\_INFO\ \ 1\ \ }}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ LOG\_DEBUG\ 2\ \ }}
+\DoxyCodeLine{00055\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structProcessStat_a43da2e5650c27456b57f3aec4351ca68}{pid}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structProcessStat_ae5c40fe11f3debbc934ef22743523753}{health\_score}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structProcessStat_a6570e376be127f8859c72127d760bbee}{tasks\_completed}};\ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ time\_t\ \mbox{\hyperlink{structProcessStat_a369c7b6f21f01c68c7a8e930d8117f5c}{last\_update}};\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structProcessStat_a0744978ac89302cc95c687a43a31eeae}{is\_slow}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structProcessStat_aaf4dc36fff2a46817cac387213430d97}{command}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \}\ \mbox{\hyperlink{structProcessStat}{ProcessStat}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{union\ }\mbox{\hyperlink{unionsemun}{semun}}\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{unionsemun_ac6121ecb6d04a024e07e12bd71b94031}{val}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{struct\ }semid\_ds\ *\mbox{\hyperlink{unionsemun_ac6b6428d07d4147fd2cc698b53555bed}{buf}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ *\mbox{\hyperlink{unionsemun_aca23b8e730a0553205813c0cb7692b54}{array}};\ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structProcessStat}{ProcessStat}}\ *\mbox{\hyperlink{project_8h_a15f03333a7c534eed2e16f8c87ff30fb}{shared\_stats}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{project_8h_ac8807d215d2ee6d9779d76aeb1147430}{shmid}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{project_8h_a7c35ac5305085cf7360645b8d52988b5}{semid}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ sig\_atomic\_t\ \mbox{\hyperlink{project_8h_a7a263f3585d4479275c267e172000951}{cleanup\_done}};\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{extern}\ FILE\ *\mbox{\hyperlink{project_8h_aa574e45a6e318dd8f45530c13db10cc1}{log\_fp}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{project_8h_a4aea176d6dafe443d89b8d850830709a}{MAX\_WORKERS}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{project_8h_a4f741fb3d2c037aa23ac407f9909d766}{WORKER\_TIMEOUT}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{project_8h_a101a44f6ae94b1cd1b073c99a911dff0}{REFRESH\_RATE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{project_8h_a3ecebc9d2fcb9f207a3373191a0ca251}{LOG\_LEVEL}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PROJECT\_H}}
+
+\end{DoxyCode}

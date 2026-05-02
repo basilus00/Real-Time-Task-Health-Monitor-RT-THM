@@ -1,0 +1,25 @@
+<map id="sem_wait_op" name="sem_wait_op">
+<area shape="rect" id="Node000001" title="Acquire semaphore lock (P operation)" alt="" coords="732,132,840,157"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a1594c6785b808f6766d6f6a82852bf61" title="Check for worker timeouts and send pause/resume signals." alt="" coords="289,5,465,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="765,123,730,85,708,67,683,52,629,33,572,22,516,16,465,15,466,10,517,11,573,17,630,28,685,48,711,62,734,81,769,119"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,132,60,157"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="728,131,684,122,560,106,463,100,241,97,174,89,145,89,109,97,75,113,49,134,46,130,73,109,107,91,144,84,174,84,241,91,464,95,561,101,684,117,729,126"/>
+<area shape="rect" id="Node000004" href="$ipc__utils_8c.html#a36bb24831bec33a68c2991a1225c74f1" title="Initialize a worker&#39;s stats entry in shared memory." alt="" coords="108,107,241,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="718,145,241,125,242,119,718,139"/>
+<area shape="rect" id="Node000005" href="$UI_8c.html#a38bf702c2b7d95494c0fd8e838debce4" title="Draw system status header (time, workers, tasks)" alt="" coords="519,157,679,183"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="719,156,679,162,678,157,718,151"/>
+<area shape="rect" id="Node000008" href="$UI_8c.html#a3e6d8479ebd16234c91a359c675e0329" title="Draw worker statistics table with color&#45;coded status." alt="" coords="513,207,684,232"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="750,166,685,196,648,209,646,204,683,192,748,161"/>
+<area shape="rect" id="Node000009" href="$worker_8c.html#a46fd66c7fed50332a474537b6c986f4b" title="Main entry point for worker process." alt="" coords="316,259,439,284"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="770,171,735,211,711,231,685,247,622,268,556,279,493,282,439,280,439,275,493,277,556,274,621,263,683,242,708,227,731,208,766,167"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,15,235,17,191,23,149,35,109,52,86,70,67,92,42,133,38,131,63,89,83,66,107,48,147,30,190,18,234,12,276,9"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="95,136,61,143,60,137,94,131"/>
+<area shape="rect" id="Node000006" href="$UI_8c.html#ae631a5a3ad2c24dd944f5573487f98a3" title="Draw complete dashboard (header + workers + logs)" alt="" coords="303,183,451,208"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="505,183,452,190,451,184,505,178"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="289,185,60,151,61,146,290,180"/>
+<area shape="rect" id="Node000007" href="$UI_8c.html#a490ef24341463347d93ff0da36b17180" title="Refresh entire dashboard display." alt="" coords="131,208,218,233"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="290,209,219,218,218,213,290,204"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="132,204,107,191,53,160,56,155,109,186,135,199"/>
+<area shape="poly" id="edge12_Node000008_Node000006" title=" " alt="" coords="499,211,451,206,452,201,500,206"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="302,283,256,283,206,279,155,268,107,248,82,229,62,204,37,159,42,156,66,201,85,225,109,244,156,263,206,274,256,278,302,277"/>
+</map>

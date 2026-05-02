@@ -1,0 +1,136 @@
+\doxysection{src/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{src/main.c@{src/main.c}}
+
+
+RT-\/\+THM supervisor process (parent) implementation.  
+
+
+{\ttfamily \#include "{}project.\+h"{}}\newline
+{\ttfamily \#include "{}ipc.\+h"{}}\newline
+{\ttfamily \#include "{}logger.\+h"{}}\newline
+{\ttfamily \#include "{}config.\+h"{}}\newline
+{\ttfamily \#include "{}signals.\+h"{}}\newline
+{\ttfamily \#include "{}worker.\+h"{}}\newline
+{\ttfamily \#include "{}ui.\+h"{}}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{main_8c_a3024ccd4a9af5109d24e6c57565d74a1}{\+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE}}~200809\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{L}}
+\item 
+\#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \mbox{\hyperlink{main_8c_a8fb447618db946a9e2a596d9ea18763f}{\+\_\+\+DEFAULT\+\_\+\+SOURCE}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} \mbox{\hyperlink{main_8c_a1594c6785b808f6766d6f6a82852bf61}{check\+\_\+worker\+\_\+timeouts}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Check for worker timeouts and send pause/resume signals. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}})
+\begin{DoxyCompactList}\small\item\em Main entry point for RT-\/\+THM supervisor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RT-\/\+THM supervisor process (parent) implementation. 
+
+Main entry point\+: initializes IPC, spawns workers, runs ncurses dashboard, and monitors worker health with auto-\/restart on failure. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{main_8c_a8fb447618db946a9e2a596d9ea18763f}\label{main_8c_a8fb447618db946a9e2a596d9ea18763f} 
+\index{main.c@{main.c}!\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}}
+\index{\_DEFAULT\_SOURCE@{\_DEFAULT\_SOURCE}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{\_DEFAULT\_SOURCE}{\_DEFAULT\_SOURCE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \+\_\+\+DEFAULT\+\_\+\+SOURCE}
+
+\Hypertarget{main_8c_a3024ccd4a9af5109d24e6c57565d74a1}\label{main_8c_a3024ccd4a9af5109d24e6c57565d74a1} 
+\index{main.c@{main.c}!\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}}
+\index{\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{\_POSIX\_C\_SOURCE}{\_POSIX\_C\_SOURCE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{define}} \+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE~200809\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{L}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a1594c6785b808f6766d6f6a82852bf61}\label{main_8c_a1594c6785b808f6766d6f6a82852bf61} 
+\index{main.c@{main.c}!check\_worker\_timeouts@{check\_worker\_timeouts}}
+\index{check\_worker\_timeouts@{check\_worker\_timeouts}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{check\_worker\_timeouts()}{check\_worker\_timeouts()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}} check\+\_\+worker\+\_\+timeouts (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Check for worker timeouts and send pause/resume signals. 
+
+Monitors last\+\_\+update timestamp; sends SIGUSR1 if idle \texorpdfstring{$>$}{>} WORKER\+\_\+\+TIMEOUT, SIGUSR2 when worker recovers. Updates shared\+\_\+stats\mbox{[}i\mbox{]}.is\+\_\+slow and command fields. \begin{DoxyNote}{Note}
+Must be called periodically from main supervision loop 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{signals_8c_a9b352f5e054878b135c4d45ee28f17d9}{send\+\_\+signal\+\_\+to\+\_\+worker()} 
+\end{DoxySeeAlso}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a1594c6785b808f6766d6f6a82852bf61_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{main_8c_a1594c6785b808f6766d6f6a82852bf61_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8c_a4aea176d6dafe443d89b8d850830709a}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Main entry point for RT-\/\+THM supervisor. 
+
+\begin{DoxyReturn}{Returns}
+EXIT\+\_\+\+SUCCESS on normal exit, EXIT\+\_\+\+FAILURE on initialization error
+\end{DoxyReturn}
+Execution flow\+:
+\begin{DoxyEnumerate}
+\item Initialize logger and load config.\+txt
+\item Create shared memory and semaphore for IPC
+\item Fork worker processes
+\item Initialize ncurses UI dashboard
+\item Enter supervision loop\+:
+\begin{DoxyItemize}
+\item Handle user input (q=quit, r=restart, resize)
+\item Draw dashboard with worker stats
+\item Monitor workers via \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{waitpid()} and restart on crash
+\item Check timeouts and send signals as needed
+\end{DoxyItemize}
+\item Cleanup resources on exit \begin{DoxyNote}{Note}
+This function contains the main infinite loop; normal exit via \textquotesingle{}q\textquotesingle{} key or SIGINT 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Calls \doxylink{config_8c_a4aea176d6dafe443d89b8d850830709a}{exit()} in error paths; \doxylink{signals_8c_aa79b2985b495e6db8bf7675d0a32c3c5}{cleanup()} handles IPC resource release 
+\end{DoxyWarning}
+
+\end{DoxyEnumerate}Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph}
+\end{center}
+\end{figure}

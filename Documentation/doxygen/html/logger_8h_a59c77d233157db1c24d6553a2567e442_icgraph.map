@@ -1,0 +1,15 @@
+<map id="logger_close" name="logger_close">
+<area shape="rect" id="Node000001" title="Close log file and cleanup resources." alt="" coords="627,36,731,62"/>
+<area shape="rect" id="Node000002" href="$signals_8c.html#aa79b2985b495e6db8bf7675d0a32c3c5" title="Cleanup handler for graceful system shutdown." alt="" coords="505,36,579,62"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="613,52,579,52,579,46,613,46"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main entry point for RT&#45;THM supervisor." alt="" coords="5,36,60,62"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="493,35,457,26,359,13,282,8,206,12,109,26,61,40,59,35,107,21,205,7,283,3,360,8,458,21,495,30"/>
+<area shape="rect" id="Node000004" href="$signals_8c.html#a2227b50e2e42d7fbcaf283ae0b04bda5" title="Wrapper signal handler for safe terminal restoration." alt="" coords="337,36,457,62"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="492,52,457,52,457,46,492,46"/>
+<area shape="rect" id="Node000006" href="$worker_8c.html#a46fd66c7fed50332a474537b6c986f4b" title="Main entry point for worker process." alt="" coords="137,86,260,111"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="493,68,458,77,354,92,260,99,260,93,353,86,457,72,491,63"/>
+<area shape="rect" id="Node000005" href="$signals_8c.html#adde3bef4aac394c78441b059135e7343" title="Register all signal handlers for the process." alt="" coords="108,36,289,62"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="323,52,290,52,290,46,323,46"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="94,52,60,52,60,46,94,46"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="134,85,107,77,59,61,61,56,109,72,135,79"/>
+</map>
